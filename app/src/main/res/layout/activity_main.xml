@@ -6,6 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.lanou.yueba.main.MainActivity">
+    <include layout="@layout/toolbar">
+
+    </include>
 
     <LinearLayout
         android:id="@+id/ll_main"

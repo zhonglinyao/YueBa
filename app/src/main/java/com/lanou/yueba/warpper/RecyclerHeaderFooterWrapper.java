@@ -1,15 +1,17 @@
-package com.lanou.yueba.base;
+package com.lanou.yueba.warpper;
 
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.lanou.yueba.base.rv.BaseRecyclerViewHolder;
+
 /**
  * Created by dllo on 16/10/19.
  */
 
-public class BaseRecyclerAdapterWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class RecyclerHeaderFooterWrapper extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int BASE_ITEM_TYPE_HEADER = 1000;
     private static final int BASE_ITEM_TYPE_FOOTER = 2000;
@@ -19,7 +21,7 @@ public class BaseRecyclerAdapterWrapper extends RecyclerView.Adapter<RecyclerVie
 
     private RecyclerView.Adapter mAdapter;
 
-    public BaseRecyclerAdapterWrapper(RecyclerView.Adapter adapter) {
+    public RecyclerHeaderFooterWrapper(RecyclerView.Adapter adapter) {
         mAdapter = adapter;
     }
 
@@ -75,7 +77,7 @@ public class BaseRecyclerAdapterWrapper extends RecyclerView.Adapter<RecyclerVie
     }
 
     private boolean isFooterViewPos(int position) {
-        return position >= getFootersCount() + getRealItemCount();
+        return position >= getHeadersCount() + getRealItemCount();
     }
 
     private int getRealItemCount() {

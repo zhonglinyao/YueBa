@@ -1,4 +1,4 @@
-package com.lanou.yueba.base;
+package com.lanou.yueba.base.lv;
 
 import android.content.Context;
 import android.util.SparseArray;
@@ -13,13 +13,13 @@ import com.bumptech.glide.Glide;
 /**
  * Created by dllo on 16/10/19.
  */
-public class BaseViewHolder {
+public class BaseListViewViewHolder {
     private SparseArray<View> mViews;
     private int mPosition;
     private View mConvertView;
     private Context mContext;
 
-    public BaseViewHolder(Context context, ViewGroup parent, int layoutId, int position) {
+    public BaseListViewViewHolder(Context context, ViewGroup parent, int layoutId, int position) {
         mPosition = position;
         mViews = new SparseArray<>();
         mContext = context;
@@ -27,11 +27,11 @@ public class BaseViewHolder {
         mConvertView.setTag(this);
     }
 
-    public static BaseViewHolder get(Context context, View convertView, ViewGroup parent, int layoutId, int position) {
+    public static BaseListViewViewHolder get(Context context, View convertView, ViewGroup parent, int layoutId, int position) {
         if (convertView == null) {
-            return new BaseViewHolder(context, parent, layoutId, position);
+            return new BaseListViewViewHolder(context, parent, layoutId, position);
         } else {
-            BaseViewHolder holder = (BaseViewHolder) convertView.getTag();
+            BaseListViewViewHolder holder = (BaseListViewViewHolder) convertView.getTag();
             holder.mPosition = position;
             return holder;
         }
@@ -48,13 +48,13 @@ public class BaseViewHolder {
         return (T) view;
     }
 
-    public BaseViewHolder setText(int viewId, String string){
+    public BaseListViewViewHolder setText(int viewId, String string){
         TextView tv = getView(viewId);
         tv.setText(string);
         return this;
     }
 
-    public BaseViewHolder setImage(int viewId, String imgUrl){
+    public BaseListViewViewHolder setImage(int viewId, String imgUrl){
         ImageView iv = getView(viewId);
         Glide.with(mContext).load(imgUrl).into(iv);
         return this;

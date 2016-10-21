@@ -1,4 +1,4 @@
-package com.lanou.yueba.base;
+package com.lanou.yueba.base.rv;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -18,7 +18,6 @@ import com.bumptech.glide.Glide;
  */
 
 public class BaseRecyclerViewHolder extends RecyclerView.ViewHolder {
-
 
     private SparseArray<View> mViews;
     private View mConvertView;

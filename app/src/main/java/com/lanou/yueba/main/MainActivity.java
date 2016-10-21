@@ -1,6 +1,5 @@
 package com.lanou.yueba.main;
 
-import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -26,11 +25,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private DynamicFragment mDynamicFragment;
     private NewsFragment mNewsFragment;
     private VideoFragment mVideoFragment;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
 
     @Override
     protected int setLayout() {

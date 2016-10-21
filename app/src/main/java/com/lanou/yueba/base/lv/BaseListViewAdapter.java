@@ -1,4 +1,4 @@
-package com.lanou.yueba.base;
+package com.lanou.yueba.base.lv;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -43,10 +43,10 @@ public abstract class BaseListViewAdapter<T> extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        BaseViewHolder viewHolder = BaseViewHolder.get(mContext, convertView, parent, layoutId, position);
+        BaseListViewViewHolder viewHolder = BaseListViewViewHolder.get(mContext, convertView, parent, layoutId, position);
         convent(viewHolder, getItem(position));
         return viewHolder.getConvertView();
     }
 
-    public abstract void convent(BaseViewHolder viewHolder, T t);
+    public abstract void convent(BaseListViewViewHolder viewHolder, T t);
 }
