@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by dllo on 16/10/18.
  */
+
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRecyclerViewHolder> {
 
 
@@ -45,5 +46,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<BaseRe
     public int getItemCount() {
         return mData == null ? 0 : mData.size();
     }
+
 
 }
