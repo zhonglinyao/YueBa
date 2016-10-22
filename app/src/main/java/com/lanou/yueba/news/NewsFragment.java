@@ -1,5 +1,7 @@
 package com.lanou.yueba.news;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
 
@@ -8,6 +10,7 @@ import com.lanou.yueba.base.BaseFragment;
  */
 
 public class NewsFragment extends BaseFragment{
+    private RecyclerView mRecyclerView;
     @Override
     protected int setLayout() {
         return R.layout.fragment_news;
@@ -15,11 +18,14 @@ public class NewsFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-
+        mRecyclerView = bindView(R.id.rv_news);
     }
 
     @Override
     protected void initData() {
+
+        NewsAdapter adapter = new NewsAdapter();
+
 
     }
 }

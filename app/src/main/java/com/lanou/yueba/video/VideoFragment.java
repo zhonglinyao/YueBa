@@ -1,5 +1,7 @@
 package com.lanou.yueba.video;
 
+import android.support.v7.widget.RecyclerView;
+
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
 
@@ -8,6 +10,7 @@ import com.lanou.yueba.base.BaseFragment;
  */
 
 public class VideoFragment extends BaseFragment{
+    private RecyclerView mRecyclerView;
     @Override
     protected int setLayout() {
         return R.layout.fragment_video;
@@ -15,11 +18,11 @@ public class VideoFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-
+        mRecyclerView = bindView(R.id.rv_video);
     }
 
     @Override
     protected void initData() {
-
+        VideoAdapter adapter = new VideoAdapter();
     }
 }
