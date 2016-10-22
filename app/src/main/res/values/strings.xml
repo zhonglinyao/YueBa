@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">约吧</string>
+    <string name="main_toolbar_more">更多</string>
+    <string name="main_toolbar_add">添加</string>
 </resources>

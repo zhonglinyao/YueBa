@@ -1,4 +1,4 @@
-package com.lanou.yueba.base.rv;
+package com.lanou.yueba.base.lv;
 
 import android.support.v4.util.SparseArrayCompat;
 
@@ -67,7 +67,7 @@ public class ItemViewDelegateManager<T> {
                 "No ItemViewDelegate added that matches position=" + position + " in data source");
     }
 
-    public void convert(ViewHolder holder, T item, int position) {
+    public void convert(ViewHolderListView holder, T item, int position) {
         int delegatesCount = delegates.size();
         for (int i = 0; i < delegatesCount; i++) {
             ItemViewDelegate<T> delegate = delegates.valueAt(i);
@@ -81,16 +81,27 @@ public class ItemViewDelegateManager<T> {
                 "No ItemViewDelegateManager added that matches position=" + position + " in data source");
     }
 
-
-    public ItemViewDelegate getItemViewDelegate(int viewType) {
-        return delegates.get(viewType);
-    }
-
     public int getItemViewLayoutId(int viewType) {
-        return getItemViewDelegate(viewType).getItemViewLayoutId();
+        return delegates.get(viewType).getItemViewLayoutId();
     }
 
     public int getItemViewType(ItemViewDelegate itemViewDelegate) {
         return delegates.indexOfValue(itemViewDelegate);
+    }
+
+    public ItemViewDelegate getItemViewDelegate(T item, int position) {
+        int delegatesCount = delegates.size();
+        for (int i = delegatesCount - 1; i >= 0; i--) {
+            ItemViewDelegate<T> delegate = delegates.valueAt(i);
+            if (delegate.isForViewType(item, position)) {
+                return delegate;
+            }
+        }
+        throw new IllegalArgumentException(
+                "No ItemViewDelegate added that matches position=" + position + " in data source");
+    }
+
+    public int getItemViewLayoutId(T item, int position) {
+        return getItemViewDelegate(item, position).getItemViewLayoutId();
     }
 }

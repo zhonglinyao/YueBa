@@ -1,11 +1,10 @@
 package com.lanou.yueba.base.toolbar;
 
-import android.content.Context;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import com.lanou.yueba.R;
 
@@ -14,21 +13,12 @@ import com.lanou.yueba.R;
  */
 
 public class ToolBarHelper {
-    private Context mContext;
+    private AppCompatActivity mActivity;
     private Toolbar mToolbar;
     private LayoutInflater mInflater;
-    private View mCustomView;
-    private FrameLayout mContentView;
-    private View mViewLeft;
-    private View mViewCenter;
-    private View mViewRight;
+    private RelativeLayout mContentView;
 
-    private static int[] ATTRS = {
-            R.attr.windowActionBarOverlay,
-            R.attr.actionBarSize
-    };
-
-    public FrameLayout getContentView() {
+    public RelativeLayout getContentView() {
         return mContentView;
     }
 
@@ -36,37 +26,35 @@ public class ToolBarHelper {
         return mToolbar;
     }
 
-    public ToolBarHelper(Context context, int layoutId) {
-        mContext = context;
-        mInflater = LayoutInflater.from(context);
-        initContentView();
-        initUserView(layoutId);
+    public ToolBarHelper(AppCompatActivity activity) {
+        mActivity = activity;
+        mInflater = LayoutInflater.from(activity);
         initToolBar();
+        initContentView();
     }
 
-    private void initContentView(){
-        mContentView = new FrameLayout(mContext);
-        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-        mContentView.setLayoutParams(params);
+    private void initToolBar() {
+        mToolbar = (Toolbar) mActivity.findViewById(R.id.tool_bar);
+        mActivity.setSupportActionBar(mToolbar);
     }
 
-    private void initUserView(int layoutId){
-        mCustomView = mInflater.inflate(layoutId, null);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                ViewGroup.LayoutParams.MATCH_PARENT,
-                ViewGroup.LayoutParams.MATCH_PARENT);
-//        TypedArray typedArray = mContext.getTheme().obtainStyledAttributes(ATTRS);
-//        Boolean overly = typedArray.getBoolean(0, false);
-        mContentView.addView(mCustomView, params);
-
+    private void initContentView() {
+        mContentView = (RelativeLayout) mToolbar.findViewById(R.id.toolbar_content);
     }
 
-    private void initToolBar(){
-        View view = mInflater.inflate(R.layout.toolbar, mContentView);
-        mToolbar = (Toolbar) view.findViewById(R.id.tool_bar);
+    public void addCustomView(View view) {
+        mContentView.addView(view);
     }
 
+    public void removeAllCustomView() {
+        mContentView.removeAllViews();
+    }
 
+    public void removeCustomView(View childView) {
+        mContentView.removeView(childView);
+    }
+
+    public void removeCustomView(int index) {
+        mContentView.removeViewAt(index);
+    }
 }

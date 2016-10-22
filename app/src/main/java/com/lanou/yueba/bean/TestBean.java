@@ -6,8 +6,18 @@ package com.lanou.yueba.bean;
 
 public class TestBean {
     private String mString;
+    private Boolean isCome;
 
-    public TestBean(String string) {
+    public Boolean getCome() {
+        return isCome;
+    }
+
+    public void setCome(Boolean come) {
+        isCome = come;
+    }
+
+    public TestBean(Boolean isCome, String string) {
+        this.isCome = isCome;
         mString = string;
     }
 

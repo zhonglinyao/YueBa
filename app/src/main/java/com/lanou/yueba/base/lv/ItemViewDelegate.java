@@ -1,4 +1,4 @@
-package com.lanou.yueba.base.rv;
+package com.lanou.yueba.base.lv;
 
 
 /**
@@ -10,6 +10,6 @@ public interface ItemViewDelegate<T> {
 
     boolean isForViewType(T item, int position);
 
-    void convert(ViewHolder holder, T t, int position);
+    void convert(ViewHolderListView holder, T t, int position);
 
 }
