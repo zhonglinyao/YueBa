@@ -7,47 +7,53 @@
     android:layout_height="match_parent"
     tools:context="com.lanou.yueba.main.MainActivity">
 
-    <LinearLayout
+    <RadioGroup
         android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:orientation="horizontal"
         android:layout_alignParentBottom="true">
 
-        <ImageView
+        <RadioButton
             android:id="@+id/iv_message_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:button="@null"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"/>
+            android:drawableTop="@drawable/message"/>
 
-        <ImageView
+        <RadioButton
             android:id="@+id/iv_contact_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:button="@null"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"/>
+            android:drawableTop="@drawable/contact"/>
 
-        <ImageView
+        <RadioButton
             android:id="@+id/iv_dynamic_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:button="@null"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"/>
+            android:drawableTop="@drawable/dynamic"/>
 
-        <ImageView
+        <RadioButton
             android:id="@+id/iv_news_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:button="@null"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"/>
+            android:drawableTop="@drawable/news"/>
 
-        <ImageView
+        <RadioButton
             android:id="@+id/iv_video_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
+            android:button="@null"
             android:layout_weight="1"
-            android:src="@mipmap/ic_launcher"/>
-    </LinearLayout>
+            android:drawableTop="@drawable/video"/>
+    </RadioGroup>
 
     <FrameLayout
         android:id="@+id/fl_main"
