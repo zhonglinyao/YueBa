@@ -69,17 +69,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mIvVideo.setOnClickListener(this);
         mIvNews.setOnClickListener(this);
         mIvMessage.setOnClickListener(this);
-
         mIvMessage.setChecked(true);
-
-
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
         mDynamicFragment = new DynamicFragment();
         mNewsFragment = new NewsFragment();
         mVideoFragment = new VideoFragment();
-
-
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
@@ -96,7 +91,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 index = 1;
                 transaction.replace(R.id.fl_main, mMessageFragment);
                 break;
-
             case R.id.iv_contact_main:
                 index = 2;
                 transaction.replace(R.id.fl_main, mContactFragment);
@@ -113,12 +107,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 index = 5;
                 transaction.replace(R.id.fl_main, mVideoFragment);
                 break;
+            case R.id.civ_toolbar:
+                break;
+            case R.id.iv_more_toolbar:
+                break;
+            case R.id.tv_add_toolbar:
+                break;
+            case R.id.tv_more_toolbar:
+                break;
         }
         changeToolBar();
         transaction.commit();
     }
 
-    private void changeToolBar(){
+    private void changeToolBar() {
         switch (index) {
             case 1:
                 mTvToolBar.setText("会话");
@@ -148,7 +150,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTvToolBar.setText("视频");
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
-                mTvMoreToolBar.setVisibility(View.VISIBLE);
+                mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
         }
     }
