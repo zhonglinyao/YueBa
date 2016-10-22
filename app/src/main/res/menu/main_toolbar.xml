@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/message"
+          android:icon="@mipmap/message_more"
+          android:title=""
+          app:showAsAction="ifRoom"/>
+    <item android:id="@+id/contact"
+          android:title="添加"
+          app:showAsAction="ifRoom"/>
+    <item android:id="@+id/dynamic"
+          android:title="更多"
+          app:showAsAction="ifRoom"/>
+
+</menu>

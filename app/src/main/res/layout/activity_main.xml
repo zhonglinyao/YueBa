@@ -1,65 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.lanou.yueba.main.MainActivity">
 
+    <include layout="@layout/toolbar"></include>
+
+    <FrameLayout
+        android:id="@+id/fl_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_above="@id/ll_main"
+        android:layout_weight="1">
+
+
+    </FrameLayout>
+
     <RadioGroup
+
         android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/iv_message_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:button="@null"
             android:layout_weight="1"
+            android:button="@null"
             android:drawableTop="@drawable/message"/>
 
         <RadioButton
             android:id="@+id/iv_contact_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:button="@null"
             android:layout_weight="1"
+            android:button="@null"
             android:drawableTop="@drawable/contact"/>
 
         <RadioButton
             android:id="@+id/iv_dynamic_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:button="@null"
             android:layout_weight="1"
+            android:button="@null"
             android:drawableTop="@drawable/dynamic"/>
 
         <RadioButton
             android:id="@+id/iv_news_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:button="@null"
             android:layout_weight="1"
+            android:button="@null"
             android:drawableTop="@drawable/news"/>
 
         <RadioButton
             android:id="@+id/iv_video_main"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:button="@null"
             android:layout_weight="1"
+            android:button="@null"
             android:drawableTop="@drawable/video"/>
     </RadioGroup>
+</LinearLayout>
 
-    <FrameLayout
-        android:id="@+id/fl_main"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/ll_main">
-
-    </FrameLayout>
-</RelativeLayout>

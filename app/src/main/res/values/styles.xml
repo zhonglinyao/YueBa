@@ -6,6 +6,14 @@
         <item name="colorPrimary">@color/colorMain</item>
         <item name="colorPrimaryDark">@color/colorMain</item>
         <item name="colorAccent">@color/colorMain</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="actionMenuTextColor">@android:color/white</item>
+    </style>
+
+    <style name="CustomTitleTextAppearance">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
 </resources>

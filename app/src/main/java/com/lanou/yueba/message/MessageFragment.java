@@ -7,7 +7,9 @@ import com.lanou.yueba.base.BaseFragment;
  * Created by dllo on 16/10/20.
  */
 
-public class MessageFragment extends BaseFragment{
+public class MessageFragment extends BaseFragment {
+
+
     @Override
     protected int setLayout() {
         return R.layout.fragment_message;
@@ -15,11 +17,9 @@ public class MessageFragment extends BaseFragment{
 
     @Override
     protected void initView() {
-
     }
 
     @Override
     protected void initData() {
-
     }
 }

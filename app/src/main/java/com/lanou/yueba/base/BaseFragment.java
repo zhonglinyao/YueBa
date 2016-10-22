@@ -14,7 +14,7 @@ import android.view.ViewGroup;
  * Created by dllo on 16/10/18.
  */
 public abstract class BaseFragment extends Fragment implements View.OnTouchListener {
-    private Context mContext;
+    protected Context mContext;
 
     @Override
     public void onAttach(Context context) {
