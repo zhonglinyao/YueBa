@@ -44,6 +44,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mIvNews.setOnClickListener(this);
         mIvMessage.setOnClickListener(this);
 
+        mIvMessage.setChecked(true);
+
 
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
