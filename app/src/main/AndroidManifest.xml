@@ -39,6 +39,7 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".dynamic.video.VideoActivity"/>
 
 
 
@@ -62,6 +63,9 @@
                 <action android:name="android.intent.action.USER_PRESENT"/>
             </intent-filter>
         </receiver>
+
+
+
     </application>
 
 </manifest>
