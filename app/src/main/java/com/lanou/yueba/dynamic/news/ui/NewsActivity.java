@@ -1,7 +1,8 @@
-package com.lanou.yueba.dynamic.news;
+package com.lanou.yueba.dynamic.news.ui;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.bean.NewsBean;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -28,7 +29,7 @@ import com.lanou.yueba.base.BaseActivity;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class NewsActivity extends BaseActivity {
+public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     @Override
     protected int setLayout() {
         return R.layout.activity_news;
@@ -41,6 +42,26 @@ public class NewsActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+
+    }
+
+    @Override
+    public void showQuestView() {
+
+    }
+
+    @Override
+    public void showDataView() {
+
+    }
+
+    @Override
+    public void onResponse(NewsBean newsBean) {
+
+    }
+
+    @Override
+    public void onError() {
 
     }
 }

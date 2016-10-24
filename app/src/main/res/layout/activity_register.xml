@@ -40,33 +40,38 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingTop="110dp">
+        android:paddingTop="130dp"
+        android:background="@mipmap/login_background">
 
         <EditText
-            android:id="@+id/et_name_login"
+            android:id="@+id/et_name_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
-            android:hint="请输入账号"
+            android:hint="@string/PutNameHint"
+            android:textColor="@android:color/black"
             android:paddingLeft="10dp"/>
 
         <EditText
             android:id="@+id/et_password_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
-            android:hint="请输入密码"
+            android:hint="@string/PutPasswordHint"
+            android:textColor="@android:color/black"
             android:paddingLeft="10dp"/>
 
         <EditText
             android:id="@+id/et_password_sure_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
-            android:hint="确认密码"
+            android:hint="@string/PutPasswordSureHint"
+            android:textColor="@android:color/black"
             android:paddingLeft="10dp"/>
 
         <Button
             android:id="@+id/btn_sure_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_sure"
+            android:textColor="@android:color/white"
             android:text="@string/sure"/>
     </LinearLayout>
 </LinearLayout>

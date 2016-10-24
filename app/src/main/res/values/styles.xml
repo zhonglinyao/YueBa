@@ -5,10 +5,9 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorMain</item>
         <item name="colorPrimaryDark">@color/colorMain</item>
-        <item name="colorAccent">@android:color/black</item>
+        <item name="colorAccent">@color/colorShape</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
-        <item name="actionMenuTextColor">@android:color/white</item>
     </style>
 
     <style name="CustomTitleTextAppearance">
@@ -49,7 +48,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@android:color/white</item>
+        <item name="android:alpha">0.7</item>
     </style>
 
 </resources>

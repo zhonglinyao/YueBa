@@ -10,4 +10,7 @@
     <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="sure">确定</string>
+    <string name="PutNameHint">请输入账号</string>
+    <string name="PutPasswordHint">请输入密码</string>
+    <string name="PutPasswordSureHint">请确认密码</string>
 </resources>
