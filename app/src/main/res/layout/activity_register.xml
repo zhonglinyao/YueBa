@@ -43,7 +43,7 @@
         android:paddingTop="110dp">
 
         <EditText
-            android:id="@+id/et_name_login"
+            android:id="@+id/et_name_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
             android:hint="请输入账号"

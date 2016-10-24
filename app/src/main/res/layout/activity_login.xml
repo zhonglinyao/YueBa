@@ -32,6 +32,7 @@
                 android:text="@string/login"/>
 
             <TextView
+                android:id="@+id/tv_register_login"
                 style="@style/CustomTitleTextAppearance"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
