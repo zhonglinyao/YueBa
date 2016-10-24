@@ -14,17 +14,20 @@
         android:id="@+id/fl_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@android:color/white">
+        android:layout_weight="1">
 
     </FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/colorLine"/>
 
     <RadioGroup
         android:id="@+id/ll_main"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:background="@drawable/shape_radiogroup_main">
+        android:background="@android:color/white">
 
         <RadioButton
             android:id="@+id/iv_message_main"
@@ -41,15 +44,6 @@
             style="@style/MainActivityRadioButton"
             android:drawableTop="@drawable/dynamic_button"/>
 
-        <RadioButton
-            android:id="@+id/iv_news_main"
-            style="@style/MainActivityRadioButton"
-            android:drawableTop="@drawable/news_button"/>
-
-        <RadioButton
-            android:id="@+id/iv_video_main"
-            style="@style/MainActivityRadioButton"
-            android:drawableTop="@drawable/video_button"/>
     </RadioGroup>
 </LinearLayout>
 

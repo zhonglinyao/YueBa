@@ -2,4 +2,9 @@
     <string name="app_name">约吧</string>
     <string name="main_toolbar_more">更多</string>
     <string name="main_toolbar_add">添加</string>
+    <string name="dynamic_dynamic">好友动态</string>
+    <string name="dynamic_nearby">附近</string>
+    <string name="dynamic_live">直播</string>
+    <string name="dynamic_video">视频</string>
+    <string name="dynamic_news">新闻</string>
 </resources>
