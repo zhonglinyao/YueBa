@@ -1,4 +1,4 @@
-package com.lanou.yueba.news;
+package com.lanou.yueba.dynamic.news;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +

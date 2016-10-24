@@ -14,14 +14,14 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.message.MessageFragment;
-import com.lanou.yueba.news.NewsFragment;
-import com.lanou.yueba.video.VideoFragment;
+import com.lanou.yueba.dynamic.news.NewsFragment;
+import com.lanou.yueba.dynamic.video.VideoFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private RadioButton mIvContact, mIvDynamic, mIvVideo, mIvNews, mIvMessage;
+    private RadioButton mIvContact, mIvDynamic, mIvMessage;
     private MessageFragment mMessageFragment;
     private ContactFragment mContactFragment;
     private DynamicFragment mDynamicFragment;
@@ -47,8 +47,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void initView() {
         mIvContact = bindView(R.id.iv_contact_main);
         mIvDynamic = bindView(R.id.iv_dynamic_main);
-        mIvVideo = bindView(R.id.iv_video_main);
-        mIvNews = bindView(R.id.iv_news_main);
         mIvMessage = bindView(R.id.iv_message_main);
 
         mCircleImageView = bindView(R.id.civ_toolbar);
@@ -66,20 +64,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         windowHeight = this.getWindowManager().getDefaultDisplay().getHeight();
         mIvContact.setOnClickListener(this);
         mIvDynamic.setOnClickListener(this);
-        mIvVideo.setOnClickListener(this);
-        mIvNews.setOnClickListener(this);
         mIvMessage.setOnClickListener(this);
-
         mIvMessage.setChecked(true);
-
-
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
         mDynamicFragment = new DynamicFragment();
         mNewsFragment = new NewsFragment();
         mVideoFragment = new VideoFragment();
-
-
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
@@ -96,7 +87,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 index = 1;
                 transaction.replace(R.id.fl_main, mMessageFragment);
                 break;
-
             case R.id.iv_contact_main:
                 index = 2;
                 transaction.replace(R.id.fl_main, mContactFragment);
@@ -105,20 +95,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 index = 3;
                 transaction.replace(R.id.fl_main, mDynamicFragment);
                 break;
-            case R.id.iv_news_main:
-                index = 4;
-                transaction.replace(R.id.fl_main, mNewsFragment);
+            case R.id.civ_toolbar:
                 break;
-            case R.id.iv_video_main:
-                index = 5;
-                transaction.replace(R.id.fl_main, mVideoFragment);
+            case R.id.iv_more_toolbar:
+                break;
+            case R.id.tv_add_toolbar:
+                break;
+            case R.id.tv_more_toolbar:
                 break;
         }
         changeToolBar();
         transaction.commit();
     }
 
-    private void changeToolBar(){
+    private void changeToolBar() {
         switch (index) {
             case 1:
                 mTvToolBar.setText("会话");
@@ -138,17 +128,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
                 mTvMoreToolBar.setVisibility(View.VISIBLE);
                 break;
-            case 4:
-                mTvToolBar.setText("新闻");
-                mIvToolBar.setVisibility(View.INVISIBLE);
-                mTvAddToolBar.setVisibility(View.INVISIBLE);
-                mTvMoreToolBar.setVisibility(View.INVISIBLE);
-                break;
-            case 5:
-                mTvToolBar.setText("视频");
-                mIvToolBar.setVisibility(View.INVISIBLE);
-                mTvAddToolBar.setVisibility(View.INVISIBLE);
-                mTvMoreToolBar.setVisibility(View.VISIBLE);
+            default:
                 break;
         }
     }
