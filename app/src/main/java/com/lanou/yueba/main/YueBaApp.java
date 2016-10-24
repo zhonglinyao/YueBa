@@ -8,10 +8,10 @@ import android.content.Context;
  */
 
 public class YueBaApp extends Application{
-    private Context mContext;
+    private static Context mContext;
 
 
-    public Context getContext() {
+    public static Context getContext() {
         return mContext;
     }
 

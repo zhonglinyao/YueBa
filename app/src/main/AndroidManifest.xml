@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".main.MainActivity">
+        </activity>
+        <activity android:name=".register.RegisterActivity"/>
+        <activity android:name=".login.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

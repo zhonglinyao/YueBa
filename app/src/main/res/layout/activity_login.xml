@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/toolbar_back"/>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/login"/>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:text="@string/register"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingTop="130dp">
+
+        <EditText
+            android:id="@+id/et_name_login"
+            style="@style/LoginAndRegister"
+            android:background="@drawable/shape_eidt"
+            android:hint="请输入账号"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:id="@+id/et_password_login"
+            style="@style/LoginAndRegister"
+            android:background="@drawable/shape_eidt"
+            android:hint="请输入密码"
+            android:paddingLeft="10dp"/>
+
+        <Button
+            android:id="@+id/btn_sure_login"
+            style="@style/LoginAndRegister"
+            android:background="@drawable/shape_sure"
+            android:text="@string/sure"/>
+    </LinearLayout>
+</LinearLayout>

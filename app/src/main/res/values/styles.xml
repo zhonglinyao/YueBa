@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorMain</item>
         <item name="colorPrimaryDark">@color/colorMain</item>
-        <item name="colorAccent">@color/colorMain</item>
+        <item name="colorAccent">@android:color/black</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="actionMenuTextColor">@android:color/white</item>
@@ -30,6 +30,26 @@
         <item name="android:layout_marginTop">30dp</item>
         <item name="android:background">@drawable/dynamic_layout_select</item>
         <item name="android:clickable">true</item>
+    </style>
+
+    <style name="DynamicButton">
+        <item name="android:gravity">center</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:clickable">true</item>
+        <item name="android:background">@drawable/dynamic_layout_select</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="LoginAndRegister">
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textColor">@android:color/white</item>
     </style>
 
 </resources>
