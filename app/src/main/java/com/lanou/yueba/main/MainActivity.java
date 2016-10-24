@@ -14,8 +14,6 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.message.MessageFragment;
-import com.lanou.yueba.dynamic.news.NewsFragment;
-import com.lanou.yueba.dynamic.video.VideoFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -25,9 +23,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private MessageFragment mMessageFragment;
     private ContactFragment mContactFragment;
     private DynamicFragment mDynamicFragment;
-    private NewsFragment mNewsFragment;
-    private VideoFragment mVideoFragment;
-
     private int windowWidth;
     private int windowHeight;
     private CircleImageView mCircleImageView;
@@ -69,8 +64,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
         mDynamicFragment = new DynamicFragment();
-        mNewsFragment = new NewsFragment();
-        mVideoFragment = new VideoFragment();
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
