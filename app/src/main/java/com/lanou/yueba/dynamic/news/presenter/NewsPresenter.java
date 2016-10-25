@@ -6,6 +6,7 @@ import com.lanou.yueba.dynamic.news.model.NewsModelImpl;
 import com.lanou.yueba.dynamic.news.ui.NewsView;
 import com.lanou.yueba.httprequset.OnCompletedListener;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -50,6 +51,11 @@ public class NewsPresenter {
 
         @Override
         public void onFailed() {
+
+        }
+
+        @Override
+        public void onCompleted(List<NewsBean> list) {
 
         }
     };
