@@ -13,7 +13,7 @@
             android:id="@+id/item_avatar_video"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@mipmap/ic_pulltorefresh_arrow"/>
+            android:src="@mipmap/icon"/>
 
         <TextView
             android:id="@+id/item_channelName_video"

@@ -40,7 +40,7 @@
         </activity>
 
         <activity android:name=".dynamic.video.VideoActivity"/>
-        <activity android:name=".dynamic.news.ui.NewsActivity"/>
+        <activity android:name=".dynamic.news.NewsActivity"/>
 
 
         <!-- 设置环信应用的AppKey -->

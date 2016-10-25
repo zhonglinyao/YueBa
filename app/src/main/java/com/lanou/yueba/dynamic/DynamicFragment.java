@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
-import com.lanou.yueba.dynamic.news.ui.NewsActivity;
+import com.lanou.yueba.dynamic.news.NewsActivity;
 import com.lanou.yueba.dynamic.video.VideoActivity;
 
 /**

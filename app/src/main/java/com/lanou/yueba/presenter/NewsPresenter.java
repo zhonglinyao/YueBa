@@ -1,9 +1,8 @@
-package com.lanou.yueba.dynamic.news.presenter;
+package com.lanou.yueba.presenter;
 
-import com.lanou.yueba.bean.NewsBean;
-import com.lanou.yueba.dynamic.news.model.Model;
-import com.lanou.yueba.dynamic.news.model.NewsModelImpl;
-import com.lanou.yueba.dynamic.news.ui.NewsView;
+import com.lanou.yueba.model.Model;
+import com.lanou.yueba.model.NewsModelImpl;
+import com.lanou.yueba.ui.NewsView;
 import com.lanou.yueba.httprequset.OnCompletedListener;
 
 import java.util.List;
@@ -13,7 +12,7 @@ import java.util.Map;
  * Created by dllo on 16/10/24.
  */
 
-public class NewsPresenter {
+public class NewsPresenter<T> {
     private NewsView mNewsView;
     private Model mModel;
 
@@ -22,29 +21,29 @@ public class NewsPresenter {
         mModel = new NewsModelImpl();
     }
 
-    public void startGetRequset(String urlString, Class<NewsBean> clazz) {
+    public void startGetRequset(String urlString, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startGetRequest(urlString, clazz, mListener);
     }
 
-    public void startGetRequset(String urlString, Map<String, String> header, Class<NewsBean> clazz) {
+    public void startGetRequset(String urlString, Map<String, String> header, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startGetRequest(urlString, header, clazz, mListener);
     }
 
-    public void startPostRequset(String urlString, Map<String, String> requestBody, Class<NewsBean> clazz) {
+    public void startPostRequset(String urlString, Map<String, String> requestBody, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startPostRequest(urlString, requestBody, clazz, mListener);
     }
 
-    public void startPostRequset(String urlString, Map<String, String> header, Map<String, String> requestBody, Class<NewsBean> clazz) {
+    public void startPostRequset(String urlString, Map<String, String> header, Map<String, String> requestBody, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startPostRequest(urlString, header, requestBody, clazz, mListener);
     }
 
-    OnCompletedListener<NewsBean> mListener = new OnCompletedListener<NewsBean>() {
+    OnCompletedListener mListener = new OnCompletedListener<T>() {
         @Override
-        public void onCompleted(NewsBean result) {
+        public void onCompleted(T result) {
             mNewsView.showDataView();
             mNewsView.onResponse(result);
         }
@@ -55,8 +54,8 @@ public class NewsPresenter {
         }
 
         @Override
-        public void onCompleted(List<NewsBean> list) {
-
+        public void onCompleted(List<T> list) {
+            mNewsView.onListResponse(list);
         }
     };
 }
