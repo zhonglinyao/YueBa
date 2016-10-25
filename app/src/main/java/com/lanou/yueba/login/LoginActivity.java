@@ -49,11 +49,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void initData() {
         mButtonSure.setOnClickListener(this);
         mLl.setBackgroundResource(R.mipmap.login_background);
-//        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.login_background);
-//        if (bitmap != null ){
-//            Drawable drawable = new BitmapDrawable(getResources(), Tools.changackgroundImage(bitmap, 20.2f));
-//            mLl.setBackground(drawable);
-//        }
         mRegister.setOnClickListener(this);
     }
 
@@ -61,7 +56,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_sure_login:
-//                startActivity(new Intent(this, MainActivity.class));
                 login();
                 break;
             case R.id.tv_register_login:
