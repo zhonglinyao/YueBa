@@ -1,6 +1,5 @@
 package com.lanou.yueba.dynamic.video;
 
-import android.support.v7.widget.RecyclerView;
 import android.widget.ListView;
 
 import com.lanou.yueba.R;
