@@ -43,7 +43,7 @@ import java.util.List;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class NewsActivity extends BaseActivity implements NewsView {
+public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     private NewsPresenter mPresenter;
     private RecyclerView mRv;
 

@@ -71,7 +71,7 @@ public class OkHttpImpl implements IHttpRequest {
     }
 
     @Override
-    public <T> void typeGetRequset(final String url, final Type type, final OnCompletedListener<T> listener) {
+    public <T> void typeGetRequest(final String url, final Type type, final OnCompletedListener<T> listener) {
         ThreadTool.getInstance().executorRunnable(new Runnable() {
             @Override
             public void run() {

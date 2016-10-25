@@ -31,8 +31,8 @@ public class HttpManger implements IHttpRequest {
     }
 
     @Override
-    public <T> void typeGetRequset(String url, Type type, OnCompletedListener<T> listener) {
-        mIHttpRequest.typeGetRequset(url, type, listener);
+    public <T> void typeGetRequest(String url, Type type, OnCompletedListener<T> listener) {
+        mIHttpRequest.typeGetRequest(url, type, listener);
     }
 
     private static final class HttpManagerHolder {
