@@ -3,6 +3,8 @@ package com.lanou.yueba.dynamic.news.ui;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
@@ -12,7 +14,9 @@ import com.lanou.yueba.bean.NewsBean;
 import com.lanou.yueba.dynamic.news.presenter.NewsPresenter;
 import com.lanou.yueba.vlaues.UrlValues;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -39,7 +43,7 @@ import java.util.ArrayList;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class NewsActivity extends BaseActivity implements NewsView {
+public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     private NewsPresenter mPresenter;
     private RecyclerView mRv;
 
@@ -61,6 +65,10 @@ public class NewsActivity extends BaseActivity implements NewsView {
         mRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
         LinearLayoutManager manager = new LinearLayoutManager(this);
         mRv.setLayoutManager(manager);
+        List<NewsBean> list = new ArrayList<>();
+        Type type = new TypeToken<List<NewsBean>>(){}.getType();
+        Gson gson = new Gson();
+        list = gson.fromJson(str,type);
     }
 
     @Override

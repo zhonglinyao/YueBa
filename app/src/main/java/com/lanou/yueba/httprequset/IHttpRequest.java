@@ -56,6 +56,4 @@ public interface IHttpRequest {
 
 
     <T> void typeGetRequest(String url, Type type, OnCompletedListener<T> listener);
-
-
 }

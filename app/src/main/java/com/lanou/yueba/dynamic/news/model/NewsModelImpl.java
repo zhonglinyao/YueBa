@@ -10,7 +10,7 @@ import java.util.Map;
  * Created by dllo on 16/10/24.
  */
 
-public class NewsModelImpl implements NewsModel{
+public class NewsModelImpl implements Model<NewsBean> {
 
     @Override
     public void startGetRequest(String urlString, Class<NewsBean> clazz, OnCompletedListener<NewsBean> listener) {

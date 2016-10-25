@@ -1,12 +1,13 @@
 package com.lanou.yueba.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by dllo on 16/10/24.
  */
 
-public class NewsBean {
+public class NewsBean implements Serializable{
     private String message;
 
     private DataBean data;
