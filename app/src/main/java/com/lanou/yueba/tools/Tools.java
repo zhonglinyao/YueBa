@@ -10,6 +10,9 @@ import android.renderscript.ScriptIntrinsicBlur;
 
 import com.lanou.yueba.main.YueBaApp;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by dllo on 16/10/22.
  */
@@ -22,6 +25,11 @@ public class Tools {
         int widthInSampleSize = outWidth / width;
         int heightInSampleSize = outHeight / height;
         return Math.max(widthInSampleSize, heightInSampleSize);
+    }
+
+    public static String getFormatedDateTime(long dateTime) {
+        SimpleDateFormat sDateFormat = new SimpleDateFormat("hh:mm:ss");
+        return sDateFormat.format(new Date(dateTime + 0));
     }
 
     public static Bitmap changackgroundImage(Bitmap sentBitmap, float radius) {

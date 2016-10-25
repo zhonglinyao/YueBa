@@ -29,7 +29,8 @@ import com.lanou.yueba.bean.NewsBean;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
+public class NewsActivity extends BaseActivity implements NewsView {
+
     @Override
     protected int setLayout() {
         return R.layout.activity_news;

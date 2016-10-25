@@ -35,5 +35,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile files('libs/lite-orm-1.9.2.jar')
     compile project(':easeUI_CN')
-
+    compile 'com.google.code.gson:gson:2.7'
 }
