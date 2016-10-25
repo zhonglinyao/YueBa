@@ -9,6 +9,9 @@ import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -65,6 +68,12 @@ public class OkHttpImpl implements IHttpRequest {
         Request request = new Request.Builder()
                 .url(url).post(body).headers(Headers.of(headers)).build();
         asynRequest(clazz, listener, request);
+    }
+
+    @Override
+    public <T> void typeGetRequest(String url, Type type, OnCompletedListener<T> listener) {
+        List<T> list = new ArrayList<>();
+        
     }
 
     @NonNull

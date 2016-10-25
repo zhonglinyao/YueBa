@@ -1,5 +1,6 @@
 package com.lanou.yueba.httprequset;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -52,4 +53,9 @@ public interface IHttpRequest {
      */
     <T> void postRequest(String url, Map<String, String> headers, Map<String, String> requestBody,
                          Class<T> clazz, OnCompletedListener listener);
+
+
+    <T> void typeGetRequest(String url, Type type, OnCompletedListener<T> listener);
+
+
 }
