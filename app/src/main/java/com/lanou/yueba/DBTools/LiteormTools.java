@@ -1,4 +1,4 @@
-package com.lanou.yueba.DBTools;
+package com.lanou.yueba.dbtools;
 
 import com.lanou.yueba.main.YueBaApp;
 import com.lanou.yueba.vlaues.StringVlaues;

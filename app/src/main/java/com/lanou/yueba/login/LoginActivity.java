@@ -16,7 +16,7 @@ import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.main.MainActivity;
-import com.lanou.yueba.register.RegisterActivity;
+import com.lanou.yueba.register.ui.RegisterActivity;
 
 /**
  * Created by dllo on 16/10/24.
