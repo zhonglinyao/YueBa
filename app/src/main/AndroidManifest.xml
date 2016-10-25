@@ -21,7 +21,7 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
 
     <application
-        android:name=".main.YueBaApp"
+        android:name=".app.YueBaApp"
         android:allowBackup="true"
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
@@ -40,7 +40,7 @@
         </activity>
 
         <activity android:name=".dynamic.video.VideoActivity"/>
-
+        <activity android:name=".dynamic.news.ui.NewsActivity"/>
 
 
         <!-- 设置环信应用的AppKey -->

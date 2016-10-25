@@ -8,7 +8,7 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
-import com.lanou.yueba.main.YueBaApp;
+import com.lanou.yueba.app.YueBaApp;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
