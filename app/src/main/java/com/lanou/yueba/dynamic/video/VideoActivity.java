@@ -5,6 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.base.lv.ListViewCommonAdapter;
+import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
+import com.lanou.yueba.base.rv.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +52,14 @@ public class VideoActivity extends BaseActivity{
 
     @Override
     protected void initData() {
+
+        mRVVideo.setAdapter(new CommonRecyclerAdapter<VideoBean>(VideoActivity.this, R.layout.layout_video, mVideoBeen) {
+
+            @Override
+            protected void convert(ViewHolder holder, VideoBean videoBean, int position) {
+
+            }
+        });
 
 //        mRVVideo.setAdapter
 //                (mAdapter = new ListViewCommonAdapter<VideoBean>
