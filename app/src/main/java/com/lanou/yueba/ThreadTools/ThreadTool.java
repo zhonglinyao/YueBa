@@ -1,4 +1,4 @@
-package com.lanou.yueba.ThreadTools;
+package com.lanou.yueba.threadtools;
 
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.ThreadPoolExecutor;
