@@ -12,12 +12,8 @@
         <ImageView
             android:id="@+id/iv_layout_avatar_video"
             android:layout_width="25dp"
-<<<<<<< HEAD:app/src/main/res/layout/item_video.xml
             android:layout_height="25dp"
             android:src="@mipmap/icon"/>
-=======
-            android:layout_height="25dp"/>
->>>>>>> 70181068505b032e5eb79083270506a2707fc874:app/src/main/res/layout/layout_video.xml
 
         <TextView
             android:id="@+id/tv_layout_channelName_video"
