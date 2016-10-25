@@ -48,11 +48,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">50dp</item>
         <item name="android:textSize">20sp</item>
-<<<<<<< HEAD
         <item name="android:alpha">0.7</item>
-=======
-
->>>>>>> 4ec1c96347526f1d426b66adfc348e26943ae846
     </style>
 
 </resources>

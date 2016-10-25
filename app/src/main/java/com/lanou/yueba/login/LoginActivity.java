@@ -48,16 +48,13 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     @Override
     protected void initData() {
         mButtonSure.setOnClickListener(this);
-<<<<<<< HEAD
         mLl.setBackgroundResource(R.mipmap.login_background);
 //        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.login_background);
 //        if (bitmap != null ){
 //            Drawable drawable = new BitmapDrawable(getResources(), Tools.changackgroundImage(bitmap, 20.2f));
 //            mLl.setBackground(drawable);
 //        }
-=======
         mRegister.setOnClickListener(this);
->>>>>>> 4ec1c96347526f1d426b66adfc348e26943ae846
     }
 
     @Override
