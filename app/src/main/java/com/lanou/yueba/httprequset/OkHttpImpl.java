@@ -11,6 +11,7 @@ import com.lanou.yueba.threadtools.ThreadTool;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -70,7 +71,6 @@ public class OkHttpImpl implements IHttpRequest {
         asynRequest(clazz, listener, request);
     }
 
-    @Override
     public <T> void typeGetRequest(final String url, final Type type, final OnCompletedListener<T> listener) {
         ThreadTool.getInstance().executorRunnable(new Runnable() {
             @Override

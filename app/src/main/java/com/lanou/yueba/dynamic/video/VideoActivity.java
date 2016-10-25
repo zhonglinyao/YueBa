@@ -53,14 +53,10 @@ public class VideoActivity extends BaseActivity{
     @Override
     protected void initData() {
 
-        mRVVideo.setAdapter(new CommonRecyclerAdapter<>() {
-            @Override
-            protected void convert(ViewHolder holder, Object o, int position) {
-
-            }
+        mRVVideo.setAdapter(new CommonRecyclerAdapter<VideoBean>(VideoActivity.this, R.layout.layout_video, mVideoBeen) {
 
             @Override
-            public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+            protected void convert(ViewHolder holder, VideoBean videoBean, int position) {
 
             }
         });
