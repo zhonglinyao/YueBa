@@ -1,6 +1,7 @@
 package com.lanou.yueba.register.ui;
 
 import android.app.ProgressDialog;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -113,16 +114,47 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
         });
 
 
-
-
     }
 
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+
+        String username = mName.getText().toString().trim();
+        String password = mPassword.getText().toString().trim();
+        String rePassword = mSure.getText().toString().trim();
+
+        switch (v.getId()) {
             case R.id.btn_sure_register:
-                mPresenter.startRequest(mName.getText().toString().trim(),mPassword.getText().toString().trim());
+
+                if (TextUtils.isEmpty(username)) {
+                    Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+                    mName.requestFocus();
+                    break;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Log.d("RegisterActivity", "密码不能为空");
+                    mPassword.requestFocus();
+                    break;
+                }
+
+                if (TextUtils.isEmpty(rePassword)){
+                    Log.d("RegisterActivity", "确定密码不能为空");
+                    mSure.requestFocus();
+                    break;
+                }
+
+                if (!password.equals(rePassword)){
+                    Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                    mSure.setText("");
+                    mSure.requestFocus();
+                    break;
+
+                }
+
+                if (!TextUtils.isEmpty(username)&&!TextUtils.isEmpty(password) && password.equals(rePassword)){
+                    mPresenter.startRequest(username, password);
+                }
                 break;
             case R.id.iv_back_register:
                 onBackPressed();

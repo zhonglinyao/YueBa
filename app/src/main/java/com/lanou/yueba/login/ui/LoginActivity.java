@@ -2,6 +2,7 @@ package com.lanou.yueba.login.ui;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -59,16 +60,35 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     public void onClick(View v) {
+
+        String username = mName.getText().toString().trim();
+        String password = mPassword.getText().toString().trim();
+
+
         switch (v.getId()) {
             case R.id.btn_sure_login:
-                mPresenter.startRequest(mName.getText().toString().trim(),mPassword.getText().toString().trim());
+
+                if (TextUtils.isEmpty(username)) {
+                    Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+                    mName.requestFocus();
+                    break;
+                }
+                if (TextUtils.isEmpty(password)) {
+                    Log.d("RegisterActivity", "密码不能为空");
+                    mPassword.requestFocus();
+                    break;
+                }
+                if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
+
+                    mPresenter.startRequest(username, password);
+                }
+
                 break;
             case R.id.tv_register_login:
                 startActivity(new Intent(this, RegisterActivity.class));
                 break;
         }
     }
-
 
 
     @Override
@@ -94,7 +114,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
             }
         });
     }
-
 
 
     @Override
