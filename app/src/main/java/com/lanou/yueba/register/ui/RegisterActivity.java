@@ -117,6 +117,7 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
 
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){

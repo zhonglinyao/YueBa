@@ -13,4 +13,8 @@ public interface IRegView {
     void onResponse();
 
     void onError(Throwable error);
+
+
+
+
 }

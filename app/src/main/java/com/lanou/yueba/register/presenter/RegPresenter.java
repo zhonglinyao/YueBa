@@ -35,8 +35,8 @@ public class RegPresenter {
                 mView.onError(error);
 
             }
+
+
         });
     }
-
-
 }
