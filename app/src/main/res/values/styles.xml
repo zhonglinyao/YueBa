@@ -11,7 +11,7 @@
     </style>
 
     <style name="CustomTitleTextAppearance">
-        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:textColor">@android:color/white</item>
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -49,6 +49,25 @@
         <item name="android:layout_height">50dp</item>
         <item name="android:textSize">20sp</item>
         <item name="android:alpha">0.7</item>
+    </style>
+
+    <style name="ItemInfo">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:background">@drawable/dynamic_layout_select</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    <style name="TextInfo">
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
     </style>
 
 </resources>

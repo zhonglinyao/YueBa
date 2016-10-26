@@ -27,33 +27,6 @@ package com.lanou.yueba.dynamic.video;
  */
 public class VideoBean {
 
-    /**
-     * userId : -8670253262738088676
-     * channelName : 徐老师来巡山
-     * avatar : http://bobo-public.nosdn.127.net/bobo_1464692296080_22534854.jpg
-     * channelIntro : 徐老师全新英雄联盟搞笑系列巨作
-     * videoId : 14769800943521
-     * title : 徐老师来巡山87：全场懵哔 EZ反向大招击杀敌军
-     * link : http://bobolive.nosdn.127.net/aac_bobo_1477214963387_67470249.flv
-     * linkMp4 : http://bobolive.nosdn.127.net/aac_bobo_1477214963387_67470249.mp4
-     * cover : http://bobo-public.nosdn.127.net/bobo_1477216042598_20956282.jpg
-     * intro : 这位勇士用行动为韦神洗白！地球果然是圆的！
-     * tag : 徐老师,巡山,英雄联盟,2333,游戏集锦,搞笑,LOL,b站看不见脸的男人,地球是圆的,没有正片,徐老师来巡山,致敬韦神
-     * duration : 923
-     * playCount : 800
-     * playCountReal : 78
-     * hasFavor : false
-     * uploadTime : 1477216064000
-     * setName : 正片
-     * setNum : 87
-     * newest : false
-     * downloadable : 0
-     * isLock : 0
-     * previewDuration : 0
-     * unlockSeed : 0.0
-     * unlockCount : null
-     */
-
     private long userId;
     private String channelName;
     private String avatar;
@@ -76,8 +49,19 @@ public class VideoBean {
     private int downloadable;
     private int isLock;
     private int previewDuration;
-    private double unlockSeed;
+    private int unlockSeed;
     private Object unlockCount;
+
+    @Override
+    public String toString() {
+        return "VideoBean{" +
+                "downloadable=" + downloadable +
+                ", avatar='" + avatar + '\'' +
+                ", channelIntro='" + channelIntro + '\'' +
+                ", channelName='" + channelName + '\'' +
+                ", cover='" + cover + '\'' +
+                '}';
+    }
 
     public long getUserId() {
         return userId;
@@ -255,11 +239,11 @@ public class VideoBean {
         this.previewDuration = previewDuration;
     }
 
-    public double getUnlockSeed() {
+    public int getUnlockSeed() {
         return unlockSeed;
     }
 
-    public void setUnlockSeed(double unlockSeed) {
+    public void setUnlockSeed(int unlockSeed) {
         this.unlockSeed = unlockSeed;
     }
 

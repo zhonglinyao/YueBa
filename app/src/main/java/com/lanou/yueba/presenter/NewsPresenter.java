@@ -5,6 +5,7 @@ import com.lanou.yueba.model.NewsModelImpl;
 import com.lanou.yueba.ui.NewsView;
 import com.lanou.yueba.httprequset.OnCompletedListener;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
@@ -21,7 +22,7 @@ public class NewsPresenter<T> {
         mModel = new NewsModelImpl();
     }
 
-    public void startGetRequset(String urlString, Class<T> clazz) {
+    public <T>void startGetRequset(String urlString, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startGetRequest(urlString, clazz, mListener);
     }
@@ -39,6 +40,11 @@ public class NewsPresenter<T> {
     public void startPostRequset(String urlString, Map<String, String> header, Map<String, String> requestBody, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startPostRequest(urlString, header, requestBody, clazz, mListener);
+    }
+
+    public <T>void startTypeGetRequset(String urlString, Type type) {
+        mNewsView.showQuestView();
+        mModel.<T>startTypeGetRequest(urlString, type, mListener);
     }
 
     OnCompletedListener mListener = new OnCompletedListener<T>() {

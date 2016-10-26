@@ -3,6 +3,7 @@ package com.lanou.yueba.dynamic.news;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
@@ -46,7 +47,7 @@ import java.util.List;
  * Created by 程洪运 on 16/10/24.
  */
 public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
-    private NewsPresenter mPresenter;
+    private NewsPresenter<NewsBean> mPresenter;
     private RecyclerView mRv;
     private ViewStub mViewStub;
     private ImageView mImageView;
@@ -65,7 +66,7 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
 
     @Override
     protected void initData() {
-        mPresenter = new NewsPresenter<NewsBean>(this);
+        mPresenter = new NewsPresenter(this);
         String str = "2016-10-25";
         mPresenter.startGetRequset(UrlValues.getNEWS(str), NewsBean.class);
     }
@@ -110,5 +111,13 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     @Override
     public void onError() {
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

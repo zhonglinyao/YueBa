@@ -1,12 +1,15 @@
 package com.lanou.yueba.dynamic.video;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.base.lv.ListViewCommonAdapter;
 import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
 import com.lanou.yueba.base.rv.ViewHolder;
+import com.lanou.yueba.presenter.NewsPresenter;
+import com.lanou.yueba.ui.NewsView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,10 +39,12 @@ import java.util.List;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class VideoActivity extends BaseActivity{
+public class VideoActivity extends BaseActivity implements NewsView<VideoBean> {
     private RecyclerView mRVVideo;
     private ListViewCommonAdapter<VideoBean> mAdapter;
     private List<VideoBean> mVideoBeen = new ArrayList<>();
+    private NewsPresenter<VideoBean> mPresenter;
+
     @Override
     protected int setLayout() {
         return R.layout.activity_video;
@@ -47,13 +52,33 @@ public class VideoActivity extends BaseActivity{
 
     @Override
     protected void initView() {
-        mRVVideo = bindView(R.id.rv_video);
+//        mRVVideo = bindView(R.id.rv_video);
     }
 
     @Override
     protected void initData() {
+        mPresenter = new NewsPresenter<>(this);
+    }
 
-        mRVVideo.setAdapter(new CommonRecyclerAdapter<VideoBean>(VideoActivity.this, R.layout.layout_video, mVideoBeen) {
+    @Override
+    public void showQuestView() {
+
+    }
+
+    @Override
+    public void showDataView() {
+
+    }
+
+    @Override
+    public void onResponse(VideoBean videoBean) {
+
+    }
+
+    @Override
+    public void onListResponse(List<VideoBean> list) {
+        Log.d("VideoActivity", list.get(0).toString());
+        mRVVideo.setAdapter(new CommonRecyclerAdapter<VideoBean>(VideoActivity.this, R.layout.layout_video, list) {
 
             @Override
             protected void convert(ViewHolder holder, VideoBean videoBean, int position) {
@@ -61,22 +86,10 @@ public class VideoActivity extends BaseActivity{
             }
         });
 
-//        mRVVideo.setAdapter
-//                (mAdapter = new ListViewCommonAdapter<VideoBean>
-//                        (getApplicationContext(), R.layout.item_video, mVideoBeen) {
-//            @Override
-//            protected void convert(ViewHolderListView viewHolder, VideoBean item, int position) {
-//                RelativeLayout relativeLayout = viewHolder.getView(R.id.item_rl_video);
-//                if (relativeLayout != null){
-//                    RelativeLayout.LayoutParams layoutParams = (LayoutParams) relativeLayout.getLayoutParams();
-//                    layoutParams.height = (int) (SuperPlayerUtils.getScreenWidth((Activity) mContext) * 0.5652f);
-//                    relativeLayout.setLayoutParams(layoutParams);
-//                }
-//                Glide.with(VideoActivity.this).load(item.getAvatar()).into((ImageView) viewHolder.getView(R.id.item_avatar_video));
-//                viewHolder.setText(R.id.item_channelName_video, item.getChannelName());
-//                viewHolder.setMax(R.id.item_playCount_video, item.getPlayCount());
-//            }
-//        });
+    }
+
+    @Override
+    public void onError() {
 
     }
 }

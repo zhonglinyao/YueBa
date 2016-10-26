@@ -15,10 +15,8 @@
     <string name="PutPasswordHint">请输入密码</string>
     <string name="PutPasswordSureHint">请确认密码</string>
     <string name="news">新闻</string>
-
-    <string name="put_name_hint">请输入账号</string>
-    <string name="put_password_hint">请输入密码</string>
-    <string name="put_password_sure_hint">请确认密码</string>
     <string name="back_text">返回</string>
+    <string name="my_info">我的资料</string>
+    <string name="info_edit">编辑</string>
 
 </resources>

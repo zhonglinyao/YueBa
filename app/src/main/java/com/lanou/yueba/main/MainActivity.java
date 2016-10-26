@@ -12,6 +12,7 @@ import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.dynamic.DynamicFragment;
+import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.message.MessageFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -66,7 +67,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
         transaction.commit();
-
     }
 
     private void InitClick() {
@@ -76,6 +76,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mIvToolBar.setOnClickListener(this);
         mTvAddToolBar.setOnClickListener(this);
         mTvMoreToolBar.setOnClickListener(this);
+        mCircleImageView.setOnClickListener(this);
     }
 
     @Override
@@ -96,6 +97,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 transaction.replace(R.id.fl_main, mDynamicFragment);
                 break;
             case R.id.civ_toolbar:
+                startActivity(new Intent(this, InfoActivity.class));
                 break;
             case R.id.iv_more_toolbar:
                 break;
