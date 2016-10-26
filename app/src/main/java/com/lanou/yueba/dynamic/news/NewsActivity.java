@@ -1,17 +1,23 @@
 package com.lanou.yueba.dynamic.news;
 
 import android.graphics.drawable.AnimationDrawable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
+import com.lanou.yueba.base.rv.DividerItemDecoration;
+import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.NewsBean;
 import com.lanou.yueba.presenter.NewsPresenter;
 import com.lanou.yueba.ui.NewsView;
 import com.lanou.yueba.vlaues.UrlValues;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -41,7 +47,7 @@ import java.util.List;
  */
 public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     private NewsPresenter mPresenter;
-    //    private RecyclerView mRv;
+    private RecyclerView mRv;
     private ViewStub mViewStub;
     private ImageView mImageView;
     private AnimationDrawable mDrawable;
@@ -54,7 +60,7 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     @Override
     protected void initView() {
         mViewStub = bindView(R.id.vs_news);
-        mImageView = bindView(R.id.iv_loading);
+        mImageView = bindView(R.id.iv_loading_news);
     }
 
     @Override
@@ -72,46 +78,28 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
 
     @Override
     public void showDataView() {
-
+        mImageView.setVisibility(View.GONE);
+        View view = mViewStub.inflate();
+        mRv = bindView(R.id.rv_news, view);
     }
 
     @Override
     public void onResponse(NewsBean newsBean) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
+
+        mRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
+        LinearLayoutManager manager = new LinearLayoutManager(this);
+        mRv.setLayoutManager(manager);
+        ArrayList<NewsBean.DataBean.ItemsBean> list = new ArrayList<>();
+        if (1 == newsBean.getSuccess()){
+            list.addAll(newsBean.getData().getItems());
+            mRv.setAdapter(new CommonRecyclerAdapter<NewsBean.DataBean.ItemsBean>(this,
+                    R.layout.layout_news, list) {
+                @Override
+                protected void convert(ViewHolder holder, NewsBean.DataBean.ItemsBean itemsBean, int position) {
+                    holder.setText(R.id.tv_item, itemsBean.getAuthor());
                 }
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        mImageView.setVisibility(View.GONE);
-                        mViewStub.inflate();
-                    }
-                });
-            }
-        }).start();
-
-
-//        Rec view = findViewById(R.id.vs_news);
-//        view = findViewById(R.id.rv_news);
-//        mRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-//        LinearLayoutManager manager = new LinearLayoutManager(this);
-//        mRv.setLayoutManager(manager);
-//        ArrayList<NewsBean.DataBean.ItemsBean> list = new ArrayList<>();
-//        if (1 == newsBean.getSuccess()){
-//            list.addAll(newsBean.getData().getItems());
-//            mRv.setAdapter(new CommonRecyclerAdapter<NewsBean.DataBean.ItemsBean>(this,
-//                    R.layout.layout_news, list) {
-//                @Override
-//                protected void convert(ViewHolder holder, NewsBean.DataBean.ItemsBean itemsBean, int position) {
-//                    holder.setText(R.id.tv_item, itemsBean.getAuthor());
-//                }
-//            });
-//        }
+            });
+        }
     }
 
     @Override

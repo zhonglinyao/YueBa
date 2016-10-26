@@ -55,6 +55,7 @@ public class NewsPresenter<T> {
 
         @Override
         public void onCompleted(List<T> list) {
+            mNewsView.showDataView();
             mNewsView.onListResponse(list);
         }
     };
