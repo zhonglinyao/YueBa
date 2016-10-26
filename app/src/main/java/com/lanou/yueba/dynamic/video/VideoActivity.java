@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.base.lv.ListViewCommonAdapter;
@@ -19,6 +21,7 @@ import com.lanou.yueba.presenter.NewsPresenter;
 import com.lanou.yueba.ui.NewsView;
 import com.lanou.yueba.vlaues.UrlValues;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,9 +55,8 @@ public class VideoActivity extends BaseActivity implements NewsView<VideoBean> {
     private ImageView mImageView;
     private AnimationDrawable mDrawable;
     private RecyclerView mRv;
-    private ListViewCommonAdapter<VideoBean> mAdapter;
     private List<VideoBean> mVideoBeen = new ArrayList<>();
-    private NewsPresenter mPresenter;
+    private NewsPresenter<VideoBean> mPresenter;
 
     @Override
     protected int setLayout() {
@@ -69,8 +71,9 @@ public class VideoActivity extends BaseActivity implements NewsView<VideoBean> {
 
     @Override
     protected void initData() {
-        mPresenter = new NewsPresenter<VideoBean>(this);
-        mPresenter.startTypeGetRequest(UrlValues.VIDEO, VideoBean.class);
+        mPresenter = new NewsPresenter<>(this);
+        Type type = new TypeToken<List<VideoBean>>() {}.getType();
+        mPresenter.startTypeGetRequest(UrlValues.VIDEO, type);
 
 
 //        mRVVideo.setAdapter
@@ -107,21 +110,18 @@ public class VideoActivity extends BaseActivity implements NewsView<VideoBean> {
 
     @Override
     public void onResponse(VideoBean videoBean) {
-        mRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        mRv.setLayoutManager(manager);
-        ArrayList<VideoBean> list = new ArrayList<>();
-        mRv.setAdapter(new CommonRecyclerAdapter<VideoBean>(VideoActivity.this, R.layout.layout_video, mVideoBeen) {
+
+
+    }
+
+    @Override
+    public void onListResponse(List<VideoBean> list) {
+        mRv.setAdapter(new CommonRecyclerAdapter<VideoBean>(VideoActivity.this, R.layout.layout_video, list) {
             @Override
             protected void convert(ViewHolder holder, VideoBean videoBean, int position) {
                 holder.setText(R.id.tv_layout_channelName_video, videoBean.getChannelName());
             }
         });
-    }
-
-    @Override
-    public void onListResponse(List<VideoBean> list) {
-
     }
 
     @Override

@@ -11,6 +11,7 @@ import com.lanou.yueba.threadtools.ThreadTool;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -45,20 +46,20 @@ public class OkHttpImpl implements IHttpRequest {
     @Override
     public <T> void getRequest(String url, final Class<T> clazz, final OnCompletedListener<T> listener) {
         Request request = new Request.Builder().url(url).build();
-        asyncRequest(clazz, listener, request);
+        asynRequest(clazz, listener, request);
     }
 
     @Override
     public <T> void getRequest(String url, Map<String, String> headers, final Class<T> clazz, final OnCompletedListener<T> listener) {
         Request request = new Request.Builder().url(url).headers(Headers.of(headers)).build();
-        asyncRequest(clazz, listener, request);
+        asynRequest(clazz, listener, request);
     }
 
     @Override
     public <T> void postRequest(String url, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener listener) {
         FormBody body = getFormBody(requestBody);
         Request request = new Request.Builder().url(url).post(body).build();
-        asyncRequest(clazz, listener, request);
+        asynRequest(clazz, listener, request);
     }
 
 
@@ -67,27 +68,11 @@ public class OkHttpImpl implements IHttpRequest {
         FormBody body = getFormBody(requestBody);
         Request request = new Request.Builder()
                 .url(url).post(body).headers(Headers.of(headers)).build();
-        asyncRequest(clazz, listener, request);
+        asynRequest(clazz, listener, request);
     }
 
     public <T> void typeGetRequest(final String url, final Type type, final OnCompletedListener<T> listener) {
-        ThreadTool.getInstance().executorRunnable(new Runnable() {
-            @Override
-            public void run() {
-                final List<T> list = mGson.fromJson(url, type);
-                if (list != null && list.size() > 0){
-                    mHandler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            listener.onCompleted(list);
-                        }
-                    });
-                } else {
-                    error(listener);
-                }
-            }
-        });
-
+        Request request = new Request.Builder().build();
     }
 
     @NonNull
@@ -117,7 +102,7 @@ public class OkHttpImpl implements IHttpRequest {
         });
     }
 
-    private <T> void asyncRequest(final Class<T> clazz, final OnCompletedListener<T> listener, Request request) {
+    private <T> void asynRequest(final Class<T> clazz, final OnCompletedListener<T> listener, Request request) {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
