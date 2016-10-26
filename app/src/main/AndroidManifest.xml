@@ -41,6 +41,7 @@
 
         <activity android:name=".dynamic.video.VideoActivity"/>
         <activity android:name=".dynamic.news.NewsActivity"/>
+        <activity android:name=".info.InfoActivity"/>
 
 
         <!-- 设置环信应用的AppKey -->

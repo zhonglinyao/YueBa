@@ -3,6 +3,7 @@ package com.lanou.yueba.dynamic.news;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
@@ -110,5 +111,13 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     @Override
     public void onError() {
 
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK){
+            finish();
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }
