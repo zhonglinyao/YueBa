@@ -26,7 +26,8 @@ public class ContactFragment extends EaseContactListFragment {
     @Override
     protected void initView() {
         super.initView();
-        titleBar.setVisibility(View.GONE);
+//        titleBar.setVisibility(View.GONE);
+        hideTitleBar();
 
 
     }
@@ -76,5 +77,12 @@ public class ContactFragment extends EaseContactListFragment {
 
             }
         });
+    }
+
+    @Override
+    public void refresh() {
+        super.refresh();
+
+
     }
 }

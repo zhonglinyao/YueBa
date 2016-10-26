@@ -17,25 +17,11 @@ import com.lanou.yueba.contact.ChatActivity;
 public class MessageFragment extends EaseConversationListFragment {
 
 
-//    @Override
-//    protected int setLayout() {
-//        return R.layout.fragment_message;
-//    }
-//
-//    @Override
-//    protected void initView() {
-//    }
-//
-//    @Override
-//    protected void initData() {
-//    }
-
-
     @Override
     protected void initView() {
         super.initView();
-        titleBar.setVisibility(View.GONE);
 
+        hideTitleBar();
 
     }
 
@@ -53,8 +39,6 @@ public class MessageFragment extends EaseConversationListFragment {
                 startActivity(intent);
             }
         });
-
-
 
     }
 
