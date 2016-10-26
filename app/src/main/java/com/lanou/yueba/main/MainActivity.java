@@ -7,6 +7,7 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.contact.ContactFragment;
@@ -125,5 +126,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+//        EMClient.getInstance().logout(true);
+
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EMClient.getInstance().logout(true);
     }
 }

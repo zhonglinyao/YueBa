@@ -53,9 +53,16 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     protected void initData() {
+
+        if (EMClient.getInstance().isLoggedInBefore()){
+            startActivity(new Intent(this, MainActivity.class));
+            return;
+        }
+
         mButtonSure.setOnClickListener(this);
         mLl.setBackgroundResource(R.mipmap.login_background);
         mRegister.setOnClickListener(this);
+
     }
 
     @Override
@@ -64,10 +71,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         String username = mName.getText().toString().trim();
         String password = mPassword.getText().toString().trim();
 
-
         switch (v.getId()) {
             case R.id.btn_sure_login:
-
                 if (TextUtils.isEmpty(username)) {
                     Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
                     mName.requestFocus();
@@ -79,10 +84,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                     break;
                 }
                 if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-
                     mPresenter.startRequest(username, password);
                 }
-
                 break;
             case R.id.tv_register_login:
                 startActivity(new Intent(this, RegisterActivity.class));
