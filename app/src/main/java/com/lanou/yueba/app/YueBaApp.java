@@ -11,6 +11,8 @@ import com.hyphenate.easeui.controller.EaseUI;
 import java.util.Iterator;
 import java.util.List;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * Created by dllo on 16/10/22.
  */
@@ -31,7 +33,7 @@ public class YueBaApp extends Application{
         mContext = this;
 
         initEasemob();
-
+        Bmob.initialize(this, "0e0c17dfb9f00526d44150879ec8cd8e");
     }
     /**
      *

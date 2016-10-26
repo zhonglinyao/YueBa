@@ -127,7 +127,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="我的资料"
+            android:text="@string/my_info"
             android:visibility="visible"/>
 
         <TextView
@@ -138,6 +138,6 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:gravity="center"
-            android:text="编辑"/>
+            android:text="@string/info_edit"/>
     </RelativeLayout>
 </FrameLayout>
