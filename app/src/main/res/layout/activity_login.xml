@@ -55,7 +55,7 @@
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
             android:textColor="@android:color/black"
-            android:hint="@string/PutNameHint"
+            android:hint="@string/put_name_hint"
             android:paddingLeft="10dp"/>
 
         <EditText
@@ -63,7 +63,7 @@
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
             android:textColor="@android:color/black"
-            android:hint="@string/PutPasswordHint"
+            android:hint="@string/put_password_hint"
             android:paddingLeft="10dp"/>
 
         <Button

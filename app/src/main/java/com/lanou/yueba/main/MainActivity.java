@@ -1,5 +1,6 @@
 package com.lanou.yueba.main;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -7,7 +8,6 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
-import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.contact.ContactFragment;
@@ -57,9 +57,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCircleImageView.setImageResource(R.mipmap.icon);
         windowWidth = this.getWindowManager().getDefaultDisplay().getWidth();
         windowHeight = this.getWindowManager().getDefaultDisplay().getHeight();
-        mIvContact.setOnClickListener(this);
-        mIvDynamic.setOnClickListener(this);
-        mIvMessage.setOnClickListener(this);
+        InitClick();
         mIvMessage.setChecked(true);
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
@@ -69,6 +67,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         transaction.replace(R.id.fl_main, mMessageFragment);
         transaction.commit();
 
+    }
+
+    private void InitClick() {
+        mIvContact.setOnClickListener(this);
+        mIvDynamic.setOnClickListener(this);
+        mIvMessage.setOnClickListener(this);
+        mIvToolBar.setOnClickListener(this);
+        mTvAddToolBar.setOnClickListener(this);
+        mTvMoreToolBar.setOnClickListener(this);
     }
 
     @Override
@@ -93,6 +100,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.iv_more_toolbar:
                 break;
             case R.id.tv_add_toolbar:
+
+                Intent intent = new Intent(MainActivity.this,AddContactActivity.class);
+                startActivity(intent);
+
                 break;
             case R.id.tv_more_toolbar:
                 break;
@@ -138,6 +149,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStop() {
         super.onStop();
-        EMClient.getInstance().logout(true);
+//        EMClient.getInstance().logout(true);
     }
 }

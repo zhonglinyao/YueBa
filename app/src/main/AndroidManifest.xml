@@ -40,6 +40,8 @@
         </activity>
 
         <activity android:name=".dynamic.video.VideoActivity"/>
+        <activity android:name=".main.AddContactActivity"/>
+        <activity android:name=".contact.ChatActivity"></activity>
 
 
 
