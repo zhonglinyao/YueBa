@@ -6,9 +6,13 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
+import com.lanou.yueba.threadtools.ThreadTool;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -65,6 +69,26 @@ public class OkHttpImpl implements IHttpRequest {
         Request request = new Request.Builder()
                 .url(url).post(body).headers(Headers.of(headers)).build();
         asynRequest(clazz, listener, request);
+    }
+
+    public <T> void typeGetRequest(final String url, final Type type, final OnCompletedListener<T> listener) {
+        ThreadTool.getInstance().executorRunnable(new Runnable() {
+            @Override
+            public void run() {
+                final List<T> list = mGson.fromJson(url, type);
+                if (list != null && list.size() > 0){
+                    mHandler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            listener.onCompleted(list);
+                        }
+                    });
+                } else {
+                    error(listener);
+                }
+            }
+        });
+
     }
 
     @NonNull

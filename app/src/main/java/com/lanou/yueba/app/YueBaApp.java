@@ -1,4 +1,4 @@
-package com.lanou.yueba.main;
+package com.lanou.yueba.app;
 
 import android.app.ActivityManager;
 import android.app.Application;

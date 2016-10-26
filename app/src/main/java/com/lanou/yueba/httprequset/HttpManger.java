@@ -1,5 +1,6 @@
 package com.lanou.yueba.httprequset;
 
+import java.lang.reflect.Type;
 import java.util.Map;
 
 /**
@@ -27,6 +28,11 @@ public class HttpManger implements IHttpRequest {
     @Override
     public <T> void postRequest(String url, Map<String, String> headers, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener listener) {
         mIHttpRequest.postRequest(url, headers, requestBody, clazz, listener);
+    }
+
+    @Override
+    public <T> void typeGetRequest(String url, Type type, OnCompletedListener<T> listener) {
+        mIHttpRequest.typeGetRequest(url, type, listener);
     }
 
     private static final class HttpManagerHolder {

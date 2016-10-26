@@ -1,8 +1,7 @@
-package com.lanou.yueba.dynamic.news.ui;
+package com.lanou.yueba.dynamic.video;
 
-import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
-import com.lanou.yueba.bean.NewsBean;
+import android.app.Activity;
+import android.util.DisplayMetrics;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -27,42 +26,30 @@ import com.lanou.yueba.bean.NewsBean;
  * 　　　　　　　　　　┃┫┫　┃┫┫
  * 　　　　　　　　　　┗┻┛　┗┻┛+ + + +
  * <p/>
- * Created by 程洪运 on 16/10/24.
+ * Created by 程洪运 on 16/10/25.
  */
-public class NewsActivity extends BaseActivity implements NewsView {
-
-    @Override
-    protected int setLayout() {
-        return R.layout.activity_news;
+public class SuperPlayerUtils {
+    /**
+     * 得到屏幕宽度
+     *
+     * @return 宽度
+     */
+    public static int getScreenWidth(Activity activity) {
+        DisplayMetrics dm = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screenWidth = dm.widthPixels;
+        return screenWidth;
     }
 
-    @Override
-    protected void initView() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    public void showQuestView() {
-
-    }
-
-    @Override
-    public void showDataView() {
-
-    }
-
-    @Override
-    public void onResponse(NewsBean newsBean) {
-
-    }
-
-    @Override
-    public void onError() {
-
+    /**
+     * 得到屏幕高度
+     *
+     * @return 高度
+     */
+    public static int getScreenHeight(Activity activity) {
+        DisplayMetrics dm = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int screenHeight = dm.heightPixels;
+        return screenHeight;
     }
 }
