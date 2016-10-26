@@ -20,11 +20,20 @@
                 android:background="@android:color/white"
                 android:orientation="vertical">
 
-                <ImageView
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
-                    android:background="@mipmap/info_bg"
-                    android:src="@mipmap/info_src"/>
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@mipmap/info_bg"/>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@mipmap/info_src"/>
+                </FrameLayout>
 
                 <ImageView
                     android:layout_width="match_parent"
@@ -54,11 +63,12 @@
         <TextView
             android:id="@+id/tv_signature"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="25dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            android:textColor="@android:color/black"
-            android:textSize="20sp"/>
+            android:textSize="18sp"
+            android:gravity="center_vertical"
+            android:text="还没有个性签名"/>
 
         <include layout="@layout/layout_line"/>
 
@@ -104,6 +114,24 @@
 
         <include layout="@layout/layout_line"/>
 
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tv_exit_info"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_sure"
+                android:gravity="center"
+                android:text="@string/exit_username"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"/>
+
+        </FrameLayout>
     </LinearLayout>
 
     <RelativeLayout

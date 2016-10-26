@@ -44,6 +44,7 @@
         <activity android:name=".dynamic.news.AppActivity"/>
         <activity android:name=".info.InfoActivity"/>
 
+
         <activity android:name=".main.AddContactActivity"/>
         <activity android:name=".contact.ChatActivity"></activity>
 

@@ -7,7 +7,7 @@ import cn.bmob.v3.datatype.BmobFile;
  * Created by dllo on 16/10/26.
  */
 
-public class UserInfo extends BmobObject{
+public class UserInfoBean extends BmobObject{
     private String userName;
     private String md5UserPassWord;
     private String name;

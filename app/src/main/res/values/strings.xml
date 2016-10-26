@@ -17,5 +17,6 @@
     <string name="back_text">返回</string>
     <string name="my_info">我的资料</string>
     <string name="info_edit">编辑</string>
+    <string name="exit_username">退出当前账号</string>
 
 </resources>
