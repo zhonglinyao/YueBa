@@ -7,9 +7,19 @@
     android:background="@android:color/white">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_news"
+        android:id="@+id/rv_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
     </android.support.v7.widget.RecyclerView>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_video"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#000"
+        android:gravity="center"
+        android:visibility="gone"/>
+
 </FrameLayout>

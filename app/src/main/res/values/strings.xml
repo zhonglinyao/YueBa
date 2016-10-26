@@ -13,5 +13,4 @@
     <string name="PutNameHint">请输入账号</string>
     <string name="PutPasswordHint">请输入密码</string>
     <string name="PutPasswordSureHint">请确认密码</string>
-    <string name="news">新闻</string>
 </resources>

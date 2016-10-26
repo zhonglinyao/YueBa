@@ -11,7 +11,6 @@ import com.lanou.yueba.threadtools.ThreadTool;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -46,20 +45,20 @@ public class OkHttpImpl implements IHttpRequest {
     @Override
     public <T> void getRequest(String url, final Class<T> clazz, final OnCompletedListener<T> listener) {
         Request request = new Request.Builder().url(url).build();
-        asynRequest(clazz, listener, request);
+        asyncRequest(clazz, listener, request);
     }
 
     @Override
     public <T> void getRequest(String url, Map<String, String> headers, final Class<T> clazz, final OnCompletedListener<T> listener) {
         Request request = new Request.Builder().url(url).headers(Headers.of(headers)).build();
-        asynRequest(clazz, listener, request);
+        asyncRequest(clazz, listener, request);
     }
 
     @Override
     public <T> void postRequest(String url, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener listener) {
         FormBody body = getFormBody(requestBody);
         Request request = new Request.Builder().url(url).post(body).build();
-        asynRequest(clazz, listener, request);
+        asyncRequest(clazz, listener, request);
     }
 
 
@@ -68,7 +67,7 @@ public class OkHttpImpl implements IHttpRequest {
         FormBody body = getFormBody(requestBody);
         Request request = new Request.Builder()
                 .url(url).post(body).headers(Headers.of(headers)).build();
-        asynRequest(clazz, listener, request);
+        asyncRequest(clazz, listener, request);
     }
 
     public <T> void typeGetRequest(final String url, final Type type, final OnCompletedListener<T> listener) {
@@ -118,7 +117,7 @@ public class OkHttpImpl implements IHttpRequest {
         });
     }
 
-    private <T> void asynRequest(final Class<T> clazz, final OnCompletedListener<T> listener, Request request) {
+    private <T> void asyncRequest(final Class<T> clazz, final OnCompletedListener<T> listener, Request request) {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {

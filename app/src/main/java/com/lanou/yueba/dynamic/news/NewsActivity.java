@@ -67,7 +67,7 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     protected void initData() {
         mPresenter = new NewsPresenter<NewsBean>(this);
         String str = "2016-10-25";
-        mPresenter.startGetRequset(UrlValues.getNEWS(str), NewsBean.class);
+        mPresenter.startGetRequest(UrlValues.getNEWS(str), NewsBean.class);
     }
 
     @Override
@@ -80,7 +80,7 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     public void showDataView() {
         mImageView.setVisibility(View.GONE);
         View view = mViewStub.inflate();
-        mRv = bindView(R.id.rv_news, view);
+        mRv = bindView(R.id.rv_layout, view);
     }
 
     @Override

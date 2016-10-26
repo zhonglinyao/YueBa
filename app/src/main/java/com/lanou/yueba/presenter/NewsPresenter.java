@@ -5,6 +5,7 @@ import com.lanou.yueba.model.NewsModelImpl;
 import com.lanou.yueba.ui.NewsView;
 import com.lanou.yueba.httprequset.OnCompletedListener;
 
+import java.lang.reflect.Type;
 import java.util.List;
 import java.util.Map;
 
@@ -21,25 +22,31 @@ public class NewsPresenter<T> {
         mModel = new NewsModelImpl();
     }
 
-    public void startGetRequset(String urlString, Class<T> clazz) {
+    public void startGetRequest(String urlString, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startGetRequest(urlString, clazz, mListener);
     }
 
-    public void startGetRequset(String urlString, Map<String, String> header, Class<T> clazz) {
+    public void startGetRequest(String urlString, Map<String, String> header, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startGetRequest(urlString, header, clazz, mListener);
     }
 
-    public void startPostRequset(String urlString, Map<String, String> requestBody, Class<T> clazz) {
+    public void startPostRequest(String urlString, Map<String, String> requestBody, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startPostRequest(urlString, requestBody, clazz, mListener);
     }
 
-    public void startPostRequset(String urlString, Map<String, String> header, Map<String, String> requestBody, Class<T> clazz) {
+    public void startPostRequest(String urlString, Map<String, String> header, Map<String, String> requestBody, Class<T> clazz) {
         mNewsView.showQuestView();
         mModel.startPostRequest(urlString, header, requestBody, clazz, mListener);
     }
+
+    public void startTypeGetRequest(String urlString, Type type) {
+        mNewsView.showQuestView();
+        mModel.startTypeGetRequest(urlString, type, mListener);
+    }
+
 
     OnCompletedListener mListener = new OnCompletedListener<T>() {
         @Override

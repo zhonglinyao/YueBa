@@ -179,10 +179,10 @@ public final class EaseUI {
     public boolean hasForegroundActivies(){
         return activityList.size() != 0;
     }
-    
+
     /**
      * set user profile provider
-     * @param provider
+     * @param userProvider
      */
     public void setUserProfileProvider(EaseUserProfileProvider userProvider){
         this.userProvider = userProvider;

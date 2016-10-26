@@ -1,4 +1,4 @@
-package com.lanou.yueba.dynamic.video;
+package com.lanou.yueba.bean;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
