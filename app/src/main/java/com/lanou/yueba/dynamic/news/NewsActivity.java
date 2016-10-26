@@ -46,7 +46,7 @@ import java.util.List;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class AppActivity extends BaseActivity implements AppView<NewsBean> {
+public class NewsActivity extends BaseActivity implements AppView<NewsBean> {
     private AppPresenter<NewsBean> mPresenter;
     private RecyclerView mRv;
     private ViewStub mViewStub;

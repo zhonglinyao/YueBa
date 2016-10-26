@@ -7,7 +7,7 @@ import android.widget.RelativeLayout;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
-import com.lanou.yueba.dynamic.news.AppActivity;
+import com.lanou.yueba.dynamic.news.NewsActivity;
 import com.lanou.yueba.dynamic.video.VideoActivity;
 
 /**
@@ -43,7 +43,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(getContext(), VideoActivity.class));
                 break;
             case R.id.rl_news_dynamic:
-                startActivity(new Intent(getContext(), AppActivity.class));
+                startActivity(new Intent(getContext(), NewsActivity.class));
                 break;
         }
 
