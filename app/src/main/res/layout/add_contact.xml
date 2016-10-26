@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_back_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/toolbar_back"
+
+                    />
+
+                <TextView
+                    style="@style/CustomTitleTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back_text"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/main_toolbar_add"
+                />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <include layout="@layout/ease_search_bar"/>
+
+    <LinearLayout
+        android:id="@+id/ll_add_contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:visibility="invisible"
+        >
+
+        <TextView
+            android:id="@+id/tv_person_add"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="找人:"
+            android:textSize="15dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorLine"
+            />
+
+        <TextView
+            android:id="@+id/tv_group_add"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="找群:"
+            android:textSize="15dp"
+            android:gravity="center_vertical"
+            android:clickable="true"
+            />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorLine"
+            />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>

@@ -47,7 +47,7 @@
             android:id="@+id/et_name_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
-            android:hint="@string/PutNameHint"
+            android:hint="@string/put_name_hint"
             android:textColor="@android:color/black"
             android:paddingLeft="10dp"/>
 
@@ -55,7 +55,7 @@
             android:id="@+id/et_password_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
-            android:hint="@string/PutPasswordHint"
+            android:hint="@string/put_password_hint"
             android:textColor="@android:color/black"
             android:paddingLeft="10dp"/>
 
@@ -63,7 +63,7 @@
             android:id="@+id/et_password_sure_register"
             style="@style/LoginAndRegister"
             android:background="@drawable/shape_eidt"
-            android:hint="@string/PutPasswordSureHint"
+            android:hint="@string/put_password_sure_hint"
             android:textColor="@android:color/black"
             android:paddingLeft="10dp"/>
 
