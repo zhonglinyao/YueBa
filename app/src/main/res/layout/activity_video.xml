@@ -4,16 +4,35 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_video"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
 
-    <RelativeLayout
-        android:id="@+id/rl_video"
+        <TextView
+            style="@style/CustomTitleTextAppearance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="@string/dynamic_video"/>
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#000"
-        android:gravity="center"
-        android:visibility="gone"/>
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_loading_video"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/loading"/>
+
+        <ViewStub
+            android:id="@+id/vs_video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/layout_recycler"/>
+
+    </FrameLayout>
 </LinearLayout>

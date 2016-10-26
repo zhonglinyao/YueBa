@@ -14,25 +14,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:text="@string/news"/>
+            android:text="@string/dynamic_news"/>
     </android.support.v7.widget.Toolbar>
 
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/iv_loading_news"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:background="@drawable/loading"/>
+        <ImageView
+            android:id="@+id/iv_loading_news"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/loading"/>
 
-    <ViewStub
-        android:id="@+id/vs_news"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout="@layout/layout_loading"/>
+        <ViewStub
+            android:id="@+id/vs_news"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout="@layout/layout_recycler"/>
 
     </FrameLayout>
 

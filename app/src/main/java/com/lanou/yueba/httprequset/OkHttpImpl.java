@@ -74,18 +74,28 @@ public class OkHttpImpl implements IHttpRequest {
         mOkHttpClient.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
-
+                listener.onFailed();
             }
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                final List<T> list = mGson.fromJson(response.body().string(), type);
-                mHandler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        listener.onCompleted(list);
+                if (response.body().contentLength() > 0) {
+                    final List<T> list = mGson.fromJson(response.body().string(), type);
+                    if (list != null && list.size() > 0) {
+                        mHandler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                listener.onCompleted(list);
+                            }
+                        });
+                    } else {
+                        listener.onFailed();
                     }
-                });
+                } else {
+                    listener.onFailed();
+                }
+
+
             }
         });
     }

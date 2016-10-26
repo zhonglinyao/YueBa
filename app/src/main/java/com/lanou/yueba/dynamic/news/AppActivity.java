@@ -14,8 +14,8 @@ import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
 import com.lanou.yueba.base.rv.DividerItemDecoration;
 import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.NewsBean;
-import com.lanou.yueba.presenter.NewsPresenter;
-import com.lanou.yueba.ui.NewsView;
+import com.lanou.yueba.presenter.AppPresenter;
+import com.lanou.yueba.ui.AppView;
 import com.lanou.yueba.vlaues.UrlValues;
 
 import java.util.ArrayList;
@@ -46,8 +46,8 @@ import java.util.List;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
-    private NewsPresenter<NewsBean> mPresenter;
+public class AppActivity extends BaseActivity implements AppView<NewsBean> {
+    private AppPresenter<NewsBean> mPresenter;
     private RecyclerView mRv;
     private ViewStub mViewStub;
     private ImageView mImageView;
@@ -66,9 +66,9 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
 
     @Override
     protected void initData() {
-        mPresenter = new NewsPresenter(this);
+        mPresenter = new AppPresenter(this);
         String str = "2016-10-25";
-        mPresenter.startGetRequset(UrlValues.getNEWS(str), NewsBean.class);
+        mPresenter.startGetRequest(UrlValues.getNEWS(str), NewsBean.class);
     }
 
     @Override
@@ -81,7 +81,7 @@ public class NewsActivity extends BaseActivity implements NewsView<NewsBean> {
     public void showDataView() {
         mImageView.setVisibility(View.GONE);
         View view = mViewStub.inflate();
-        mRv = bindView(R.id.rv_news, view);
+        mRv = bindView(R.id.rv_layout, view);
     }
 
     @Override

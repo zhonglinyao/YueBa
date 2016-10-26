@@ -9,7 +9,7 @@ import java.util.Map;
  * Created by dllo on 16/10/24.
  */
 
-public interface Model {
+public interface AppModel {
     <T> void startGetRequest(String urlString, Class<T> clazz, OnCompletedListener<T> listener);
 
     <T> void startGetRequest(String urlString, Map<String, String> header, Class<T> clazz, OnCompletedListener<T> listener);
