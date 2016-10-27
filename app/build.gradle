@@ -32,4 +32,6 @@ dependencies {
     compile files('libs/lite-orm-1.9.2.jar')
     compile project(':easeUI_CN')
     compile 'cn.bmob.android:bmob-sdk:3.5.0'
+    compile project(':ijkplayerlibrary')
+    compile project(':superplayerlibrary')
 }
