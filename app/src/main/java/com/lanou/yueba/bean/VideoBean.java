@@ -1,5 +1,7 @@
 package com.lanou.yueba.bean;
 
+import java.io.Serializable;
+
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
  * 　　　　　　　┏┛┻━━━┛┻┓ + +
@@ -25,7 +27,7 @@ package com.lanou.yueba.bean;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class VideoBean {
+public class VideoBean implements Serializable {
 
     private long userId;
     private String channelName;
