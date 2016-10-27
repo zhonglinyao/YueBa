@@ -23,7 +23,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-//        ActivityTools.deleteActivity(this.getClass().getSimpleName());
         super.onDestroy();
     }
 
