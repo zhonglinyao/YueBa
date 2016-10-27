@@ -8,18 +8,27 @@ import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.message.MessageFragment;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private RadioButton mIvContact, mIvDynamic, mIvMessage;
+    private RadioButton mIvContact;
+    private RadioButton mIvDynamic;
+    private RadioButton mIvMessage;
     private MessageFragment mMessageFragment;
     private ContactFragment mContactFragment;
     private DynamicFragment mDynamicFragment;
@@ -32,7 +41,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mIvToolBar;
     private TextView mTvAddToolBar;
     private TextView mTvMoreToolBar;
-
+    private UserInfoBean mUserInfoBean;
 
     @Override
     protected int setLayout() {
@@ -67,6 +76,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
         transaction.commit();
+        bmobQuery();
     }
 
     private void InitClick() {
@@ -97,7 +107,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 transaction.replace(R.id.fl_main, mDynamicFragment);
                 break;
             case R.id.civ_toolbar:
-                startActivity(new Intent(this, InfoActivity.class));
+                Intent infoIntent = new Intent(this, InfoActivity.class);
+                infoIntent.putExtra("info", mUserInfoBean);
+                startActivityForResult(infoIntent, 201);
                 break;
             case R.id.iv_more_toolbar:
                 break;
@@ -114,6 +126,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
         changeToolBar();
         transaction.commit();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (201 == requestCode && 101 == resultCode){
+            mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
+        }
     }
 
     private void changeToolBar() {
@@ -141,16 +161,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    private void bmobQuery() {
+        BmobQuery<UserInfoBean> query = new BmobQuery<>();
+        query.addWhereEqualTo("userName", EMClient.getInstance().getCurrentUser());
+        query.findObjects(new FindListener<UserInfoBean>() {
+
+            @Override
+            public void done(List<UserInfoBean> list, BmobException e) {
+                if (e == null) {
+                    mUserInfoBean = list.get(0);
+                }
+            }
+        });
+    }
+
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-//        EMClient.getInstance().logout(true);
-
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-//        EMClient.getInstance().logout(true);
     }
 }

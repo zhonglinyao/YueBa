@@ -33,7 +33,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     private TextView mRegister;
     private LoginPresenter mPresenter;
 
-
     @Override
     protected int setLayout() {
         return R.layout.activity_login;
@@ -43,26 +42,21 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     protected void initView() {
         mPresenter = new LoginPresenter(this);
         mButtonSure = bindView(R.id.btn_sure_login);
-        mLl = bindView(R.id.ll_login);
         mName = bindView(R.id.et_name_login);
         mPassword = bindView(R.id.et_password_login);
         mRegister = bindView(R.id.tv_register_login);
-
         mDialog = createDialog();
     }
 
     @Override
     protected void initData() {
-
         if (EMClient.getInstance().isLoggedInBefore()){
             startActivity(new Intent(this, MainActivity.class));
+            finish();
             return;
         }
-
         mButtonSure.setOnClickListener(this);
-        mLl.setBackgroundResource(R.mipmap.login_background);
         mRegister.setOnClickListener(this);
-
     }
 
     @Override
@@ -93,7 +87,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         }
     }
 
-
     @Override
     public void showDialog() {
         mDialog.show();
@@ -105,7 +98,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     }
 
     @Override
-    public void onResponse() {
+    public void onResponse(final String username, final String password) {
+
+
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -117,7 +112,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
             }
         });
     }
-
 
     @Override
     public void onError(final int i, final String s) {

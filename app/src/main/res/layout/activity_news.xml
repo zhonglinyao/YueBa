@@ -5,9 +5,7 @@
               android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary">
+        style="@style/ToolBar">
 
         <TextView
             style="@style/CustomTitleTextAppearance"

@@ -10,7 +10,7 @@ public interface ILoginView {
 
     void dismissDialog();
 
-    void onResponse();
+    void onResponse(String username, String password);
 
     void onError(int i, String s);
 

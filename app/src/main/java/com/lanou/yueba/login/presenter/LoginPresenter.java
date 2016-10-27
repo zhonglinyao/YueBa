@@ -26,9 +26,9 @@ public class LoginPresenter {
 
         mModel.startRequest(username, password, new OnLoginListener() {
             @Override
-            public void onFinished() {
+            public void onFinished(String username, String password) {
                 mView.dismissDialog();
-                mView.onResponse();
+                mView.onResponse(username, password);
             }
 
             @Override
