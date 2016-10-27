@@ -42,14 +42,13 @@ public class ContactFragment extends EaseContactListFragment {
             @Override
             public void onSuccess(final List<String> strings) {
                 mMap = new HashMap<String, EaseUser>();
-
+                for (String s : strings) {
+                    EaseUser user = new EaseUser(s);
+                    mMap.put(s,user);
+                }
                 getActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        for (String s : strings) {
-                            EaseUser user = new EaseUser(s);
-                            mMap.put(s,user);
-                        }
                         setContactsMap(mMap);
                         refresh();
                     }

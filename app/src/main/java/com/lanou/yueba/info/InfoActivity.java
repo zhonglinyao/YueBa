@@ -20,6 +20,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mIvBack;
     private TextView mTvEdit;
     private TextView mTvExit;
+    private TextView mName;
 
     @Override
     protected int setLayout() {
@@ -31,11 +32,17 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mIvBack = bindView(R.id.iv_back_info);
         mTvEdit = bindView(R.id.tv_edit_info);
         mTvExit = bindView(R.id.tv_exit_info);
+        mName = bindView(R.id.tv_name_info);
+
     }
 
     @Override
     protected void initData() {
         initListener();
+
+        Intent intent = getIntent();
+        mName.setText(intent.getStringExtra("username"));
+
     }
 
     public void initListener() {
@@ -46,7 +53,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_back_info:
                 finish();
                 break;

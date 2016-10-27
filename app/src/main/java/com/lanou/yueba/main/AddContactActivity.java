@@ -1,5 +1,6 @@
 package com.lanou.yueba.main;
 
+import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -14,6 +15,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.info.InfoActivity;
 
 /**
  * Created by dllo on 16/10/26.
@@ -89,7 +91,10 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
 
 //              new EaseAlertDialog(this,R.string.Please_enter_a_username);
-                addContact(query.getText().toString().trim());
+//                addContact(query.getText().toString().trim());
+                Intent intent = new Intent(this, InfoActivity.class);
+                intent.putExtra("username",query.getText().toString().trim());
+                startActivity(intent);
 
                 break;
             case R.id.tv_group_add:
