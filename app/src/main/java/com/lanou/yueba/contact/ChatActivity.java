@@ -14,6 +14,7 @@ public class ChatActivity extends BaseActivity {
     @Override
     protected int setLayout() {
         return R.layout.activity_chat;
+
     }
 
     @Override

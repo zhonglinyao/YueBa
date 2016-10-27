@@ -1,6 +1,7 @@
 package com.lanou.yueba.register.ui;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -13,6 +14,7 @@ import com.hyphenate.EMError;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.register.presenter.RegPresenter;
 
 /**
@@ -72,8 +74,10 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
     }
 
     @Override
-    public void onResponse() {
-        Log.d("RegisterActivity", "注册成功");
+    public void onResponse(String username,String password) {
+        startActivity(new Intent(this, LoginActivity.class)
+                .putExtra("username",username)
+                .putExtra("password",password));
     }
 
     @Override

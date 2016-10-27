@@ -24,9 +24,9 @@ public class RegPresenter {
         mView.showDialog();
         mModel.startRequest(username, password, new OnFinishedListener() {
             @Override
-            public void onFinished() {
+            public void onFinished(String username,String password) {
                 mView.dismissDialog();
-                mView.onResponse();
+                mView.onResponse(username,password);
             }
 
             @Override

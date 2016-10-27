@@ -54,10 +54,14 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @Override
     protected void initData() {
 
-        if (EMClient.getInstance().isLoggedInBefore()){
+        if (EMClient.getInstance().isLoggedInBefore()) {
             startActivity(new Intent(this, MainActivity.class));
             return;
         }
+
+        Intent intent = getIntent();
+        mName.setText(intent.getStringExtra("username"));
+        mPassword.setText(intent.getStringExtra("password"));
 
         mButtonSure.setOnClickListener(this);
         mLl.setBackgroundResource(R.mipmap.login_background);

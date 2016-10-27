@@ -317,6 +317,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
      */
     public void setContactsMap(Map<String, EaseUser> contactsMap){
         this.contactsMap = contactsMap;
+
     }
     
     public interface EaseContactListItemClickListener {

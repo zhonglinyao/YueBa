@@ -10,7 +10,7 @@ public interface IRegView {
 
     void dismissDialog();
 
-    void onResponse();
+    void onResponse(String username,String password);
 
     void onError(Throwable error);
 
