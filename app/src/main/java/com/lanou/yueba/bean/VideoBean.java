@@ -55,11 +55,30 @@ public class VideoBean {
     @Override
     public String toString() {
         return "VideoBean{" +
-                "downloadable=" + downloadable +
-                ", avatar='" + avatar + '\'' +
-                ", channelIntro='" + channelIntro + '\'' +
+                "avatar='" + avatar + '\'' +
+                ", userId=" + userId +
                 ", channelName='" + channelName + '\'' +
+                ", channelIntro='" + channelIntro + '\'' +
+                ", videoId=" + videoId +
+                ", title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", linkMp4='" + linkMp4 + '\'' +
                 ", cover='" + cover + '\'' +
+                ", intro='" + intro + '\'' +
+                ", tag='" + tag + '\'' +
+                ", duration=" + duration +
+                ", playCount=" + playCount +
+                ", playCountReal=" + playCountReal +
+                ", hasFavor=" + hasFavor +
+                ", uploadTime=" + uploadTime +
+                ", setName='" + setName + '\'' +
+                ", setNum=" + setNum +
+                ", newest=" + newest +
+                ", downloadable=" + downloadable +
+                ", isLock=" + isLock +
+                ", previewDuration=" + previewDuration +
+                ", unlockSeed=" + unlockSeed +
+                ", unlockCount=" + unlockCount +
                 '}';
     }
 
