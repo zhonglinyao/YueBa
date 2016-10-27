@@ -1,5 +1,6 @@
 package com.lanou.yueba.dynamic.video;
 
+import android.app.Activity;
 import android.content.res.Configuration;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,10 +8,13 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.RecyclerView.OnChildAttachStateChangeListener;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 import android.view.ViewStub;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -29,6 +33,7 @@ import com.lanou.yueba.vlaues.UrlValues;
 import com.superplayer.library.SuperPlayer;
 import com.superplayer.library.SuperPlayerManage;
 import com.superplayer.library.mediaplayer.IjkVideoView;
+import com.superplayer.library.utils.SuperPlayerUtils;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -72,6 +77,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     private List<VideoBean> mList = new ArrayList<>();
     private RelativeLayout mRlVideo;
     private LinearLayoutManager mManager;
+    private LinearLayout mLl;
 
     @Override
     protected int setLayout() {
@@ -82,10 +88,19 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     protected void initView() {
         mViewStub = bindView(R.id.vs_video);
         mImageView = bindView(R.id.iv_loading_video);
+        mLl = bindView(R.id.ll_back_add);
     }
 
     @Override
     protected void initData() {
+
+        mLl.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
         mPresenter = new AppPresenter<>(this);
         Type type = new TypeToken<List<VideoBean>>() {
         }.getType();
@@ -138,9 +153,19 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                 holder.setText(R.id.tv_layout_channelName_video, videoBean.getChannelName());
                 holder.setText(R.id.tv_layout_playCount_video, String.valueOf(videoBean.getPlayCount()) + "次播放");
                 holder.setText(R.id.tv_layout_title_video, videoBean.getTitle());
+                Glide.with(VideoActivity.this).load(videoBean.getCover()).into((ImageView) holder.getView(R.id.iv_layout_cover_video));
 //                holder.setText(R.id.tv_layout_uploadTime_video, String.valueOf(videoBean.getUploadTime()));
                 videoBean.setLinkMp4(videoBean.getLinkMp4());
                 mList.add(videoBean);
+
+
+                RelativeLayout rlayPlayer = (RelativeLayout) findViewById(R.id.rl_layout_video);
+                if (rlayPlayer!=null){
+                    LayoutParams layoutParams =  rlayPlayer.getLayoutParams();
+                    layoutParams.height = (int) (SuperPlayerUtils.getScreenWidth((Activity) mContext) * 0.5652f);//这值是网上抄来的，我设置了这个之后就没有全屏回来拉伸的效果，具体为什么我也不太清楚
+                    rlayPlayer.setLayoutParams(layoutParams);
+                }
+
                 Log.d("VideoActivity", "aaa");
             }
 
@@ -170,8 +195,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                     player.showView(R.id.adapter_player_control);
                 }
 
-                View commView = mRv.findViewHolderForAdapterPosition(position).itemView;
-                FrameLayout frameLayout = (FrameLayout) commView.findViewById(R.id.adapter_super_video);
+                FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.adapter_super_video);
                 frameLayout.removeAllViews();
                 player.showView(R.id.adapter_player_control);
                 frameLayout.addView(player);
@@ -194,7 +218,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
         player.onComplete(new Runnable() {
             @Override
             public void run() {
-                ViewGroup last = (ViewGroup) player.getParent();//找到videoitemview的父类，然后remove
+                ViewGroup last = (ViewGroup) player.getParent();
                 if (last != null && last.getChildCount() > 0) {
                     last.removeAllViews();
                     View itemView = (View) last.getParent();
@@ -300,5 +324,38 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     @Override
     public void onError() {
 
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (player != null) {
+            player.onPause();
+        }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (player != null) {
+            player.onResume();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (player != null) {
+            player.onDestroy();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (player != null && player.onBackPressed()) {
+            return;
+        }
+        super.onBackPressed();
     }
 }
