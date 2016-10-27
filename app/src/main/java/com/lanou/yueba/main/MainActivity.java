@@ -178,11 +178,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void onDestroy() {
+//        EMClient.getInstance().logout(true);
         super.onDestroy();
     }
 
     @Override
     protected void onStop() {
+//        EMClient.getInstance().logout(true);
         super.onStop();
     }
 }

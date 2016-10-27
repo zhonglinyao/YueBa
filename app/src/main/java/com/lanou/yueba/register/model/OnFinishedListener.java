@@ -6,7 +6,7 @@ package com.lanou.yueba.register.model;
 
 public interface OnFinishedListener {
 
-    void onFinished();
+    void onFinished(String username,String password);
     void onError(Throwable error);
 
 

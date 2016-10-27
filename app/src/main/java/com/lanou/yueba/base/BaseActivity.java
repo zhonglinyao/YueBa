@@ -21,10 +21,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         initData();
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
     }
+
+
+
 
     protected abstract int setLayout();
 

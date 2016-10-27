@@ -74,6 +74,7 @@
             android:textSize="15dp"
             android:gravity="center_vertical"
             android:clickable="true"
+            android:onClick=""
 
             />
 

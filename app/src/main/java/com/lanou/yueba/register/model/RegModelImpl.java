@@ -19,7 +19,7 @@ public class RegModelImpl implements IRegModel{
             public void run() {
                 try {
                     EMClient.getInstance().createAccount(username, password);//同步方法
-                    listener.onFinished();
+                    listener.onFinished(username,password);
                 } catch (HyphenateException e) {
                     e.printStackTrace();
                     listener.onError(e);

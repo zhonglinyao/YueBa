@@ -32,6 +32,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     private ImageView mIvBack;
     private TextView mTvEdit;
     private TextView mTvExit;
+
     private TextView mTvUsername;
     private TextView mTvSignature;
     private TextView mTvQQ;
@@ -45,6 +46,9 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         super.onDestroy();
     }
 
+//    private TextView mName;
+
+
     @Override
     protected int setLayout() {
         return R.layout.activity_info;
@@ -55,10 +59,14 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mIvBack = bindView(R.id.iv_back_info);
         mTvEdit = bindView(R.id.tv_edit_info);
         mTvExit = bindView(R.id.tv_exit_info);
+
         mTvUsername = bindView(R.id.tv_username_info);
         mTvSignature = bindView(R.id.tv_signature);
         mTvQQ = bindView(R.id.tv_qq_info);
         mTvPhone = bindView(R.id.tv_phone_info);
+
+
+
     }
 
     @Override
@@ -68,6 +76,10 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mTvUsername.setText(EMClient.getInstance().getCurrentUser().toString());
         update();
         initListener();
+
+//        Intent intent = getIntent();
+//        mName.setText(intent.getStringExtra("username"));
+
     }
 
 

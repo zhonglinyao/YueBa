@@ -31,9 +31,10 @@ public class RegPresenter {
         mView.showDialog();
         mModel.startRequest(username, password, new OnFinishedListener() {
             @Override
-            public void onFinished() {
+            public void onFinished(final String username, final String password) {
                 mView.dismissDialog();
-                mView.onResponse();
+                mView.onResponse(username,password);
+
                 ThreadTool.getInstance().executorRunnable(new Runnable() {
                     @Override
                     public void run() {
@@ -52,6 +53,9 @@ public class RegPresenter {
                         });
                     }
                 });
+
+
+
             }
 
             @Override

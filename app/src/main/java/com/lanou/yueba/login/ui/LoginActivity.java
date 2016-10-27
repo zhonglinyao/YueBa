@@ -50,11 +50,16 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     protected void initData() {
-        if (EMClient.getInstance().isLoggedInBefore()){
+
+
+        if (EMClient.getInstance().isLoggedInBefore()) {
+
             startActivity(new Intent(this, MainActivity.class));
             finish();
             return;
         }
+
+
         mButtonSure.setOnClickListener(this);
         mRegister.setOnClickListener(this);
     }
@@ -82,9 +87,20 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 }
                 break;
             case R.id.tv_register_login:
-                startActivity(new Intent(this, RegisterActivity.class));
+                startActivityForResult(new Intent(this, RegisterActivity.class),101);
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+        if (101 == requestCode && 202 == resultCode ){
+            mName.setText(data.getStringExtra("username"));
+            mPassword.setText(data.getStringExtra("password"));
+        }
+
     }
 
     @Override
