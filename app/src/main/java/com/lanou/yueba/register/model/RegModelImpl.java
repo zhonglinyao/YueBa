@@ -26,9 +26,5 @@ public class RegModelImpl implements IRegModel{
                 }
             }
         });
-
-
-
-
     }
 }

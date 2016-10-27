@@ -35,43 +35,38 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/ll_register"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="130dp"
         android:background="@mipmap/login_background">
 
-        <EditText
-            android:id="@+id/et_name_register"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_eidt"
-            android:hint="@string/put_name_hint"
-            android:textColor="@android:color/black"
-            android:paddingLeft="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_password_register"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_eidt"
-            android:hint="@string/put_password_hint"
-            android:textColor="@android:color/black"
-            android:paddingLeft="10dp"/>
+            <EditText
+                android:id="@+id/et_name_register"
+                style="@style/Register"
+                android:hint="@string/put_name_hint"/>
 
-        <EditText
-            android:id="@+id/et_password_sure_register"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_eidt"
-            android:hint="@string/put_password_sure_hint"
-            android:textColor="@android:color/black"
-            android:paddingLeft="10dp"/>
+            <EditText
+                android:id="@+id/et_password_register"
+                style="@style/Register"
+                android:hint="@string/put_password_hint"/>
 
-        <Button
-            android:id="@+id/btn_sure_register"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_sure"
-            android:textColor="@android:color/white"
-            android:text="@string/sure"/>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/et_password_sure_register"
+                style="@style/Register"
+                android:hint="@string/put_password_sure_hint"/>
+
+            <Button
+                android:id="@+id/btn_sure_register"
+                style="@style/Register"
+                android:background="@drawable/shape_sure"
+                android:text="@string/sure"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

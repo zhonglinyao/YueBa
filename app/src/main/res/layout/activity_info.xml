@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:id="@+id/fl_info">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -41,11 +42,10 @@
                     android:background="@android:color/white"/>
 
                 <TextView
-                    android:id="@+id/tv_name_info"
+                    android:id="@+id/tv_username_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="昵称"
                     android:textColor="@android:color/black"
                     android:textSize="30sp"/>
             </LinearLayout>
@@ -67,8 +67,7 @@
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:textSize="18sp"
-            android:gravity="center_vertical"
-            android:text="还没有个性签名"/>
+            android:gravity="center_vertical"/>
 
         <include layout="@layout/layout_line"/>
 
@@ -85,7 +84,7 @@
                 android:src="@mipmap/username_info"/>
 
             <TextView
-                android:id="@+id/tv_username_info"
+                android:id="@+id/tv_qq_info"
                 style="@style/TextInfo"
                 android:layout_toRightOf="@id/iv_name_info"/>
 

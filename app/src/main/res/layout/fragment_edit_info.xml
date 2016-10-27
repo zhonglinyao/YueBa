@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_back_edit_info"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/toolbar_back"/>
+
+            <TextView
+                android:id="@+id/tv_title_edit_info"
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/info_edit"
+                android:visibility="visible"/>
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@mipmap/login_background">
+
+        <LinearLayout
+            android:id="@+id/ll_edit_"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_username_edit_info"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:src="@mipmap/icon"/>
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_signature_edit_info"
+                style="@style/EditInfo"
+                android:hint="@string/edit_signature"/>
+
+            <EditText
+                android:id="@+id/et_qq_edit_info"
+                style="@style/EditInfo"
+                android:hint="@string/edit_qq"/>
+
+            <EditText
+                android:id="@+id/et_phone_edit_info"
+                style="@style/EditInfo"
+                android:hint="@string/edit_phone"/>
+
+            <Button
+                android:id="@+id/btn_sure_edit_info"
+                style="@style/EditInfo"
+                android:background="@drawable/shape_sure"
+                android:text="@string/sure"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</LinearLayout>

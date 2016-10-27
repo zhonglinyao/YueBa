@@ -18,5 +18,9 @@
     <string name="my_info">我的资料</string>
     <string name="info_edit">编辑</string>
     <string name="exit_username">退出当前账号</string>
+    <string name="nickname_register">昵称</string>
+    <string name="edit_signature">修改用户个性签名</string>
+    <string name="edit_qq">修改用户QQ号</string>
+    <string name="edit_phone">修改用户手机号</string>
 
 </resources>

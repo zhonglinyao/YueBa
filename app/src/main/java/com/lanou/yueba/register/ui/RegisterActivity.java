@@ -158,9 +158,8 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
                 break;
             case R.id.iv_back_register:
                 onBackPressed();
+                finish();
                 break;
-
-
         }
     }
 }

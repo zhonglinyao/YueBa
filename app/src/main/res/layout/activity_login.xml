@@ -42,35 +42,33 @@
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
-    <LinearLayout
-        android:id="@+id/ll_login"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingTop="180dp"
         android:background="@mipmap/login_background">
 
-        <EditText
-            android:id="@+id/et_name_login"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_eidt"
-            android:textColor="@android:color/black"
-            android:hint="@string/put_name_hint"
-            android:paddingLeft="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_password_login"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_eidt"
-            android:textColor="@android:color/black"
-            android:hint="@string/put_password_hint"
-            android:paddingLeft="10dp"/>
+            <EditText
+                android:id="@+id/et_name_login"
+                style="@style/Login"
+                android:hint="@string/put_name_hint"/>
 
-        <Button
-            android:id="@+id/btn_sure_login"
-            style="@style/LoginAndRegister"
-            android:background="@drawable/shape_sure"
-            android:textColor="@android:color/white"
-            android:text="@string/sure"/>
-    </LinearLayout>
+            <EditText
+                android:id="@+id/et_password_login"
+                style="@style/Login"
+                android:hint="@string/put_password_hint"/>
+
+            <Button
+                android:id="@+id/btn_sure_login"
+                style="@style/Login"
+                android:background="@drawable/shape_sure"
+                android:text="@string/sure"
+                android:textColor="@android:color/white"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>
