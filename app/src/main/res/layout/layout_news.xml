@@ -5,9 +5,45 @@
     android:layout_height="wrap_content"
     android:background="@drawable/dynamic_layout_select"
     android:orientation="vertical">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="100dp">
 
     <TextView
-        android:id="@+id/tv_item"
+        android:id="@+id/tv_layout_title_news"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:id="@+id/iv_layout_pic_news"/>
+
+
+</LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"/>
+        android:orientation="horizontal"
+        android:layout_height="30dp">
+
+        <TextView
+            android:id="@+id/tv_layout_categoryName_news"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tv_layout_clickCount_news"
+            android:layout_width="wrap_content"
+            android:layout_marginRight="10dp"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+
 </LinearLayout>

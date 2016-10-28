@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':superplayerlibrary', ':ijkplayerlibrary'
 include ':easeUI_CN'

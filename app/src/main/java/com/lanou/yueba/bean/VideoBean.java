@@ -1,5 +1,7 @@
 package com.lanou.yueba.bean;
 
+import java.io.Serializable;
+
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
  * 　　　　　　　┏┛┻━━━┛┻┓ + +
@@ -25,7 +27,7 @@ package com.lanou.yueba.bean;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class VideoBean {
+public class VideoBean implements Serializable {
 
     private long userId;
     private String channelName;
@@ -55,11 +57,30 @@ public class VideoBean {
     @Override
     public String toString() {
         return "VideoBean{" +
-                "downloadable=" + downloadable +
-                ", avatar='" + avatar + '\'' +
-                ", channelIntro='" + channelIntro + '\'' +
+                "avatar='" + avatar + '\'' +
+                ", userId=" + userId +
                 ", channelName='" + channelName + '\'' +
+                ", channelIntro='" + channelIntro + '\'' +
+                ", videoId=" + videoId +
+                ", title='" + title + '\'' +
+                ", link='" + link + '\'' +
+                ", linkMp4='" + linkMp4 + '\'' +
                 ", cover='" + cover + '\'' +
+                ", intro='" + intro + '\'' +
+                ", tag='" + tag + '\'' +
+                ", duration=" + duration +
+                ", playCount=" + playCount +
+                ", playCountReal=" + playCountReal +
+                ", hasFavor=" + hasFavor +
+                ", uploadTime=" + uploadTime +
+                ", setName='" + setName + '\'' +
+                ", setNum=" + setNum +
+                ", newest=" + newest +
+                ", downloadable=" + downloadable +
+                ", isLock=" + isLock +
+                ", previewDuration=" + previewDuration +
+                ", unlockSeed=" + unlockSeed +
+                ", unlockCount=" + unlockCount +
                 '}';
     }
 

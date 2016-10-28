@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
@@ -46,7 +47,7 @@ import java.util.List;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
-public class AppActivity extends BaseActivity implements AppView<NewsBean> {
+public class NewsActivity extends BaseActivity implements AppView<NewsBean> {
     private AppPresenter<NewsBean> mPresenter;
     private RecyclerView mRv;
     private ViewStub mViewStub;
@@ -97,7 +98,10 @@ public class AppActivity extends BaseActivity implements AppView<NewsBean> {
                     R.layout.layout_news, list) {
                 @Override
                 protected void convert(ViewHolder holder, NewsBean.DataBean.ItemsBean itemsBean, int position) {
-                    holder.setText(R.id.tv_item, itemsBean.getAuthor());
+                    holder.setText(R.id.tv_layout_title_news, itemsBean.getTitle());
+                    Glide.with(NewsActivity.this).load(itemsBean.getPic()).into((ImageView) holder.getView(R.id.iv_layout_pic_news));
+                    holder.setText(R.id.tv_layout_categoryName_news, itemsBean.getCategoryName());
+                    holder.setText(R.id.tv_layout_clickCount_news, String.valueOf(itemsBean.getClickCount())+"次点击");
                 }
             });
         }
