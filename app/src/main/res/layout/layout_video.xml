@@ -42,14 +42,14 @@
         android:layout_marginRight="10dp">
 
         <FrameLayout
-            android:id="@+id/adapter_super_video"
+            android:id="@+id/fl_layout_super_video"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         </FrameLayout>
 
         <RelativeLayout
-            android:id="@+id/adapter_player_control"
+            android:id="@+id/rl_layout_player_control_video"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#30000000"

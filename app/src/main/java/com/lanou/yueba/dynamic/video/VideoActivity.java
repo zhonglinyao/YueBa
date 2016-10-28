@@ -162,7 +162,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                 RelativeLayout rlayPlayer = (RelativeLayout) findViewById(R.id.rl_layout_video);
                 if (rlayPlayer!=null){
                     LayoutParams layoutParams =  rlayPlayer.getLayoutParams();
-                    layoutParams.height = (int) (SuperPlayerUtils.getScreenWidth((Activity) mContext) * 0.5652f);//这值是网上抄来的，我设置了这个之后就没有全屏回来拉伸的效果，具体为什么我也不太清楚
+                    layoutParams.height = (int) (SuperPlayerUtils.getScreenWidth((Activity) mContext) * 0.5652f);
                     rlayPlayer.setLayoutParams(layoutParams);
                 }
 
@@ -179,7 +179,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 Log.d("VideoActivity", "position:" + position);
-                view.findViewById(R.id.adapter_player_control).setVisibility(View.GONE);
+                view.findViewById(R.id.rl_layout_player_control_video).setVisibility(View.GONE);
                 if (player.isPlaying() && lastPosition == position){
                     return;
                 }
@@ -192,12 +192,12 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                     }
                 }
                 if (lastPosition != -1) {
-                    player.showView(R.id.adapter_player_control);
+                    player.showView(R.id.rl_layout_player_control_video);
                 }
 
-                FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.adapter_super_video);
+                FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.fl_layout_super_video);
                 frameLayout.removeAllViews();
-                player.showView(R.id.adapter_player_control);
+                player.showView(R.id.rl_layout_player_control_video);
                 frameLayout.addView(player);
                 player.play(mList.get(position).getLinkMp4());
                 Toast.makeText(VideoActivity.this, "position:"+position, Toast.LENGTH_SHORT).show();
@@ -223,7 +223,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                     last.removeAllViews();
                     View itemView = (View) last.getParent();
                     if (itemView != null) {
-                        itemView.findViewById(R.id.adapter_player_control).setVisibility(View.VISIBLE);
+                        itemView.findViewById(R.id.rl_layout_player_control_video).setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -235,17 +235,17 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
             @Override
             public void onChildViewAttachedToWindow(View view) {
                 int index = mRv.getChildAdapterPosition(view);
-                View controlView = view.findViewById(R.id.adapter_player_control);
+                View controlView = view.findViewById(R.id.rl_layout_player_control_video);
                 if (controlView == null) {
                     return;
                 }
-                view.findViewById(R.id.adapter_player_control).setVisibility(View.VISIBLE);
+                view.findViewById(R.id.rl_layout_player_control_video).setVisibility(View.VISIBLE);
                 if (index == position) {
-                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.adapter_super_video);
+                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.fl_layout_super_video);
                     frameLayout.removeAllViews();
                     if (player != null &&
                             ((player.isPlaying()) || player.getVideoStatus() == IjkVideoView.STATE_PAUSED)) {
-                        view.findViewById(R.id.adapter_player_control).setVisibility(View.GONE);
+                        view.findViewById(R.id.rl_layout_player_control_video).setVisibility(View.GONE);
                     }
                     if (player.getVideoStatus() == IjkVideoView.STATE_PAUSED) {
                         if (player.getParent() != null)
@@ -264,7 +264,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                         if (player != null) {
                             player.stop();
                             player.release();
-                            player.showView(R.id.adapter_player_control);
+                            player.showView(R.id.rl_layout_player_control_video);
                         }
                     }
                 }
@@ -284,7 +284,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
                 if (position <= mManager.findLastVisibleItemPosition()
                         && position >= mManager.findFirstVisibleItemPosition()) {
                     View view = mRv.findViewHolderForAdapterPosition(position).itemView;
-                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.adapter_super_video);
+                    FrameLayout frameLayout = (FrameLayout) view.findViewById(R.id.fl_layout_super_video);
                     frameLayout.removeAllViews();
                     ViewGroup last = (ViewGroup) player.getParent();//找到videoitemview的父类，然后remove
                     if (last != null) {
