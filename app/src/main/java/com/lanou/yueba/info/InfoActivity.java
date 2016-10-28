@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.bean.FriendBean;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
@@ -21,6 +23,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
 /**
@@ -39,6 +42,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTvPhone;
     private UserInfoBean mUserInfoBean;
     private EditInfoFragment mEditInfoFragment;
+    private String mCurrentUser;
 
     @Override
     protected void onDestroy() {
@@ -64,13 +68,28 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mTvSignature = bindView(R.id.tv_signature);
         mTvQQ = bindView(R.id.tv_qq_info);
         mTvPhone = bindView(R.id.tv_phone_info);
+
     }
+
+    private int USERINFO = 0; //当前用户
 
     @Override
     protected void initData() {
         EventBus.getDefault().register(this);
+        mCurrentUser = EMClient.getInstance().getCurrentUser().toString();
         mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra("info");
-        mTvUsername.setText(EMClient.getInstance().getCurrentUser().toString());
+        if (mCurrentUser.equals(mUserInfoBean.getUserName())){
+            USERINFO = 0;
+            mTvExit.setText("退出当前账号");
+            mTvEdit.setVisibility(View.VISIBLE);
+
+        } else {
+            USERINFO = 1;
+            mTvExit.setText("添加好友");
+            mTvEdit.setVisibility(View.GONE);
+        }
+
+
         update();
         initListener();
 
@@ -85,6 +104,10 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void update() {
+        if (mUserInfoBean != null){
+            mTvUsername.setText(mUserInfoBean.getUserName());
+        }
+
         if (mUserInfoBean.getPhoneNum() == null) {
             mTvPhone.setText("还没有电话号码");
         } else {
@@ -122,12 +145,54 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                 editInfo();
                 break;
             case R.id.tv_exit_info:
-                EMClient.getInstance().logout(true);
-                startActivity(new Intent(this, LoginActivity.class));
-                ActivityTools.deleteActivity(MainActivity.class.getSimpleName());
-                ActivityTools.deleteActivity(this.getClass().getSimpleName());
+                if (USERINFO == 0){
+                    EMClient.getInstance().logout(true);
+                    startActivity(new Intent(this, LoginActivity.class));
+                    ActivityTools.deleteActivity(MainActivity.class.getSimpleName());
+                    ActivityTools.deleteActivity(this.getClass().getSimpleName());
+                    break;
+                } else {
+
+                    EMClient.getInstance().contactManager().aysncAddContact(mUserInfoBean.getUserName(), "添加好友", new EMCallBack() {
+                        @Override
+                        public void onSuccess() {
+                            addToBmob();
+                        }
+
+                        @Override
+                        public void onError(int i, String s) {
+
+                        }
+
+                        @Override
+                        public void onProgress(int i, String s) {
+
+                        }
+                    });
+
+
+                }
+
+
+
                 break;
         }
+    }
+
+    private void addToBmob() {
+        FriendBean friendBean = new FriendBean();
+        friendBean.setUsername(mCurrentUser);
+        friendBean.setFriendname(mUserInfoBean.getUserName());
+        friendBean.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null){
+                    Log.d("InfoActivity", "添加成功");
+                } else {
+                    Log.d("InfoActivity", "添加失败");
+                }
+            }
+        });
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
@@ -147,6 +212,12 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void dismiss(){
+
+        if (1 == USERINFO){
+            ActivityTools.deleteActivity(this.getClass().getSimpleName());
+            return;
+        }
+
         Intent intent = new Intent();
         intent.putExtra("info", mUserInfoBean);
         setResult(101, intent);
