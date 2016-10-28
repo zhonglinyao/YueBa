@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
@@ -46,8 +47,13 @@ import java.util.List;
  * <p/>
  * Created by 程洪运 on 16/10/24.
  */
+<<<<<<< HEAD:app/src/main/java/com/lanou/yueba/dynamic/news/AppActivity.java
 public class AppActivity extends BaseActivity implements AppView<NewsBean> {
     private AppPresenter mPresenter;
+=======
+public class NewsActivity extends BaseActivity implements AppView<NewsBean> {
+    private AppPresenter<NewsBean> mPresenter;
+>>>>>>> 35da463f63203f1546a796c065f812b09fe4fb7d:app/src/main/java/com/lanou/yueba/dynamic/news/NewsActivity.java
     private RecyclerView mRv;
     private ViewStub mViewStub;
     private ImageView mImageView;
@@ -97,7 +103,10 @@ public class AppActivity extends BaseActivity implements AppView<NewsBean> {
                     R.layout.layout_news, list) {
                 @Override
                 protected void convert(ViewHolder holder, NewsBean.DataBean.ItemsBean itemsBean, int position) {
-                    holder.setText(R.id.tv_item, itemsBean.getAuthor());
+                    holder.setText(R.id.tv_layout_title_news, itemsBean.getTitle());
+                    Glide.with(NewsActivity.this).load(itemsBean.getPic()).into((ImageView) holder.getView(R.id.iv_layout_pic_news));
+                    holder.setText(R.id.tv_layout_categoryName_news, itemsBean.getCategoryName());
+                    holder.setText(R.id.tv_layout_clickCount_news, String.valueOf(itemsBean.getClickCount())+"次点击");
                 }
             });
         }

@@ -4,6 +4,7 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -79,7 +80,6 @@ public class OkHttpImpl implements IHttpRequest {
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                if (response.body().contentLength() > 0) {
                     final List<T> list = mGson.fromJson(response.body().string(), type);
                     if (list != null && list.size() > 0) {
                         mHandler.post(new Runnable() {
@@ -91,12 +91,9 @@ public class OkHttpImpl implements IHttpRequest {
                     } else {
                         listener.onFailed();
                     }
-                } else {
-                    listener.onFailed();
                 }
 
 
-            }
         });
     }
 

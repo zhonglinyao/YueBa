@@ -6,17 +6,55 @@
               android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"
+        app:contentInsetEnd="0dp"
         style="@style/ToolBar"
         app:contentInsetStart="0dp">
 
-        <TextView
-            style="@style/CustomTitleTextAppearance"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="@string/dynamic_video"/>
-    </android.support.v7.widget.Toolbar>
+            android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/ll_back_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                >
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/toolbar_back"
+
+                    />
+
+                <TextView
+                    style="@style/CustomTitleTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back_text"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dynamic_news"
+                />
+
+
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
