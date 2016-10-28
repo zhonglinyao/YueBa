@@ -64,9 +64,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mTvSignature = bindView(R.id.tv_signature);
         mTvQQ = bindView(R.id.tv_qq_info);
         mTvPhone = bindView(R.id.tv_phone_info);
-
-
-
     }
 
     @Override
@@ -79,10 +76,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
 //        Intent intent = getIntent();
 //        mName.setText(intent.getStringExtra("username"));
-
     }
-
-
 
     public void initListener() {
         mIvBack.setOnClickListener(this);

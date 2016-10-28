@@ -46,7 +46,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     private ImageView mImageView;
     private AnimationDrawable mDrawable;
     private RecyclerView mRv;
-    private AppPresenter<VideoBean> mPresenter;
+    private AppPresenter mPresenter;
 
     @Override
     protected int setLayout() {
@@ -61,7 +61,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
 
     @Override
     protected void initData() {
-        mPresenter = new AppPresenter<>(this);
+        mPresenter = new AppPresenter(this);
     }
 
 

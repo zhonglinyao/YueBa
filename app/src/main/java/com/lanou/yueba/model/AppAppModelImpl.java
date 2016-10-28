@@ -14,27 +14,27 @@ public class AppAppModelImpl implements AppModel {
 
     @Override
     public <T>void startGetRequest(String urlString, Class<T> clazz, OnCompletedListener<T> listener) {
-        HttpManger.getInstance().getRequest(urlString, clazz, listener);
+        HttpManger.getInstance().<T>getRequest(urlString, clazz, listener);
     }
 
     @Override
     public <T>void startGetRequest(String urlString, Map<String, String> header, Class<T> clazz, OnCompletedListener<T> listener) {
-        HttpManger.getInstance().getRequest(urlString, header, clazz, listener);
+        HttpManger.getInstance().<T>getRequest(urlString, header, clazz, listener);
     }
 
     @Override
     public <T>void startPostRequest(String urlString, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener<T> listener) {
-        HttpManger.getInstance().postRequest(urlString, requestBody, clazz, listener);
+        HttpManger.getInstance().<T>postRequest(urlString, requestBody, clazz, listener);
     }
 
     @Override
     public <T>void startPostRequest(String urlString, Map<String, String> headers, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener<T> listener) {
-        HttpManger.getInstance().postRequest(urlString, headers, requestBody, clazz, listener);
+        HttpManger.getInstance().<T>postRequest(urlString, headers, requestBody, clazz, listener);
     }
 
     @Override
     public <T> void startTypeGetRequest(String urlString, Type type, OnCompletedListener<T> listener) {
-        HttpManger.getInstance().typeGetRequest(urlString, type, listener);
+        HttpManger.getInstance().<T>typeGetRequest(urlString, type, listener);
     }
 
     @Override

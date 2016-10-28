@@ -47,7 +47,7 @@ import java.util.List;
  * Created by 程洪运 on 16/10/24.
  */
 public class AppActivity extends BaseActivity implements AppView<NewsBean> {
-    private AppPresenter<NewsBean> mPresenter;
+    private AppPresenter mPresenter;
     private RecyclerView mRv;
     private ViewStub mViewStub;
     private ImageView mImageView;
@@ -68,7 +68,7 @@ public class AppActivity extends BaseActivity implements AppView<NewsBean> {
     protected void initData() {
         mPresenter = new AppPresenter(this);
         String str = "2016-10-25";
-        mPresenter.startGetRequest(UrlValues.getNEWS(str), NewsBean.class);
+        mPresenter.<NewsBean>startGetRequest(UrlValues.getNEWS(str), NewsBean.class);
     }
 
     @Override
