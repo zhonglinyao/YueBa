@@ -1,5 +1,7 @@
 package com.lanou.yueba.bean;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 import cn.bmob.v3.datatype.BmobFile;
 
@@ -7,14 +9,21 @@ import cn.bmob.v3.datatype.BmobFile;
  * Created by dllo on 16/10/26.
  */
 
-public class UserInfo extends BmobObject{
+public class UserInfoBean extends BmobObject implements Serializable{
     private String userName;
     private String md5UserPassWord;
-    private String name;
-    private String sex;
     private String phoneNum;
     private BmobFile pic;
+    private String qq;
     private String signature;
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
     public String getSignature() {
         return signature;
@@ -40,14 +49,6 @@ public class UserInfo extends BmobObject{
         this.md5UserPassWord = md5UserPassWord;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPhoneNum() {
         return phoneNum;
     }
@@ -56,13 +57,6 @@ public class UserInfo extends BmobObject{
         this.phoneNum = phoneNum;
     }
 
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
 
     public String getUserName() {
         return userName;

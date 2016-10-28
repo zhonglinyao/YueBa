@@ -6,7 +6,7 @@ package com.lanou.yueba.login.model;
 
 public interface OnLoginListener {
 
-    void onFinished();
+    void onFinished(String username, String password);
 
     void onError(int i, String s);
 }

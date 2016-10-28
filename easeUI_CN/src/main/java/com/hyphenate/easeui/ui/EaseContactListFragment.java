@@ -130,6 +130,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
             }
 
             public void afterTextChanged(Editable s) {
+
             }
         });
         clearSearch.setOnClickListener(new OnClickListener() {
@@ -317,6 +318,7 @@ public class EaseContactListFragment extends EaseBaseFragment {
      */
     public void setContactsMap(Map<String, EaseUser> contactsMap){
         this.contactsMap = contactsMap;
+
     }
     
     public interface EaseContactListItemClickListener {

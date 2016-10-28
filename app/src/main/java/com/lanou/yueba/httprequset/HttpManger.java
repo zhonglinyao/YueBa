@@ -18,6 +18,7 @@ public class HttpManger implements IHttpRequest {
     @Override
     public <T> void getRequest(String url, Map<String, String> headers, Class<T> clazz, OnCompletedListener<T> listener) {
         mIHttpRequest.getRequest(url, headers, clazz, listener);
+
     }
 
     @Override

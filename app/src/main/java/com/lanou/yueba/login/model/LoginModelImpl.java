@@ -18,7 +18,7 @@ public class LoginModelImpl implements ILoginModel {
                 EMClient.getInstance().login(username, password, new EMCallBack() {
                     @Override
                     public void onSuccess() {
-                        listener.onFinished();
+                        listener.onFinished(username, password);
                     }
 
                     @Override

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -82,6 +83,7 @@ public class EaseConversationListFragment extends EaseBaseFragment{
     
     @Override
     protected void setUpView() {
+        conversationList.clear();
         conversationList.addAll(loadConversationList());
         conversationListView.init(conversationList);
         
@@ -101,6 +103,7 @@ public class EaseConversationListFragment extends EaseBaseFragment{
         query.addTextChangedListener(new TextWatcher() {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 conversationListView.filter(s);
+                Log.d("EaseConversationListFra", "s:" + s);
                 if (s.length() > 0) {
                     clearSearch.setVisibility(View.VISIBLE);
                 } else {
