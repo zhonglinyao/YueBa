@@ -70,9 +70,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mTvPhone = bindView(R.id.tv_phone_info);
 
 
-
-
-
     }
 
     private int USERINFO = 0; //当前用户
