@@ -9,7 +9,7 @@
 
     <ImageView
         android:id="@+id/iv_layout_pic_news"
-        android:layout_width="80dp"
+        android:layout_width="100dp"
         android:layout_height="80dp"/>
 
     <TextView
@@ -23,7 +23,7 @@
         android:maxLines="2"
         android:text="aaaaaaaaaaaa"
         android:textColor="@android:color/black"
-        android:textSize="23sp"/>
+        android:textSize="18sp"/>
 
     <TextView
         android:id="@+id/tv_layout_source_news"
