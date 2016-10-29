@@ -5,10 +5,6 @@ package com.lanou.yueba.vlaues;
  */
 
 public class UrlValues {
-    public static final String NEWS = "http://wireless.tianya.cn/v/cms/getFocusByDay?sectionIds=22254&date=";
+    public static final String NEWS = "http://c.3g.163.com/nc/article/list/T1348648517839/0-20.html";
     public static final String VIDEO = "http://m.live.netease.com/bolo/api/rank/hotVideo.htm";
-
-    public static String getNEWS(String date) {
-        return NEWS + date;
-    }
 }

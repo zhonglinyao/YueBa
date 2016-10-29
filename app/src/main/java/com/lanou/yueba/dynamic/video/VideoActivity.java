@@ -133,7 +133,6 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     @Override
     public void onResponse(VideoBean videoBean) {
 
-
     }
 
     @Override
