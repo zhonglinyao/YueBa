@@ -14,7 +14,9 @@ import com.lanou.yueba.contact.ChatActivity;
  * Created by dllo on 16/10/20.
  */
 
-public class MessageFragment extends EaseConversationListFragment {
+public class MessageFragment extends EaseConversationListFragment  {
+
+
 
 
     @Override
@@ -22,6 +24,9 @@ public class MessageFragment extends EaseConversationListFragment {
         super.initView();
 
         hideTitleBar();
+
+
+
 
     }
 
@@ -52,4 +57,9 @@ public class MessageFragment extends EaseConversationListFragment {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
     }
+
+
+
+
+
 }
