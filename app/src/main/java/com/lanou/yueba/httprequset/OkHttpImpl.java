@@ -98,6 +98,17 @@ public class OkHttpImpl implements IHttpRequest {
         });
     }
 
+    @Override
+    public Response syncGetRequest(String url) {
+        Request request = new Request.Builder().url(url).build();
+        try {
+            return mOkHttpClient.newCall(request).execute();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     @NonNull
     private FormBody getFormBody(@NonNull Map<String, String> requestBody) {
         FormBody.Builder builder = new FormBody.Builder();

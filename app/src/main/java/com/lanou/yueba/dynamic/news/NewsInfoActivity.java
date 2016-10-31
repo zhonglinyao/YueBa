@@ -3,7 +3,6 @@ package com.lanou.yueba.dynamic.news;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -50,7 +49,7 @@ public class NewsInfoActivity extends BaseActivity{
         WebSettings webSettings = mWebView .getSettings();
         webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放
         webSettings.setLoadWithOverviewMode(true);
-        webSettings.setJavaScriptEnabled(true);
+//        webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setSupportZoom(true);
         mWebView.requestFocusFromTouch();
@@ -80,11 +79,12 @@ public class NewsInfoActivity extends BaseActivity{
         });
     }
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK){
-            ActivityTools.deleteActivity(NewsInfoActivity.this.getClass().getSimpleName());
-            return true;
+    @Override
+    public void onBackPressed() {
+        if (mWebView.canGoBack()){
+            mWebView.goBack();
+        } else{
+            ActivityTools.deleteActivity(this.getClass().getSimpleName());
         }
-        return super.onKeyDown(keyCode, event);
     }
 }

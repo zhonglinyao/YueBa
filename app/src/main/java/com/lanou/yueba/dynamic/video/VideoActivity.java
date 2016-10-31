@@ -90,7 +90,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     protected void initView() {
         mViewStub = bindView(R.id.vs_video);
         mImageView = bindView(R.id.iv_loading_video);
-        mLl = bindView(R.id.ll_back_add);
+        mLl = bindView(R.id.ll_back_add_video);
     }
 
     @Override
@@ -99,7 +99,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
         mLl.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                ActivityTools.deleteActivity(VideoActivity.this.getClass().getSimpleName());
             }
         });
         Type type = new TypeToken<List<VideoBean>>() {}.getType();

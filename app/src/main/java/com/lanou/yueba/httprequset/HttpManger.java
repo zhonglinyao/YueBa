@@ -3,6 +3,8 @@ package com.lanou.yueba.httprequset;
 import java.lang.reflect.Type;
 import java.util.Map;
 
+import okhttp3.Response;
+
 /**
  * Created by dllo on 16/10/25.
  */
@@ -36,6 +38,11 @@ public class HttpManger implements IHttpRequest {
         mIHttpRequest.typeGetRequest(url, type, listener);
     }
 
+    @Override
+    public Response syncGetRequest(String url) {
+        return mIHttpRequest.syncGetRequest(url);
+    }
+
     private static final class HttpManagerHolder {
         private static final HttpManger sManger = new HttpManger();
     }
@@ -44,7 +51,7 @@ public class HttpManger implements IHttpRequest {
         return HttpManagerHolder.sManger;
     }
 
-    public HttpManger() {
+    private HttpManger() {
         mIHttpRequest = new OkHttpImpl();
     }
 }
