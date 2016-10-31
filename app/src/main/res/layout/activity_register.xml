@@ -24,9 +24,13 @@
                 android:src="@mipmap/toolbar_back"/>
 
             <TextView
+                android:id="@+id/textView2"
                 style="@style/CustomTitleTextAppearance"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
                 android:gravity="center"
                 android:text="@string/register"/>
 

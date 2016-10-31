@@ -102,7 +102,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
             }
         });
         Type type = new TypeToken<List<VideoBean>>() {}.getType();
-        mPresenter.<VideoBean>startTypeGetRequset(UrlValues.VIDEO, type);
+        mPresenter.startTypeGetRequset(UrlValues.VIDEO, type);
         initPlayer();
 
     }

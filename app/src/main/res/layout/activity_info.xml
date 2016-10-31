@@ -145,6 +145,7 @@
             android:id="@+id/iv_back_info"
             android:layout_width="30dp"
             android:layout_height="30dp"
+            android:onClick="back"
             android:layout_centerVertical="true"
             android:src="@mipmap/toolbar_back"/>
 

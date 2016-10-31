@@ -18,7 +18,6 @@ public class MessageFragment extends EaseConversationListFragment  {
 
 
 
-
     @Override
     protected void initView() {
         super.initView();
@@ -26,13 +25,11 @@ public class MessageFragment extends EaseConversationListFragment  {
         hideTitleBar();
 
 
-
-
     }
 
     @Override
     protected void setUpView() {
-        super.setUpView();
+
 
         setConversationListItemClickListener(new EaseConversationListItemClickListener() {
             @Override
@@ -44,6 +41,7 @@ public class MessageFragment extends EaseConversationListFragment  {
                 startActivity(intent);
             }
         });
+        super.setUpView();
 
     }
 
