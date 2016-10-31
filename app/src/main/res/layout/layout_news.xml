@@ -1,49 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/dynamic_layout_select"
-    android:orientation="vertical">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:orientation="horizontal"
-    android:layout_height="100dp">
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/iv_layout_pic_news"
+        android:layout_width="100dp"
+        android:layout_height="80dp"/>
 
     <TextView
         android:id="@+id/tv_layout_title_news"
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="match_parent"/>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_layout_pic_news"
+        android:layout_alignTop="@id/iv_layout_pic_news"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text="aaaaaaaaaaaa"
+        android:textColor="@android:color/black"
+        android:textSize="18sp"/>
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="match_parent"
-        android:id="@+id/iv_layout_pic_news"/>
-
-
-</LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="30dp">
-
-        <TextView
-            android:id="@+id/tv_layout_categoryName_news"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="match_parent"/>
-
-        <TextView
-            android:id="@+id/tv_layout_clickCount_news"
-            android:layout_width="wrap_content"
-            android:layout_marginRight="10dp"
-            android:layout_height="match_parent"/>
+    <TextView
+        android:id="@+id/tv_layout_source_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/iv_layout_pic_news"
+        android:layout_marginLeft="10dp"
+        android:layout_toRightOf="@id/iv_layout_pic_news"
+        android:maxLines="1"
+        android:text="aaaaaaaaa"/>
 
 
-    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_layout_votecount_news"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="10dp"
+        android:maxLines="1"
+        android:layout_alignBottom="@id/iv_layout_pic_news"/>
 
-
-
-</LinearLayout>
+</RelativeLayout>

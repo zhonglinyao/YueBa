@@ -4,7 +4,6 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.gson.Gson;
 
@@ -40,6 +39,10 @@ public class OkHttpImpl implements IHttpRequest {
                 .cache(new Cache(fileDir, 10 * 1024 * 1024)).build();
         mGson = new Gson();
         mHandler = new Handler(Looper.getMainLooper());
+    }
+
+    public OkHttpClient getOkHttpClient() {
+        return mOkHttpClient;
     }
 
     @Override
@@ -92,8 +95,6 @@ public class OkHttpImpl implements IHttpRequest {
                         listener.onFailed();
                     }
                 }
-
-
         });
     }
 

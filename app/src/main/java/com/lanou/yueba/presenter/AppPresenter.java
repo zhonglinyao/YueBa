@@ -24,7 +24,7 @@ public class AppPresenter {
 
     public <T>void startGetRequest(String urlString, Class<T> clazz) {
         mAppView.showQuestView();
-        mAppModel.<T>startGetRequest(urlString, clazz, new OnCompletedListener<T>() {
+        mAppModel.startGetRequest(urlString, clazz, new OnCompletedListener<T>() {
             @Override
             public void onCompleted(T result) {
                 mAppView.showDataView();
@@ -46,7 +46,7 @@ public class AppPresenter {
 
     public <T>void startGetRequest(String urlString, Map<String, String> header, Class<T> clazz) {
         mAppView.showQuestView();
-        mAppModel.<T>startGetRequest(urlString, header, clazz, new OnCompletedListener<T>() {
+        mAppModel.startGetRequest(urlString, header, clazz, new OnCompletedListener<T>() {
             @Override
             public void onCompleted(T result) {
                 mAppView.showDataView();
@@ -68,7 +68,7 @@ public class AppPresenter {
 
     public <T>void startPostRequest(String urlString, Map<String, String> requestBody, Class<T> clazz) {
         mAppView.showQuestView();
-        mAppModel.<T>startPostRequest(urlString, requestBody, clazz, new OnCompletedListener<T>() {
+        mAppModel.startPostRequest(urlString, requestBody, clazz, new OnCompletedListener<T>() {
             @Override
             public void onCompleted(T result) {
                 mAppView.showDataView();
@@ -90,7 +90,7 @@ public class AppPresenter {
 
     public <T>void startPostRequest(String urlString, Map<String, String> header, Map<String, String> requestBody, Class<T> clazz) {
         mAppView.showQuestView();
-        mAppModel.<T>startPostRequest(urlString, header, requestBody, clazz, new OnCompletedListener<T>() {
+        mAppModel.startPostRequest(urlString, header, requestBody, clazz, new OnCompletedListener<T>() {
             @Override
             public void onCompleted(T result) {
                 mAppView.showDataView();
@@ -112,7 +112,7 @@ public class AppPresenter {
 
     public <T> void startTypeGetRequset(String urlString, Type type) {
         mAppView.showQuestView();
-        mAppModel.<T>startTypeGetRequest(urlString, type, new OnCompletedListener<T>() {
+        mAppModel.startTypeGetRequest(urlString, type, new OnCompletedListener<T>() {
             @Override
             public void onCompleted(T result) {
                 mAppView.showDataView();
@@ -134,7 +134,7 @@ public class AppPresenter {
 
     public <T>void startTypeGetRequest(String urlString, Type type) {
         mAppView.showQuestView();
-        mAppModel.<T>startTypeGetRequest(urlString, type, new OnCompletedListener<T>() {
+        mAppModel.startTypeGetRequest(urlString, type, new OnCompletedListener<T>() {
             @Override
             public void onCompleted(T result) {
                 mAppView.showDataView();

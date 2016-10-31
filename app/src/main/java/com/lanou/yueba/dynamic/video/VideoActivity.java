@@ -28,6 +28,7 @@ import com.lanou.yueba.base.rv.MultiItemTypeRecyclerAdapter.OnItemClickListener;
 import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.VideoBean;
 import com.lanou.yueba.presenter.AppPresenter;
+import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.ui.AppView;
 import com.lanou.yueba.vlaues.UrlValues;
 import com.superplayer.library.SuperPlayer;
@@ -132,7 +133,6 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
 
     @Override
     public void onResponse(VideoBean videoBean) {
-
 
     }
 
@@ -352,6 +352,8 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     public void onBackPressed() {
         if (player != null && player.onBackPressed()) {
             return;
+        } else {
+            ActivityTools.deleteActivity(this.getClass().getSimpleName());
         }
         super.onBackPressed();
     }
