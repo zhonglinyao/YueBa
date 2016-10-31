@@ -12,28 +12,28 @@ public class HttpManger implements IHttpRequest {
 
     @Override
     public <T> void getRequest(String url, Class<T> clazz, OnCompletedListener<T> listener) {
-        mIHttpRequest.<T>getRequest(url, clazz, listener);
+        mIHttpRequest.getRequest(url, clazz, listener);
     }
 
     @Override
     public <T> void getRequest(String url, Map<String, String> headers, Class<T> clazz, OnCompletedListener<T> listener) {
-        mIHttpRequest.<T>getRequest(url, headers, clazz, listener);
+        mIHttpRequest.getRequest(url, headers, clazz, listener);
 
     }
 
     @Override
     public <T> void postRequest(String url, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener listener) {
-        mIHttpRequest.<T>postRequest(url, requestBody, clazz, listener);
+        mIHttpRequest.postRequest(url, requestBody, clazz, listener);
     }
 
     @Override
     public <T> void postRequest(String url, Map<String, String> headers, Map<String, String> requestBody, Class<T> clazz, OnCompletedListener listener) {
-        mIHttpRequest.<T>postRequest(url, headers, requestBody, clazz, listener);
+        mIHttpRequest.postRequest(url, headers, requestBody, clazz, listener);
     }
 
     @Override
     public <T> void typeGetRequest(String url, Type type, OnCompletedListener<T> listener) {
-        mIHttpRequest.<T>typeGetRequest(url, type, listener);
+        mIHttpRequest.typeGetRequest(url, type, listener);
     }
 
     private static final class HttpManagerHolder {
