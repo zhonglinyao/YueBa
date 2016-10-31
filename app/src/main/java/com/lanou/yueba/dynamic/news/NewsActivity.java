@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
@@ -18,19 +17,13 @@ import com.lanou.yueba.base.rv.LoadMoreWrapper;
 import com.lanou.yueba.base.rv.MultiItemTypeRecyclerAdapter;
 import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.NewsBean;
-import com.lanou.yueba.httprequset.OkHttpImpl;
-import com.lanou.yueba.presenter.AppPresenter;
 import com.lanou.yueba.rxjava.RxJavaRequest;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.vlaues.UrlValues;
 
 import java.util.ArrayList;
 
-import okhttp3.OkHttpClient;
 import rx.Observer;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * 　　　　　　　　┏┓　　　┏┓+ +
@@ -59,12 +52,10 @@ import rx.schedulers.Schedulers;
  */
 
 public class NewsActivity extends BaseActivity {
-    private AppPresenter mPresenter;
     private RecyclerView mRv;
     private ViewStub mViewStub;
     private ImageView mImageView;
     private AnimationDrawable mDrawable;
-    private OkHttpClient mOkHttpClient;
     private ImageView mIvBack;
     private LoadMoreWrapper<NewsBean> mLoadMoreWrapper;
     private CommonRecyclerAdapter<NewsBean.T1348648517839Bean> mRecyclerAdapter;
@@ -89,34 +80,18 @@ public class NewsActivity extends BaseActivity {
         mIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityTools.deleteActivity(this.getClass().getSimpleName());
+                ActivityTools.deleteActivity(NewsActivity.this.getClass().getSimpleName());
             }
         });
-
-        OkHttpImpl okHttp = new OkHttpImpl();
-        mOkHttpClient = okHttp.getOkHttpClient();
         mGson = new Gson();
         mDrawable = (AnimationDrawable) mImageView.getBackground();
         mDrawable.start();
         startRequest();
-
     }
 
     public void startRequest() {
         RxJavaRequest
-                .rxJavaOkHttpGetBean(mOkHttpClient, UrlValues.getNews(url))
-                .map(new Func1<String, NewsBean>() {
-                    @Override
-                    public NewsBean call(String string) {
-                        Log.d("NewsActivity", "2");
-                        Log.d("NewsActivity", string);
-                        NewsBean newsBean = mGson.fromJson(string, NewsBean.class);
-                        Log.d("NewsActivity", newsBean.getT1348648517839().get(0).getTitle().toString());
-                        return newsBean;
-                    }
-                })
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
+                .rxJavaOkHttpGetBean(UrlValues.getNews(url), NewsBean.class, mGson)
                 .subscribe(new Observer<NewsBean>() {
                     @Override
                     public void onCompleted() {
@@ -130,15 +105,12 @@ public class NewsActivity extends BaseActivity {
 
                     @Override
                     public void onNext(NewsBean newsBean) {
-                        Log.d("NewsActivity", "走了");
                         if (0 == url) {
-                            url += 20;
                             showDataView(newsBean);
                         } else {
-                            url += 20;
                             refresh(newsBean);
                         }
-
+                        url += 20;
                     }
                 });
     }
@@ -147,7 +119,7 @@ public class NewsActivity extends BaseActivity {
         if (newsBean.getT1348648517839() != null && newsBean.getT1348648517839().size() > 0) {
             mImageView.setVisibility(View.GONE);
             View view = mViewStub.inflate();
-            mRv = bindView(R.id.rv_layout, view);
+            mRv = bindView(R.id.rv_layout_news, view);
             mRv.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL_LIST));
             LinearLayoutManager manager = new LinearLayoutManager(this);
             mRv.setLayoutManager(manager);
@@ -168,7 +140,6 @@ public class NewsActivity extends BaseActivity {
             mLoadMoreWrapper.setOnLoadMoreListener(new LoadMoreWrapper.OnLoadMoreListener() {
                 @Override
                 public void onLoadMoreRequested() {
-                    Log.d("NewsActivity", "刷新");
                     startRequest();
                 }
             });
@@ -176,7 +147,6 @@ public class NewsActivity extends BaseActivity {
                 @Override
                 public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                     if (mRecyclerAdapter.getDatas().get(position).getUrl_3w() != null) {
-                        Log.d("NewsActivity", mRecyclerAdapter.getDatas().get(position).getUrl_3w());
                         Intent intent = new Intent(NewsActivity.this, NewsInfoActivity.class);
                         intent.putExtra("newsUrl", mRecyclerAdapter.getDatas().get(position).getUrl_3w());
                         startActivity(intent);
@@ -193,7 +163,6 @@ public class NewsActivity extends BaseActivity {
     }
 
     private void refresh(NewsBean newsBean) {
-        Log.d("TAG", "refresh: ");
         mList.addAll(newsBean.getT1348648517839().subList(1, newsBean.getT1348648517839().size() - 1));
         mLoadMoreWrapper.notifyDataSetChanged();
     }
