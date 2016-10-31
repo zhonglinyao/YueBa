@@ -42,6 +42,7 @@
         <activity android:name=".dynamic.video.VideoActivity"/>
 
         <activity android:name=".dynamic.news.NewsActivity"/>
+        <activity android:name=".dynamic.news.NewsInfoActivity"/>
         <activity android:name=".info.InfoActivity"/>
 
 

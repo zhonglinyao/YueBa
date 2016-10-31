@@ -67,7 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mCircleImageView.setImageResource(R.mipmap.icon);
         windowWidth = this.getWindowManager().getDefaultDisplay().getWidth();
         windowHeight = this.getWindowManager().getDefaultDisplay().getHeight();
-        InitClick();
+        initClickListener();
         mIvMessage.setChecked(true);
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
@@ -79,7 +79,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         bmobQuery();
     }
 
-    private void InitClick() {
+    private void initClickListener() {
         mIvContact.setOnClickListener(this);
         mIvDynamic.setOnClickListener(this);
         mIvMessage.setOnClickListener(this);

@@ -28,6 +28,7 @@ import com.lanou.yueba.base.rv.MultiItemTypeRecyclerAdapter.OnItemClickListener;
 import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.VideoBean;
 import com.lanou.yueba.presenter.AppPresenter;
+import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.ui.AppView;
 import com.lanou.yueba.vlaues.UrlValues;
 import com.superplayer.library.SuperPlayer;
@@ -102,7 +103,7 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
             }
         });
         Type type = new TypeToken<List<VideoBean>>() {}.getType();
-        mPresenter.<VideoBean>startTypeGetRequset(UrlValues.VIDEO, type);
+        mPresenter.startTypeGetRequset(UrlValues.VIDEO, type);
         initPlayer();
 
     }
@@ -351,6 +352,8 @@ public class VideoActivity extends BaseActivity implements AppView<VideoBean> {
     public void onBackPressed() {
         if (player != null && player.onBackPressed()) {
             return;
+        } else {
+            ActivityTools.deleteActivity(this.getClass().getSimpleName());
         }
         super.onBackPressed();
     }
