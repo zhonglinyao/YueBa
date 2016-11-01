@@ -169,6 +169,8 @@ public class NewsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+
+
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 
