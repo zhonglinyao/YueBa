@@ -89,7 +89,7 @@ public class NewsActivity extends BaseActivity {
         mIvBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ActivityTools.deleteActivity(this.getClass().getSimpleName());
+                ActivityTools.deleteActivity(NewsActivity.this.getClass().getSimpleName());
             }
         });
 
@@ -200,6 +200,8 @@ public class NewsActivity extends BaseActivity {
 
     @Override
     public void onBackPressed() {
+
+
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 

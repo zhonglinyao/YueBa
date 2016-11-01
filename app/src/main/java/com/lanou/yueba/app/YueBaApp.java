@@ -7,6 +7,7 @@ import android.content.Context;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
 import java.util.Iterator;
 import java.util.List;
@@ -32,6 +33,7 @@ public class YueBaApp extends Application{
         super.onCreate();
         mContext = this;
 
+        ZXingLibrary.initDisplayOpinion(this);
         initEasemob();
         Bmob.initialize(this, "0e0c17dfb9f00526d44150879ec8cd8e");
     }

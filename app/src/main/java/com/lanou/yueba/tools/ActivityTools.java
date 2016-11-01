@@ -17,6 +17,8 @@ public class ActivityTools {
     }
 
     public static void deleteActivity(String string) {
+
+
         ACTIVITYMAP.get(string).finish();
         ACTIVITYMAP.remove(string);
     }

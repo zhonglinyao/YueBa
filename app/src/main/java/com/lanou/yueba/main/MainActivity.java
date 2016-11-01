@@ -1,12 +1,15 @@
 package com.lanou.yueba.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
@@ -16,6 +19,8 @@ import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.message.MessageFragment;
+import com.uuzuche.lib_zxing.activity.CaptureActivity;
+import com.uuzuche.lib_zxing.activity.CodeUtils;
 
 import java.util.List;
 
@@ -23,6 +28,8 @@ import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
 import de.hdodenhof.circleimageview.CircleImageView;
+
+import static com.lanou.yueba.R.id.iv_more_toolbar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -56,9 +63,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mCircleImageView = bindView(R.id.civ_toolbar);
         mTvToolBar = bindView(R.id.tv_title_toolbar);
-        mIvToolBar = bindView(R.id.iv_more_toolbar);
+        mIvToolBar = bindView(iv_more_toolbar);
         mTvAddToolBar = bindView(R.id.tv_add_toolbar);
         mTvMoreToolBar = bindView(R.id.tv_more_toolbar);
+
     }
 
     @Override
@@ -115,7 +123,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 infoIntent.putExtra("info", mUserInfoBean);
                 startActivityForResult(infoIntent, 201);
                 break;
-            case R.id.iv_more_toolbar:
+            case iv_more_toolbar:
+
+                showQR();
+
                 break;
             case R.id.tv_add_toolbar:
 
@@ -132,28 +143,60 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         transaction.commit();
     }
 
+    //二维码
+    private int QR_REQUEST_CODE = 102;
+
+    private void showQR() {
+        Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
+        startActivityForResult(intent, QR_REQUEST_CODE);
+
+    }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (201 == requestCode && 101 == resultCode){
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
         }
+
+        if (QR_REQUEST_CODE == requestCode) {
+            //处理扫描结果（在界面上显示）
+            if (null != data) {
+                Bundle bundle = data.getExtras();
+                if (bundle == null) {
+                    return;
+                }
+                if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
+
+                    String result = bundle.getString(CodeUtils.RESULT_STRING);
+                    Log.d("MainActivity", result);
+
+                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
+                    Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 
     private void changeToolBar() {
+
         switch (index) {
+
             case 1:
                 mTvToolBar.setText("会话");
                 mIvToolBar.setVisibility(View.VISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
                 mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
+
             case 2:
                 mTvToolBar.setText("联系人");
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.VISIBLE);
                 mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
+
             case 3:
                 mTvToolBar.setText("动态");
                 mIvToolBar.setVisibility(View.INVISIBLE);
@@ -166,8 +209,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void bmobQuery() {
+
         BmobQuery<UserInfoBean> query = new BmobQuery<>();
+
         query.addWhereEqualTo("userName", EMClient.getInstance().getCurrentUser());
+
         query.findObjects(new FindListener<UserInfoBean>() {
 
             @Override
@@ -178,7 +224,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             }
         });
     }
-
 
     @Override
     protected void onDestroy() {
