@@ -28,6 +28,8 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
     <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
+
 
     <application
         android:name=".app.YueBaApp"
@@ -36,11 +38,19 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".main.MainActivity">
+
+        <activity
+            android:name=".main.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".register.ui.RegisterActivity"/>
-        <activity android:name=".login.ui.LoginActivity">
+        <activity
+            android:name=".register.ui.RegisterActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".login.ui.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -48,17 +58,45 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".dynamic.video.VideoActivity"/>
+        <activity
+            android:name=".dynamic.video.VideoActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".dynamic.news.NewsActivity"/>
-        <activity android:name=".dynamic.news.NewsInfoActivity"/>
-        <activity android:name=".info.InfoActivity"/>
+        <activity
+            android:name=".dynamic.news.NewsActivity"
+            android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".dynamic.news.NewsInfoActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".main.AddContactActivity"/>
-        <activity android:name=".contact.ChatActivity"></activity>
+        <activity
+            android:name=".info.InfoActivity"
+            android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".main.AddContactActivity"
+            android:screenOrientation="portrait"/>
 
+        <activity
+            android:name=".contact.ChatActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".dynamic.live.LiveListActivity"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".dynamic.live.LiveActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"/>
+
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
 
         <!-- 设置环信应用的AppKey -->
@@ -81,9 +119,6 @@
                 <action android:name="android.intent.action.USER_PRESENT"/>
             </intent-filter>
         </receiver>
-
-
-
     </application>
 
 </manifest>

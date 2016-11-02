@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewStub;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 import com.lanou.yueba.R;
@@ -110,13 +111,13 @@ public class NewsActivity extends BaseActivity {
                         } else {
                             refresh(newsBean);
                         }
-                        url += 20;
                     }
                 });
     }
 
     public void showDataView(NewsBean newsBean) {
         if (newsBean.getT1348648517839() != null && newsBean.getT1348648517839().size() > 0) {
+            url += 20;
             mImageView.setVisibility(View.GONE);
             View view = mViewStub.inflate();
             mRv = bindView(R.id.rv_layout_news, view);
@@ -163,8 +164,15 @@ public class NewsActivity extends BaseActivity {
     }
 
     private void refresh(NewsBean newsBean) {
-        mList.addAll(newsBean.getT1348648517839().subList(1, newsBean.getT1348648517839().size() - 1));
-        mLoadMoreWrapper.notifyDataSetChanged();
+        if (newsBean.getT1348648517839() != null && newsBean.getT1348648517839().size() > 0) {
+            mList.addAll(newsBean.getT1348648517839().subList(1, newsBean.getT1348648517839().size() - 1));
+            mLoadMoreWrapper.notifyDataSetChanged();
+            url += 20;
+        } else {
+            mLoadMoreWrapper.setLoadMoreView(0);
+            mLoadMoreWrapper.notifyDataSetChanged();
+            Toast.makeText(this, "没有更多", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -173,6 +181,4 @@ public class NewsActivity extends BaseActivity {
 
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
-
-
 }
