@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import cn.bmob.v3.Bmob;
+import io.vov.vitamio.Vitamio;
 
 /**
  * Created by dllo on 16/10/22.
@@ -31,7 +32,7 @@ public class YueBaApp extends Application{
     public void onCreate() {
         super.onCreate();
         mContext = this;
-
+        Vitamio.isInitialized(this);
         initEasemob();
         Bmob.initialize(this, "0e0c17dfb9f00526d44150879ec8cd8e");
     }

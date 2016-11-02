@@ -2,11 +2,17 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@android:color/black">
+
+    <io.vov.vitamio.widget.CenterLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black">
 
         <io.vov.vitamio.widget.VideoView
             android:id="@+id/vv_live"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
-
+    </io.vov.vitamio.widget.CenterLayout>
 </FrameLayout>

@@ -23,7 +23,6 @@
     <uses-permission android:name="android.permission.CHANGE_CONFIGURATION"/>
 
 
-
     <application
         android:name=".app.YueBaApp"
         android:allowBackup="true"
@@ -32,15 +31,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".main.MainActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".main.MainActivity"
+            android:screenOrientation="portrait">
 
         </activity>
-        <activity android:name=".register.ui.RegisterActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".register.ui.RegisterActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".login.ui.LoginActivity"
-                  android:screenOrientation="portrait">
+        <activity
+            android:name=".login.ui.LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -48,37 +50,45 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".dynamic.video.VideoActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".dynamic.video.VideoActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".dynamic.news.NewsActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".dynamic.news.NewsActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".dynamic.news.NewsInfoActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".dynamic.news.NewsInfoActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".info.InfoActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".info.InfoActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".main.AddContactActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".main.AddContactActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".contact.ChatActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".contact.ChatActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".dynamic.live.LiveListActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".dynamic.live.LiveListActivity"
+            android:screenOrientation="portrait"/>
 
-        <activity android:name=".dynamic.live.LiveActivity"
-                  android:screenOrientation="portrait"/>
+        <activity
+            android:name=".dynamic.live.LiveActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:screenOrientation="sensorLandscape"/>
 
-            <activity
-                android:name="io.vov.vitamio.activity.InitActivity"
-                android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
-                android:launchMode="singleTop"
-                android:theme="@android:style/Theme.NoTitleBar"
-                android:windowSoftInputMode="stateAlwaysHidden"/>
-
+        <activity
+            android:name="io.vov.vitamio.activity.InitActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
+            android:launchMode="singleTop"
+            android:theme="@android:style/Theme.NoTitleBar"
+            android:windowSoftInputMode="stateAlwaysHidden"/>
 
 
         <!-- 设置环信应用的AppKey -->
