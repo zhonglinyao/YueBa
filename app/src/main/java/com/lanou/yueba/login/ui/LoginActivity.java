@@ -18,6 +18,7 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.login.presenter.LoginPresenter;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.ui.RegisterActivity;
+import com.lanou.yueba.vlaues.StringVlaues;
 
 /**
  * Created by dllo on 16/10/24.
@@ -97,8 +98,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
         super.onActivityResult(requestCode, resultCode, data);
         if (101 == requestCode && 202 == resultCode ){
-            mName.setText(data.getStringExtra("username"));
-            mPassword.setText(data.getStringExtra("password"));
+            mName.setText(data.getStringExtra(StringVlaues.username));
+            mPassword.setText(data.getStringExtra(StringVlaues.password));
         }
 
     }
