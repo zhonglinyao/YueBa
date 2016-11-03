@@ -54,8 +54,7 @@
                 android:id="@+id/civ_info"
                 android:layout_width="140dp"
                 android:layout_height="140dp"
-                android:layout_gravity="center"
-                android:src="@mipmap/icon"/>
+                android:layout_gravity="center"/>
         </FrameLayout>
 
         <include layout="@layout/layout_line"/>

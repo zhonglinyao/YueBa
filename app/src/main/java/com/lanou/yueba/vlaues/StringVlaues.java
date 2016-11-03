@@ -5,7 +5,7 @@ package com.lanou.yueba.vlaues;
  */
 
 public class StringVlaues {
-    public static final String DBName = "yueba.db";
+    public static final String DB_NAME = "yueba.db";
     public static final String username = "username";
     public static final String password = "password";
     public static final String LIVEURL = "liveurl";

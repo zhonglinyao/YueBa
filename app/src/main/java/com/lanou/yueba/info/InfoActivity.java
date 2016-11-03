@@ -13,6 +13,7 @@ import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.FriendBean;
 import com.lanou.yueba.bean.UserInfoBean;
+import com.lanou.yueba.dbtools.LiteOrmTools;
 import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.tools.ActivityTools;
@@ -66,6 +67,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     protected void initData() {
         mCurrentUser = EMClient.getInstance().getCurrentUser().toString();
         mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra("info");
+        update();
+        initListener();
         if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
             USERINFO = 0;
             mTvExit.setText("退出当前账号");
@@ -77,8 +80,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             mTvEdit.setVisibility(View.GONE);
         }
 
-        update();
-        initListener();
 
 //        Intent intent = getIntent();
 //        mName.setText(intent.getStringExtra("username"));
@@ -95,8 +96,13 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             mTvUsername.setText(mUserInfoBean.getUserName());
         }
 
-        if (mUserInfoBean.getPicUrl() != null){
-            Glide.with(this).load(mUserInfoBean.getPicUrl()).into(mIvHead);
+        if (mUserInfoBean.getPicUrl() != null) {
+            Log.d("InfoActivity", "bbb");
+            Glide.with(InfoActivity.this)
+                    .load(mUserInfoBean.getPicUrl())
+//                    .placeholder(R.mipmap.icon)
+                    .error(R.mipmap.icon)
+                    .into(mIvHead);
         }
 
         if (mUserInfoBean.getPhoneNum() == null) {
@@ -179,13 +185,15 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (222 == requestCode && 111 == resultCode){
+        if (222 == requestCode && 111 == resultCode) {
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra("editInfo");
             update();
+            LiteOrmTools.getInstance().deleteTab(UserInfoBean.class);
+            LiteOrmTools.getInstance().insertInfo(mUserInfoBean);
             mUserInfoBean.update(mUserInfoBean.getObjectId(), new UpdateListener() {
                 @Override
                 public void done(BmobException e) {
-                    if (e == null){
+                    if (e == null) {
                         Log.d("InfoActivity", "修改成功");
 
                     } else {

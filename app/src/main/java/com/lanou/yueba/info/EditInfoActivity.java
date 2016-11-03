@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
@@ -38,7 +39,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected int setLayout() {
-        return R.layout.fragment_edit_info;
+        return R.layout.activity_edit_info;
     }
 
     @Override
@@ -130,6 +131,12 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     public void update() {
         if (mUserInfoBean.getPhoneNum() != null) {
             mEtPhone.setText(mUserInfoBean.getPhoneNum());
+        }
+        if (mUserInfoBean.getPicUrl() != null){
+            Glide.with(this)
+                    .load(mUserInfoBean.getPicUrl())
+//                    .placeholder(R.mipmap.icon)
+                    .into(mIvHead);
         }
         if (mUserInfoBean.getQq() != null) {
             mEtQQ.setText(mUserInfoBean.getQq());

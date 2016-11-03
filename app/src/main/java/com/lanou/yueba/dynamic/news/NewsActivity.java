@@ -92,7 +92,7 @@ public class NewsActivity extends BaseActivity {
 
     public void startRequest() {
         RxJavaRequest
-                .rxJavaOkHttpGetBean(UrlValues.getNews(url), NewsBean.class, mGson)
+                .<NewsBean>rxJavaOkHttpGetBean(UrlValues.getNews(url), NewsBean.class, mGson)
                 .subscribe(new Observer<NewsBean>() {
                     @Override
                     public void onCompleted() {

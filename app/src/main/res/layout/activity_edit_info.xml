@@ -65,8 +65,7 @@
                     android:id="@+id/civ_head_edit_info"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@mipmap/icon"/>
+                    android:layout_centerHorizontal="true"/>
             </RelativeLayout>
 
             <EditText
