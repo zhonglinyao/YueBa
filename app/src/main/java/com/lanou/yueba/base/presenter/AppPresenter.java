@@ -1,8 +1,8 @@
-package com.lanou.yueba.presenter;
+package com.lanou.yueba.base.presenter;
 
-import com.lanou.yueba.model.AppModel;
-import com.lanou.yueba.model.AppAppModelImpl;
-import com.lanou.yueba.ui.AppView;
+import com.lanou.yueba.base.model.AppModel;
+import com.lanou.yueba.base.model.AppAppModelImpl;
+import com.lanou.yueba.base.ui.AppView;
 import com.lanou.yueba.httprequset.OnCompletedListener;
 
 import java.lang.reflect.Type;

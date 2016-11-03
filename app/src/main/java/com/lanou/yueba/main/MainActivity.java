@@ -11,6 +11,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
@@ -72,7 +73,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         changeToolBar();
-        mCircleImageView.setImageResource(R.mipmap.icon);
         windowWidth = this.getWindowManager().getDefaultDisplay().getWidth();
         windowHeight = this.getWindowManager().getDefaultDisplay().getHeight();
 
@@ -157,6 +157,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (201 == requestCode && 101 == resultCode){
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
+            if (mUserInfoBean.getPicUrl() != null){
+                Glide.with(MainActivity.this).load(mUserInfoBean.getPicUrl()).placeholder(R.mipmap.icon).into(mCircleImageView);
+            }
         }
 
         if (QR_REQUEST_CODE == requestCode) {
@@ -220,6 +223,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void done(List<UserInfoBean> list, BmobException e) {
                 if (e == null) {
                     mUserInfoBean = list.get(0);
+                    if (mUserInfoBean.getPicUrl() != null){
+                        Glide.with(MainActivity.this).load(mUserInfoBean.getPicUrl()).into(mCircleImageView);
+                    }
                 }
             }
         });

@@ -1,13 +1,12 @@
 package com.lanou.yueba.info;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
@@ -17,10 +16,6 @@ import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.tools.ActivityTools;
-
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -41,17 +36,10 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTvQQ;
     private TextView mTvPhone;
     private UserInfoBean mUserInfoBean;
-    private EditInfoFragment mEditInfoFragment;
     private String mCurrentUser;
-
-    @Override
-    protected void onDestroy() {
-        EventBus.getDefault().unregister(this);
-        super.onDestroy();
-    }
+    private ImageView mIvHead;
 
 //    private TextView mName;
-
 
     @Override
     protected int setLayout() {
@@ -68,6 +56,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mTvSignature = bindView(R.id.tv_signature);
         mTvQQ = bindView(R.id.tv_qq_info);
         mTvPhone = bindView(R.id.tv_phone_info);
+        mIvHead = bindView(R.id.civ_info);
 
     }
 
@@ -75,10 +64,9 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        EventBus.getDefault().register(this);
         mCurrentUser = EMClient.getInstance().getCurrentUser().toString();
         mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra("info");
-        if (mCurrentUser.equals(mUserInfoBean.getUserName())){
+        if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
             USERINFO = 0;
             mTvExit.setText("退出当前账号");
             mTvEdit.setVisibility(View.VISIBLE);
@@ -88,7 +76,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             mTvExit.setText("添加好友");
             mTvEdit.setVisibility(View.GONE);
         }
-
 
         update();
         initListener();
@@ -104,8 +91,12 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void update() {
-        if (mUserInfoBean != null){
+        if (mUserInfoBean != null) {
             mTvUsername.setText(mUserInfoBean.getUserName());
+        }
+
+        if (mUserInfoBean.getPicUrl() != null){
+            Glide.with(this).load(mUserInfoBean.getPicUrl()).into(mIvHead);
         }
 
         if (mUserInfoBean.getPhoneNum() == null) {
@@ -125,16 +116,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
-    private void editInfo() {
-        if (mEditInfoFragment == null) {
-            mEditInfoFragment = new EditInfoFragment();
-        }
-        FragmentManager manager = getSupportFragmentManager();
-        FragmentTransaction transaction = manager.beginTransaction();
-        mEditInfoFragment.setUserInfoBean(mUserInfoBean);
-        transaction.addToBackStack(null).replace(R.id.fl_info, mEditInfoFragment).commit();
-    }
-
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -142,10 +123,12 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                 dismiss();
                 break;
             case R.id.tv_edit_info:
-                editInfo();
+                Intent intent = new Intent(this, EditInfoActivity.class);
+                intent.putExtra("editInfo", mUserInfoBean);
+                startActivityForResult(intent, 222);
                 break;
             case R.id.tv_exit_info:
-                if (USERINFO == 0){
+                if (USERINFO == 0) {
                     EMClient.getInstance().logout(true);
                     startActivity(new Intent(this, LoginActivity.class));
                     ActivityTools.deleteActivity(MainActivity.class.getSimpleName());
@@ -173,8 +156,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
                 }
 
-
-
                 break;
         }
     }
@@ -186,7 +167,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         friendBean.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
-                if (e == null){
+                if (e == null) {
                     Log.d("InfoActivity", "添加成功");
                 } else {
                     Log.d("InfoActivity", "添加失败");
@@ -195,29 +176,32 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         });
     }
 
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void editInfoEvent(UserInfoBean userInfoBean){
-        mUserInfoBean = userInfoBean;
-        update();
-        mUserInfoBean.update(mUserInfoBean.getObjectId(), new UpdateListener() {
-            @Override
-            public void done(BmobException e) {
-                if (e == null) {
-                    Log.d("InfoActivity", "成功");
-                } else {
-                    Log.d("InfoActivity", "失败");
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (222 == requestCode && 111 == resultCode){
+            mUserInfoBean = (UserInfoBean) data.getSerializableExtra("editInfo");
+            update();
+            mUserInfoBean.update(mUserInfoBean.getObjectId(), new UpdateListener() {
+                @Override
+                public void done(BmobException e) {
+                    if (e == null){
+                        Log.d("InfoActivity", "修改成功");
+
+                    } else {
+                        Log.d("InfoActivity", "修改失败");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
-    public void dismiss(){
+    public void dismiss() {
 
-        if (1 == USERINFO){
+        if (1 == USERINFO) {
             ActivityTools.deleteActivity(this.getClass().getSimpleName());
             return;
         }
-
         Intent intent = new Intent();
         intent.putExtra("info", mUserInfoBean);
         setResult(101, intent);

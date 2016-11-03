@@ -1,4 +1,4 @@
-package com.lanou.yueba.model;
+package com.lanou.yueba.base.model;
 
 import com.lanou.yueba.httprequset.HttpManger;
 import com.lanou.yueba.httprequset.OnCompletedListener;

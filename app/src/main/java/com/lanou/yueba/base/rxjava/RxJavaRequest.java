@@ -1,4 +1,4 @@
-package com.lanou.yueba.rxjava;
+package com.lanou.yueba.base.rxjava;
 
 import com.google.gson.Gson;
 

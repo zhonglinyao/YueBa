@@ -24,7 +24,6 @@ public class YueBaApp extends Application{
 
     private boolean isInit = false;
 
-
     public static Context getContext() {
         return mContext;
     }

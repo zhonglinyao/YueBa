@@ -18,7 +18,7 @@ import com.lanou.yueba.base.rv.LoadMoreWrapper;
 import com.lanou.yueba.base.rv.MultiItemTypeRecyclerAdapter;
 import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.NewsBean;
-import com.lanou.yueba.rxjava.RxJavaRequest;
+import com.lanou.yueba.base.rxjava.RxJavaRequest;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.vlaues.UrlValues;
 

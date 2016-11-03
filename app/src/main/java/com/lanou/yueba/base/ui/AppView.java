@@ -1,4 +1,4 @@
-package com.lanou.yueba.ui;
+package com.lanou.yueba.base.ui;
 
 import java.util.List;
 
