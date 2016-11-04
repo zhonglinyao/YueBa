@@ -2,6 +2,7 @@ package com.lanou.yueba.dbtools;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 
 import com.lanou.yueba.app.YueBaApp;
 import com.lanou.yueba.bean.UserInfoBean;
@@ -37,6 +38,7 @@ public class LiteOrmTools {
             @Override
             public void run() {
                 mLiteOrm.insert(userInfoBean);
+                Log.d("LiteOrmTools", "成功插入数据库");
             }
         });
     }

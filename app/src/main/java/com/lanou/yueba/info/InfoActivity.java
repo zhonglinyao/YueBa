@@ -98,10 +98,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
         if (mUserInfoBean.getPicUrl() != null) {
             Log.d("InfoActivity", "bbb");
-            Glide.with(InfoActivity.this)
+            Glide.with(this)
                     .load(mUserInfoBean.getPicUrl())
-//                    .placeholder(R.mipmap.icon)
-                    .error(R.mipmap.icon)
                     .into(mIvHead);
         }
 

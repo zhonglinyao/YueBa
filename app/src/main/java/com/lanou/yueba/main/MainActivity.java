@@ -2,6 +2,7 @@ package com.lanou.yueba.main;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -256,7 +257,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     mUserInfoBean = list.get(0);
                     updateHead();
                 } else {
-
+                    mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
+                    
                 }
             }
         });

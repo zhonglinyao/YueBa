@@ -1,5 +1,8 @@
 package com.lanou.yueba.bean;
 
+import com.litesuits.orm.db.annotation.PrimaryKey;
+import com.litesuits.orm.db.enums.AssignType;
+
 import java.io.Serializable;
 
 import cn.bmob.v3.BmobObject;
@@ -9,12 +12,23 @@ import cn.bmob.v3.BmobObject;
  */
 
 public class UserInfoBean extends BmobObject implements Serializable{
+
+    @PrimaryKey(AssignType.AUTO_INCREMENT)
+    private int id;
     private String userName;
     private String md5UserPassWord;
     private String phoneNum;
     private String picUrl;
     private String qq;
     private String signature;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getQq() {
         return qq;

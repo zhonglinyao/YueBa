@@ -39,9 +39,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <meta-data
-            android:name="com.lanou.yueba.app.GlideModelConfig"
-            android:value="GlideModule" />
+        <!--<meta-data-->
+            <!--android:name="com.lanou.yueba.app.GlideModelConfig"-->
+            <!--android:value="GlideModule" />-->
 
         <activity
             android:name=".main.MainActivity"
