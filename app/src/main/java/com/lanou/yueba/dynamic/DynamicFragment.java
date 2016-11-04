@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
+import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
 import com.lanou.yueba.dynamic.live.LiveListActivity;
 import com.lanou.yueba.dynamic.news.NewsActivity;
 import com.lanou.yueba.dynamic.video.VideoActivity;
@@ -21,6 +22,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
     private RelativeLayout mRlVideo;
     private RelativeLayout mRlNews;
     private LinearLayout mLlLive;
+    private LinearLayout mLlDynamic;
 
     @Override
     protected int setLayout() {
@@ -32,6 +34,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
         mRlVideo = bindView(R.id.rl_video_dynamic);
         mRlNews = bindView(R.id.rl_news_dynamic);
         mLlLive = bindView(R.id.ll_live_dynamic);
+        mLlDynamic = bindView(R.id.ll_dynamic_dynamic);
     }
 
     @Override
@@ -43,6 +46,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
         mRlVideo.setOnClickListener(this);
         mRlNews.setOnClickListener(this);
         mLlLive.setOnClickListener(this);
+        mLlDynamic.setOnClickListener(this);
     }
 
     @Override
@@ -56,6 +60,9 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
                 break;
             case R.id.ll_live_dynamic:
                 startActivity(new Intent(mContext, LiveListActivity.class));
+                break;
+            case R.id.ll_dynamic_dynamic:
+                startActivity(new Intent(mContext, DynamicActivity.class));
                 break;
         }
     }

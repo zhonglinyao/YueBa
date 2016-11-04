@@ -70,6 +70,9 @@
             android:name=".dynamic.news.NewsActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".dynamic.dynamic.DynamicActivity"
+                  android:screenOrientation="portrait"/>
+
         <activity
             android:name=".dynamic.news.NewsInfoActivity"
             android:screenOrientation="portrait"/>
