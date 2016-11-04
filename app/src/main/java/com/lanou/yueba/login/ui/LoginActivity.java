@@ -18,6 +18,7 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.login.presenter.LoginPresenter;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.ui.RegisterActivity;
+import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.vlaues.StringVlaues;
 
 /**
@@ -52,11 +53,11 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @Override
     protected void initData() {
 
-
         if (EMClient.getInstance().isLoggedInBefore()) {
-
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
+            Intent intent = new Intent(this, MainActivity.class);
+            intent.putExtra(StringVlaues.username, EMClient.getInstance().getCurrentUser());
+            startActivity(intent);
+            ActivityTools.deleteActivity(this.getClass().getSimpleName());
             return;
         }
 
@@ -117,17 +118,17 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @Override
     public void onResponse(final String username, final String password) {
 
-
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
                 mDialog.dismiss();
                 EMClient.getInstance().chatManager().loadAllConversations();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                intent.putExtra(StringVlaues.username, username);
                 startActivity(intent);
-                finish();
-            }
-        });
+                ActivityTools.deleteActivity(this.getClass().getSimpleName());
+//            }
+//        });
     }
 
     @Override

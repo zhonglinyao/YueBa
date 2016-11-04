@@ -1,6 +1,8 @@
 package com.lanou.yueba.main;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -12,14 +14,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.contact.ContactFragment;
+import com.lanou.yueba.dbtools.LiteOrmTools;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.message.MessageFragment;
+import com.lanou.yueba.vlaues.StringVlaues;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -50,6 +53,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTvAddToolBar;
     private TextView mTvMoreToolBar;
     private UserInfoBean mUserInfoBean;
+    private String mUserName;
+    private Bitmap mHeadimage;
 
     @Override
     protected int setLayout() {
@@ -72,6 +77,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
+        mUserName = getIntent().getStringExtra(StringVlaues.username);
         changeToolBar();
         windowWidth = this.getWindowManager().getDefaultDisplay().getWidth();
         windowHeight = this.getWindowManager().getDefaultDisplay().getHeight();
@@ -86,7 +92,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
         transaction.commit();
-        bmobQuery();
+        queryDb();
     }
 
 
@@ -130,7 +136,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_add_toolbar:
 
-                Intent intent = new Intent(MainActivity.this,AddContactActivity.class);
+                Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
                 startActivity(intent);
 
                 break;
@@ -149,16 +155,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private void showQR() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
         startActivityForResult(intent, QR_REQUEST_CODE);
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (201 == requestCode && 101 == resultCode){
+        if (201 == requestCode && 101 == resultCode) {
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
-            if (mUserInfoBean.getPicUrl() != null){
-                Glide.with(MainActivity.this).load(mUserInfoBean.getPicUrl()).placeholder(R.mipmap.icon).into(mCircleImageView);
+            if (mUserInfoBean.getPicUrl() != null) {
+                Glide.with(MainActivity.this)
+                        .load(mUserInfoBean.getPicUrl())
+                        .placeholder(R.mipmap.icon)
+                        .into(mCircleImageView);
             }
         }
 
@@ -211,24 +219,60 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     }
 
+    private void queryDb() {
+        LiteOrmTools.getInstance().queryTab(UserInfoBean.class, new LiteOrmTools.CallBack<UserInfoBean>() {
+            @Override
+            public void callBack(List<UserInfoBean> list) {
+                Log.d("MainActivity", "数据库");
+                if (list == null || 0 == list.size()) {
+                    Log.d("MainActivity", "DB没数据");
+                    bmobQuery();
+                } else {
+                    Log.d("MainActivity", "DB有数据");
+                    for (int i = 0; i < list.size(); i++) {
+                        if (list.get(i).getUserName().equals(mUserName)){
+                            mUserInfoBean = list.get(i);
+                            break;
+                        }
+                    }
+                    updateHead();
+                }
+            }
+        });
+    }
+
     private void bmobQuery() {
 
         BmobQuery<UserInfoBean> query = new BmobQuery<>();
 
-        query.addWhereEqualTo("userName", EMClient.getInstance().getCurrentUser());
+        query.addWhereEqualTo("userName", mUserName);
 
         query.findObjects(new FindListener<UserInfoBean>() {
 
             @Override
             public void done(List<UserInfoBean> list, BmobException e) {
                 if (e == null) {
+                    Log.d("MainActivity", "aaa");
+
                     mUserInfoBean = list.get(0);
-                    if (mUserInfoBean.getPicUrl() != null){
-                        Glide.with(MainActivity.this).load(mUserInfoBean.getPicUrl()).into(mCircleImageView);
-                    }
+                    updateHead();
+                } else {
+                    mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
+                    
                 }
             }
         });
+    }
+
+    public void updateHead(){
+        if (mUserInfoBean.getPicUrl() != null) {
+            Glide.with(MainActivity.this)
+                    .load(mUserInfoBean.getPicUrl())
+//                    .placeholder(R.mipmap.icon)
+                    .into(mCircleImageView);
+        } else {
+
+        }
     }
 
     @Override
