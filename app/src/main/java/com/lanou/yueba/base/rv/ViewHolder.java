@@ -80,6 +80,12 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         return this;
     }
 
+    public ViewHolder setImage(int viewId, String url, int placeholder){
+        ImageView view = getView(viewId);
+        Glide.with(mContext).load(url).error(placeholder).into(view);
+        return this;
+    }
+
     public ViewHolder setImageResource(int viewId, int resId) {
         ImageView view = getView(viewId);
         view.setImageResource(resId);

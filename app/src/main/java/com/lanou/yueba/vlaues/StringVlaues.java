@@ -9,6 +9,12 @@ public class StringVlaues {
     public static final String username = "username";
     public static final String password = "password";
     public static final String LIVEURL = "liveurl";
+    public static final String DYNAMIC = "dynamic";
+    public static final String PUBLISH = "publish";
+    public static final String INFO = "info";
+    public static final String ADD_FRIEND = "添加好友";
+    public static final String EXIT = "退出当前账号";
+    public static final String EDIT_INFO = "editInfo";
 
     public static String[] liveList = new String[] {
             "CCTV1综合","CCTV2财经","CCTV3综艺","CCTV4中文国际","CCTV5体育","CCTV6电影","CCTV7军事农业","CCTV8电视剧", "CCTV9纪录",

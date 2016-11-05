@@ -8,11 +8,20 @@ import cn.bmob.v3.BmobObject;
  * Created by dllo on 16/11/5.
  */
 
-public class DynamicBean extends BmobObject implements Serializable {
+public class DynamicBean extends BmobObject implements Serializable,Comparable<DynamicBean> {
     private String userName;
     private String picUrl;
     private String content;
     private String imgUrl;
+    private String date;
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getContent() {
         return content;
@@ -44,5 +53,10 @@ public class DynamicBean extends BmobObject implements Serializable {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    @Override
+    public int compareTo(DynamicBean o) {
+        return o.getCreatedAt().compareTo(this.getCreatedAt());
     }
 }

@@ -46,8 +46,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ContactFragment mContactFragment;
     private DynamicFragment mDynamicFragment;
 
-    private int windowWidth;
-    private int windowHeight;
     private CircleImageView mCircleImageView;
     private TextView mTvToolBar;
     private int index = 1;
@@ -74,18 +72,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mIvToolBar = bindView(iv_more_toolbar);
         mTvAddToolBar = bindView(R.id.tv_add_toolbar);
         mTvMoreToolBar = bindView(R.id.tv_more_toolbar);
-
     }
 
     @Override
     protected void initData() {
         mUserName = getIntent().getStringExtra(StringVlaues.username);
         changeToolBar();
-        windowWidth = this.getWindowManager().getDefaultDisplay().getWidth();
-        windowHeight = this.getWindowManager().getDefaultDisplay().getHeight();
-
         initClickListener();
-
         mIvMessage.setChecked(true);
         mMessageFragment = new MessageFragment();
         mContactFragment = new ContactFragment();
@@ -94,7 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void callBack() {
                 Intent intent = new Intent(MainActivity.this, DynamicActivity.class);
-                intent.putExtra("dynamic", mUserInfoBean);
+                intent.putExtra(StringVlaues.DYNAMIC, mUserInfoBean);
                 startActivity(intent);
             }
         });
@@ -134,7 +127,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.civ_toolbar:
                 Intent infoIntent = new Intent(this, InfoActivity.class);
-                infoIntent.putExtra("info", mUserInfoBean);
+                infoIntent.putExtra(StringVlaues.INFO, mUserInfoBean);
                 startActivityForResult(infoIntent, 201);
                 break;
             case iv_more_toolbar:
@@ -238,7 +231,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 } else {
                     Log.d("MainActivity", "DB有数据");
                     for (int i = 0; i < list.size(); i++) {
-                        if (list.get(i).getUserName().equals(mUserName)){
+                        if (list.get(i).getUserName().equals(mUserName)) {
                             mUserInfoBean = list.get(i);
                             break;
                         }
@@ -266,13 +259,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     updateHead();
                 } else {
                     mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
-                    
+
                 }
             }
         });
     }
 
-    public void updateHead(){
+    public void updateHead() {
         if (mUserInfoBean.getPicUrl() != null) {
             Glide.with(MainActivity.this)
                     .load(mUserInfoBean.getPicUrl())
