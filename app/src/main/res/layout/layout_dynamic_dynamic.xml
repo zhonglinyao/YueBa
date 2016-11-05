@@ -70,5 +70,6 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/colorLine"/>
+        android:background="@color/colorLine"
+        android:alpha="0.5"/>
 </LinearLayout>

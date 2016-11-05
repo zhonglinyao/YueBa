@@ -22,5 +22,7 @@
     <string name="edit_signature">修改用户个性签名</string>
     <string name="edit_qq">修改用户QQ号</string>
     <string name="edit_phone">修改用户手机号</string>
+    <string name="dynamic_publish">发表</string>
+    <string name="write_dynamic">写动态</string>
 
 </resources>

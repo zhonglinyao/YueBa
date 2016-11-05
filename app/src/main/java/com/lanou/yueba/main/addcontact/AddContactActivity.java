@@ -1,4 +1,4 @@
-package com.lanou.yueba.main;
+package com.lanou.yueba.main.addcontact;
 
 import android.content.Intent;
 import android.text.Editable;

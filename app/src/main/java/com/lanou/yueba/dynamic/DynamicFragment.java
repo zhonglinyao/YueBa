@@ -8,7 +8,6 @@ import android.widget.RelativeLayout;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
-import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
 import com.lanou.yueba.dynamic.live.LiveListActivity;
 import com.lanou.yueba.dynamic.news.NewsActivity;
 import com.lanou.yueba.dynamic.video.VideoActivity;
@@ -23,6 +22,11 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
     private RelativeLayout mRlNews;
     private LinearLayout mLlLive;
     private LinearLayout mLlDynamic;
+    private DynamicCallBack mDynamicCallBack;
+
+    public void setDynamicCallBack(DynamicCallBack dynamicCallBack) {
+        mDynamicCallBack = dynamicCallBack;
+    }
 
     @Override
     protected int setLayout() {
@@ -62,8 +66,12 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
                 startActivity(new Intent(mContext, LiveListActivity.class));
                 break;
             case R.id.ll_dynamic_dynamic:
-                startActivity(new Intent(mContext, DynamicActivity.class));
+                mDynamicCallBack.callBack();
                 break;
         }
+    }
+
+    public interface DynamicCallBack{
+        void callBack();
     }
 }

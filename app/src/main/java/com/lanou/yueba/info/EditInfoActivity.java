@@ -56,6 +56,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     protected void initData() {
         mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra("editInfo");
         update();
+        mEtSignature.setSelection(mEtSignature.getText().toString().length());
         mIvBack.setOnClickListener(this);
         mBtnSure.setOnClickListener(this);
         mIvHead.setOnClickListener(this);
