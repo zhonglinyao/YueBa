@@ -131,9 +131,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivityForResult(infoIntent, 201);
                 break;
             case iv_more_toolbar:
-
                 showQR();
-
                 break;
             case R.id.tv_add_toolbar:
 
@@ -254,12 +252,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             public void done(List<UserInfoBean> list, BmobException e) {
                 if (e == null) {
                     Log.d("MainActivity", "aaa");
-
                     mUserInfoBean = list.get(0);
                     updateHead();
                 } else {
+                    updateHead();
                     mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
-
                 }
             }
         });
@@ -270,9 +267,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             Glide.with(MainActivity.this)
                     .load(mUserInfoBean.getPicUrl())
 //                    .placeholder(R.mipmap.icon)
+                    .error(R.mipmap.icon)
                     .into(mCircleImageView);
         } else {
-
+            mCircleImageView.setImageResource(R.mipmap.icon);
         }
     }
 

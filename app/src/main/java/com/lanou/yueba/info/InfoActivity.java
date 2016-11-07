@@ -99,6 +99,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             Glide.with(this)
                     .load(mUserInfoBean.getPicUrl())
                     .into(mIvHead);
+        } else {
+            mIvHead.setImageResource(R.mipmap.icon);
         }
 
         if (mUserInfoBean.getPhoneNum() == null) {
