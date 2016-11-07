@@ -65,7 +65,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.iv_back_edit_info:
                 ActivityTools.deleteActivity(this.getClass().getSimpleName());
                 break;
@@ -87,9 +87,9 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (105 == requestCode && resultCode == RESULT_OK){
+        if (105 == requestCode && resultCode == RESULT_OK) {
             Uri selectedImage = data.getData();
-            String[] filePathColumn = { MediaStore.Images.Media.DATA };
+            String[] filePathColumn = {MediaStore.Images.Media.DATA};
 
             Cursor cursor = getContentResolver().query(selectedImage,
                     filePathColumn, null, null, null);
@@ -104,7 +104,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
             bmobFile.uploadblock(new UploadFileListener() {
                 @Override
                 public void done(BmobException e) {
-                    if (e == null){
+                    if (e == null) {
                         mUserInfoBean.setPicUrl(bmobFile.getUrl());
                         Log.d("EditInfoActivity", "成功" + bmobFile.getUrl());
                     } else {
@@ -134,11 +134,13 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         if (mUserInfoBean.getPhoneNum() != null) {
             mEtPhone.setText(mUserInfoBean.getPhoneNum());
         }
-        if (mUserInfoBean.getPicUrl() != null){
+        if (mUserInfoBean.getPicUrl() != null) {
             Glide.with(this)
                     .load(mUserInfoBean.getPicUrl())
 //                    .placeholder(R.mipmap.icon)
                     .into(mIvHead);
+        } else {
+            mIvHead.setImageResource(R.mipmap.icon);
         }
         if (mUserInfoBean.getQq() != null) {
             mEtQQ.setText(mUserInfoBean.getQq());
@@ -148,7 +150,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         }
     }
 
-    public void dismiss(){
+    public void dismiss() {
         Intent intent = new Intent();
         intent.putExtra(StringVlaues.EDIT_INFO, mUserInfoBean);
         setResult(111, intent);
