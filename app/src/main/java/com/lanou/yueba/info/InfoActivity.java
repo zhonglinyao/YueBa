@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.hyphenate.EMCallBack;
+
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
@@ -17,6 +17,7 @@ import com.lanou.yueba.dbtools.LiteOrmTools;
 import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.tools.ActivityTools;
+import com.lanou.yueba.tools.ToastTools;
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -140,22 +141,23 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                     break;
                 } else {
 
-                    EMClient.getInstance().contactManager().aysncAddContact(mUserInfoBean.getUserName(), "添加好友", new EMCallBack() {
-                        @Override
-                        public void onSuccess() {
-                            addToBmob();
-                        }
-
-                        @Override
-                        public void onError(int i, String s) {
-
-                        }
-
-                        @Override
-                        public void onProgress(int i, String s) {
-
-                        }
-                    });
+                    addToBmob();
+//                    EMClient.getInstance().contactManager().aysncAddContact(mUserInfoBean.getUserName(), "添加好友", new EMCallBack() {
+//                        @Override
+//                        public void onSuccess() {
+//                            addToBmob();
+//                        }
+//
+//                        @Override
+//                        public void onError(int i, String s) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onProgress(int i, String s) {
+//
+//                        }
+//                    });
 
 
                 }
@@ -168,13 +170,16 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         FriendBean friendBean = new FriendBean();
         friendBean.setUsername(mCurrentUser);
         friendBean.setFriendname(mUserInfoBean.getUserName());
+        friendBean.setFriend(false);
         friendBean.save(new SaveListener<String>() {
             @Override
             public void done(String s, BmobException e) {
-                if (e == null) {
-                    Log.d("InfoActivity", "添加成功");
+
+                if (e == null){
+                    ToastTools.showShort( InfoActivity.this, "添加成功,等待好友同意");
+
                 } else {
-                    Log.d("InfoActivity", "添加失败");
+                    ToastTools.showShort( InfoActivity.this, "添加失败");
                 }
             }
         });

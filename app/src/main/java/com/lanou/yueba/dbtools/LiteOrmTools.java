@@ -24,6 +24,7 @@ public class LiteOrmTools {
         private static final LiteOrmTools sInstance = new LiteOrmTools();
     }
 
+
     private LiteOrmTools() {
         mLiteOrm = LiteOrm.newCascadeInstance(YueBaApp.getContext(), StringVlaues.DB_NAME);
         mHandler = new Handler(Looper.getMainLooper());

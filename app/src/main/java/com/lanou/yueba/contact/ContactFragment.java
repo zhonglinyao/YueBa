@@ -1,10 +1,12 @@
 package com.lanou.yueba.contact;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
+import com.hyphenate.EMContactListener;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
@@ -43,12 +45,18 @@ public class ContactFragment extends EaseContactListFragment {
         registerForContextMenu(listView);
 
 
+
+        EMClient.getInstance().contactManager().setContactListener(new FriendListener());
+
+
     }
+
+
+
 
     @Override
     protected void setUpView() {
         super.setUpView();
-
 
         EMClient.getInstance().contactManager().aysncGetAllContactsFromServer(new EMValueCallBack<List<String>>() {
             @Override
@@ -58,14 +66,8 @@ public class ContactFragment extends EaseContactListFragment {
                     EaseUser user = new EaseUser(s);
                     mMap.put(s, user);
                 }
-                getActivity().runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        setContactsMap(mMap);
-                        refresh();
-                    }
-                });
-
+                setContactsMap(mMap);
+                refresh();
             }
 
             @Override
@@ -103,11 +105,40 @@ public class ContactFragment extends EaseContactListFragment {
                 case R.id.application_item:
 
                     //                    Toast.makeText(getContext(), "233", Toast.LENGTH_SHORT).show();
-                    //                    startActivity(new Intent(getActivity(), NewFriendsMsgActivity.class));
+//                    startActivity(new Intent(getActivity(), NewFriendsMsgActivity.class));
                     break;
             }
         }
     }
 
+
+
+    public class FriendListener implements EMContactListener{
+
+        @Override
+        public void onContactAdded(String s) {
+            Log.d("FriendListener", "收到好友邀请1");
+        }
+
+        @Override
+        public void onContactDeleted(String s) {
+            Log.d("FriendListener", "收到好友邀请2");
+        }
+
+        @Override
+        public void onContactInvited(String s, String s1) {
+            Log.d("FriendListener", "收到好友邀请3");
+        }
+
+        @Override
+        public void onContactAgreed(String s) {
+            Log.d("FriendListener", "收到好友邀请4");
+        }
+
+        @Override
+        public void onContactRefused(String s) {
+            Log.d("FriendListener", "收到好友邀请5");
+        }
+    }
 
 }
