@@ -1,14 +1,16 @@
 package com.lanou.yueba.dynamic.dynamic;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.design.widget.AppBarLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewStub;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.lanou.yueba.R;
@@ -32,9 +34,9 @@ import cn.bmob.v3.listener.FindListener;
  * Created by dllo on 16/11/4.
  */
 
-public class DynamicActivity extends BaseActivity implements View.OnClickListener {
+public class DynamicActivity extends BaseActivity implements View.OnClickListener, AppBarLayout.OnOffsetChangedListener {
 
-    private TextView mTvBack;
+    private ImageView mIvBack;
     private RecyclerView mRv;
     private AppBarLayout mAppBarLayout;
     private RelativeLayout mRelativeLayoutBar;
@@ -44,6 +46,11 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
     private List<DynamicBean> mDynamicBeanList;
     private CommonRecyclerAdapter<DynamicBean> mAdapter;
     private ImageView mImageView;
+    private ImageView mIvLoading;
+    private ViewStub mViewStub;
+    private FrameLayout mFrameLayout;
+    private int mHeight;
+    private AnimationDrawable mDrawable;
 
     @Override
     protected int setLayout() {
@@ -52,41 +59,24 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     protected void initView() {
-        mTvBack = bindView(R.id.tv_back_dynamic);
-        mRv = bindView(R.id.rv_dynamic_dynamic);
-        mAppBarLayout = bindView(R.id.abl_dynamic);
+        mIvBack = bindView(R.id.iv_back_dynamic);
         mRelativeLayoutBar = bindView(R.id.rl_dynamic_dynamic);
         mIvPublish = bindView(R.id.iv_publish_dynamic);
-        mImageView = bindView(R.id.civ_dynamic);
+        mIvLoading = bindView(R.id.iv_loading_dynamic);
+        mViewStub = bindView(R.id.vs_dynamic);
+        mFrameLayout = bindView(R.id.fl_dynamic);
     }
 
     @Override
     protected void initData() {
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.DYNAMIC);
-        Glide.with(this).load(mUserInfoBean.getPicUrl()).into(mImageView);
-        mTvBack.setOnClickListener(this);
+        mFrameLayout.setBackgroundColor(getResources().getColor(R.color.colorBackgroundLoading));
+        mDrawable = (AnimationDrawable) mIvLoading.getBackground();
+        mDrawable.start();
         mIvPublish.setImageResource(R.mipmap.publish_dynamic_no_slide);
-        mIvPublish.setOnClickListener(this);
-        final int height = getWindowManager().getDefaultDisplay().getHeight();
-        mAppBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
-            @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (verticalOffset < -(height / 10)) {
-                    mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain00));
-                    mIvPublish.setImageResource(R.mipmap.publish_dynamic_no_slide);
-                }
-                if (verticalOffset < -(height / 8)) {
-                    mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain01));
-                }
-                if (verticalOffset < -(height / 6)) {
-                    mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain02));
-                }
-                if (verticalOffset < -(height / 4)) {
-                    mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain));
-                    mIvPublish.setImageResource(R.mipmap.publish_dynamic_slide);
-                }
-            }
-        });
+        mDynamicBeanList = new ArrayList<>();
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.DYNAMIC);
+        mIvBack.setOnClickListener(this);
+        mHeight = getWindowManager().getDefaultDisplay().getHeight();
         queryFriend();
     }
 
@@ -101,65 +91,81 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
                     Log.d(TAG, "done: 好友");
                     Log.d("DynamicActivity", "list.size():" + list.size());
                     if (list != null && list.size() > 0)
-                        queryDynamic(list);
-                    else queryDynamic(new ArrayList<FriendBean>());
+                        queryMyDynamic(list);
+                    else queryMyDynamic(new ArrayList<FriendBean>());
                 } else {
-                    queryDynamic(new ArrayList<FriendBean>());
+                    queryMyDynamic(new ArrayList<FriendBean>());
                 }
             }
         });
     }
 
-    public void queryDynamic(List<FriendBean> list) {
+    public void queryMyDynamic(List<FriendBean> list) {
         BmobQuery<DynamicBean> query = new BmobQuery<>("DynamicBean");
-        query.addWhereEqualTo("userName", mUserInfoBean.getUserName());
+        List<String> strings = new ArrayList<>();
+        strings.add(mUserInfoBean.getUserName());
         if (list.size() > 0) {
             for (FriendBean friendBean : list) {
-                query.addWhereEqualTo("userName", friendBean.getFriendname());
+                strings.add(friendBean.getFriendname());
             }
         }
-        query.order("createdAt");
+
+        query.addWhereContainedIn("userName", strings);
+        query.order("-createdAt");
         query.findObjects(new FindListener<DynamicBean>() {
             @Override
             public void done(List<DynamicBean> list, BmobException e) {
                 Log.d(TAG, "done: 动态");
                 if (e == null && list != null && list.size() > 0) {
                     Log.d(TAG, "done: 有数据");
-                    mDynamicBeanList = list;
-                    updateView();
+                    mDynamicBeanList.addAll(list);
+                    updateView(true);
                 } else {
-                    mDynamicBeanList = new ArrayList<>();
-                    updateView();
+                    updateView(false);
                 }
             }
         });
     }
 
-    public void updateView() {
-        mAdapter = new CommonRecyclerAdapter<DynamicBean>(this, R.layout.layout_dynamic_dynamic, mDynamicBeanList) {
-            @Override
-            protected void convert(ViewHolder holder, DynamicBean dynamicBean, int position) {
-                holder
-                        .setText(R.id.tv_name_dynamic_item, dynamicBean.getUserName())
-                        .setText(R.id.tv_date_dynamic_item, dynamicBean.getCreatedAt())
-                        .setImage(R.id.civ_dynamic_item, dynamicBean.getPicUrl(), R.mipmap.image_error);
-                String content = dynamicBean.getContent();
-                String imgUrl = dynamicBean.getImgUrl();
-                if (content != null && content.length() > 0) {
-                    holder.setText(R.id.tv_content_dynamic_item, content);
-                } else {
-                    holder.getView(R.id.tv_content_dynamic_item).setVisibility(View.GONE);
+    public void updateView(boolean is) {
+        if (is) {
+            View view = mViewStub.inflate();
+            mFrameLayout.setBackgroundColor(getResources().getColor(R.color.colorBackgroundLoadingEnd));
+            mDrawable.stop();
+            mIvLoading.setVisibility(View.GONE);
+            mRv = bindView(R.id.rv_dynamic_dynamic, view);
+            mAppBarLayout = bindView(R.id.abl_dynamic, view);
+            mImageView = bindView(R.id.civ_dynamic, view);
+            Glide.with(this).load(mUserInfoBean.getPicUrl()).into(mImageView);
+            mAdapter = new CommonRecyclerAdapter<DynamicBean>(this, R.layout.layout_dynamic_dynamic, mDynamicBeanList) {
+                @Override
+                protected void convert(ViewHolder holder, DynamicBean dynamicBean, int position) {
+                    holder
+                            .setText(R.id.tv_name_dynamic_item, dynamicBean.getUserName())
+                            .setText(R.id.tv_date_dynamic_item, dynamicBean.getCreatedAt())
+                            .setImage(R.id.civ_dynamic_item, dynamicBean.getPicUrl(), R.mipmap.image_error);
+                    String content = dynamicBean.getContent();
+                    String imgUrl = dynamicBean.getImgUrl();
+                    if (content != null && content.length() > 0) {
+                        holder.setText(R.id.tv_content_dynamic_item, content);
+                    } else {
+                        holder.getView(R.id.tv_content_dynamic_item).setVisibility(View.GONE);
+                    }
+                    if (imgUrl != null && imgUrl.length() > 0) {
+                        holder.setImage(R.id.iv_img_dynamic_item, imgUrl, R.mipmap.image_error);
+                    } else {
+                        holder.getView(R.id.iv_img_dynamic_item).setVisibility(View.GONE);
+                    }
                 }
-                if (imgUrl != null && imgUrl.length() > 0) {
-                    holder.setImage(R.id.iv_img_dynamic_item, imgUrl, R.mipmap.image_error);
-                } else {
-                    holder.getView(R.id.iv_img_dynamic_item).setVisibility(View.GONE);
-                }
-            }
-        };
-        LinearLayoutManager manager = new LinearLayoutManager(this);
-        mRv.setLayoutManager(manager);
-        mRv.setAdapter(mAdapter);
+            };
+
+            LinearLayoutManager manager = new LinearLayoutManager(this);
+            mRv.setLayoutManager(manager);
+            mRv.setAdapter(mAdapter);
+
+            mAppBarLayout.addOnOffsetChangedListener(this);
+            mIvPublish.setOnClickListener(this);
+        }
     }
 
     @Override
@@ -176,16 +182,29 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
         }
     }
 
+
     @Override
-    public void onBackPressed() {
-        ActivityTools.deleteActivity(this.getClass().getSimpleName());
-        super.onBackPressed();
+    public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
+        if (verticalOffset < -(mHeight / 10)) {
+            mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain00));
+            mIvPublish.setImageResource(R.mipmap.publish_dynamic_no_slide);
+        }
+        if (verticalOffset < -(mHeight / 8)) {
+            mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain01));
+        }
+        if (verticalOffset < -(mHeight / 6)) {
+            mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain02));
+        }
+        if (verticalOffset < -(mHeight / 4)) {
+            mRelativeLayoutBar.setBackgroundColor(getResources().getColor(R.color.colorMain));
+            mIvPublish.setImageResource(R.mipmap.publish_dynamic_slide);
+        }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_back_dynamic:
+            case R.id.iv_back_dynamic:
                 ActivityTools.deleteActivity(DynamicActivity.this.getClass().getSimpleName());
                 break;
             case R.id.iv_publish_dynamic:
@@ -194,5 +213,11 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
                 startActivityForResult(intent, 101);
                 break;
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        ActivityTools.deleteActivity(this.getClass().getSimpleName());
+        super.onBackPressed();
     }
 }

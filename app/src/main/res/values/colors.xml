@@ -10,4 +10,6 @@
     <color name="colorShape">#A0A0A0</color>
     <color name="colorLayoutSelect">#F0F0F0</color>
     <color name="colorLine">#C0C0C0</color>
+    <color name="colorBackgroundLoading">#88C0C0C0</color>
+    <color name="colorBackgroundLoadingEnd">#00000000</color>
 </resources>

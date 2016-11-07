@@ -57,6 +57,6 @@ public class DynamicBean extends BmobObject implements Serializable,Comparable<D
 
     @Override
     public int compareTo(DynamicBean o) {
-        return o.getCreatedAt().compareTo(this.getCreatedAt());
+        return this.getCreatedAt().compareTo(o.getCreatedAt());
     }
 }

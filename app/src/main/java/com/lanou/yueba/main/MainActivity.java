@@ -255,6 +255,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     mUserInfoBean = list.get(0);
                     updateHead();
                 } else {
+                    mUserInfoBean = new UserInfoBean();
                     updateHead();
                     mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
                 }
@@ -263,7 +264,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     public void updateHead() {
-        if (mUserInfoBean.getPicUrl() != null) {
+        if (mUserInfoBean != null && mUserInfoBean.getPicUrl() != null) {
             Glide.with(MainActivity.this)
                     .load(mUserInfoBean.getPicUrl())
 //                    .placeholder(R.mipmap.icon)
