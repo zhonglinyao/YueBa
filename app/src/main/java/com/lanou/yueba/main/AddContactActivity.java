@@ -3,7 +3,6 @@ package com.lanou.yueba.main;
 import android.content.Intent;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -11,8 +10,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
-import com.hyphenate.exceptions.HyphenateException;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.FriendBean;
@@ -101,7 +100,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
                 break;
             case R.id.tv_group_add:
-                Toast.makeText(this, "123", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "群功能目前还没添加", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
@@ -112,9 +111,13 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
 
         BmobQuery<UserInfoBean> friendQuery = new BmobQuery<>();
+        BmobQuery<FriendBean> isFriend = new BmobQuery<>();
         String user = query.getText().toString().trim();
 
         friendQuery.addWhereEqualTo("userName", user);
+        isFriend.addWhereEqualTo("userName",user).addWhereEqualTo("isFriend",false);
+
+
         friendQuery.findObjects(new FindListener<UserInfoBean>() {
             @Override
             public void done(List<UserInfoBean> list, BmobException e) {
@@ -152,23 +155,41 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
     }
 
     private void addContact(final String username) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    EMClient.getInstance().contactManager().addContact(username, "加好友");
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Log.d("AddContactActivity", "233");
-                        }
-                    });
-                } catch (HyphenateException e) {
-                    e.printStackTrace();
-                }
+        EMClient.getInstance().contactManager().aysncAddContact(username, "加好友", new EMCallBack() {
+            @Override
+            public void onSuccess() {
+
             }
-        }).start();
+
+            @Override
+            public void onError(int i, String s) {
+
+            }
+
+            @Override
+            public void onProgress(int i, String s) {
+
+            }
+        });
+
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    EMClient.getInstance().contactManager().addContact(username, "加好友");
+//
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Log.d("AddContactActivity", "233");
+//                        }
+//                    });
+//                } catch (HyphenateException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }).start();
 
     }
 }

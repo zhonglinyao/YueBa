@@ -17,5 +17,6 @@ public class LiteOrmTools {
 
     public LiteOrmTools() {
         mLiteOrm = LiteOrm.newCascadeInstance(YueBaApp.getContext(), StringVlaues.DBName);
+
     }
 }

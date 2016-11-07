@@ -10,6 +10,15 @@ public class FriendBean extends BmobObject {
 
     private String username;
     private String friendname;
+    private boolean isFriend;
+
+    public boolean isFriend() {
+        return isFriend;
+    }
+
+    public void setFriend(boolean friend) {
+        isFriend = friend;
+    }
 
     public String getUsername() {
         return username;
