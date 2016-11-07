@@ -59,11 +59,12 @@ public class LiveActivity extends BaseActivity implements Runnable{
         mVideoView = bindView(R.id.vv_live);
     }
 
+
     @Override
     protected void initData() {
         String url = getIntent().getStringExtra(StringVlaues.LIVEURL);
         Log.d("LiveActivity", url);
-//        String str = "http://flvdl75220c16.live.126.net/live/98cab3a2d96f4fb8ad80a50d19a8f63b.flv?netease=flvdl75220c16.live.126.net";
+        String str = "http://live-play.acgvideo.com/live/716/live_6810019_9448733.flv?wsSecret=7c41e262be5f70706740c98cd1513b19&wsTime=57f89d6f";
         mVideoView.setVideoPath(url);
         mMediaController = new MediaController(this);
         mLiveMediaController = new LiveMediaController(this, mVideoView, this);

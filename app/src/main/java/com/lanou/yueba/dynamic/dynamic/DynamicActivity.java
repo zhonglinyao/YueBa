@@ -93,11 +93,13 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
     public void queryFriend() {
         final BmobQuery<FriendBean> query = new BmobQuery<>("FriendBean");
         query.addWhereEqualTo("username", mUserInfoBean.getUserName());
+        query.addWhereEqualTo("isFriend", true);
         query.findObjects(new FindListener<FriendBean>() {
             @Override
             public void done(List<FriendBean> list, BmobException e) {
                 if (e == null) {
                     Log.d(TAG, "done: 好友");
+                    Log.d("DynamicActivity", "list.size():" + list.size());
                     if (list != null && list.size() > 0)
                         queryDynamic(list);
                     else queryDynamic(new ArrayList<FriendBean>());
@@ -122,6 +124,7 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
             public void done(List<DynamicBean> list, BmobException e) {
                 Log.d(TAG, "done: 动态");
                 if (e == null && list != null && list.size() > 0) {
+                    Log.d(TAG, "done: 有数据");
                     mDynamicBeanList = list;
                     updateView();
                 } else {
