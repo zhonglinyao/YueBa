@@ -17,6 +17,7 @@ import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.tools.ActivityTools;
+import com.lanou.yueba.vlaues.StringVlaues;
 
 import java.io.File;
 
@@ -54,8 +55,9 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     @Override
     protected void initData() {
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra("editInfo");
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.EDIT_INFO);
         update();
+        mEtSignature.setSelection(mEtSignature.getText().toString().length());
         mIvBack.setOnClickListener(this);
         mBtnSure.setOnClickListener(this);
         mIvHead.setOnClickListener(this);
@@ -148,7 +150,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     public void dismiss(){
         Intent intent = new Intent();
-        intent.putExtra("editInfo", mUserInfoBean);
+        intent.putExtra(StringVlaues.EDIT_INFO, mUserInfoBean);
         setResult(111, intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }

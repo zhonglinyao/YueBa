@@ -70,6 +70,12 @@
             android:name=".dynamic.news.NewsActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".dynamic.dynamic.DynamicActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name=".dynamic.dynamic.PublishActivity"
+                  android:screenOrientation="portrait"
+                  android:windowSoftInputMode="adjustPan"/>
+
         <activity
             android:name=".dynamic.news.NewsInfoActivity"
             android:screenOrientation="portrait"/>
@@ -82,7 +88,7 @@
                   android:screenOrientation="portrait"/>
 
         <activity
-            android:name=".main.AddContactActivity"
+            android:name=".main.addcontact.AddContactActivity"
             android:screenOrientation="portrait"/>
 
         <activity

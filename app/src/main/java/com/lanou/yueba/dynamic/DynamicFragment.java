@@ -21,6 +21,12 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
     private RelativeLayout mRlVideo;
     private RelativeLayout mRlNews;
     private LinearLayout mLlLive;
+    private LinearLayout mLlDynamic;
+    private DynamicCallBack mDynamicCallBack;
+
+    public void setDynamicCallBack(DynamicCallBack dynamicCallBack) {
+        mDynamicCallBack = dynamicCallBack;
+    }
 
     @Override
     protected int setLayout() {
@@ -32,6 +38,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
         mRlVideo = bindView(R.id.rl_video_dynamic);
         mRlNews = bindView(R.id.rl_news_dynamic);
         mLlLive = bindView(R.id.ll_live_dynamic);
+        mLlDynamic = bindView(R.id.ll_dynamic_dynamic);
     }
 
     @Override
@@ -43,6 +50,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
         mRlVideo.setOnClickListener(this);
         mRlNews.setOnClickListener(this);
         mLlLive.setOnClickListener(this);
+        mLlDynamic.setOnClickListener(this);
     }
 
     @Override
@@ -57,6 +65,13 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
             case R.id.ll_live_dynamic:
                 startActivity(new Intent(mContext, LiveListActivity.class));
                 break;
+            case R.id.ll_dynamic_dynamic:
+                mDynamicCallBack.callBack();
+                break;
         }
+    }
+
+    public interface DynamicCallBack{
+        void callBack();
     }
 }
