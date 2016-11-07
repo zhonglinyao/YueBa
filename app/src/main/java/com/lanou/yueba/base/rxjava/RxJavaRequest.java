@@ -19,7 +19,7 @@ import rx.schedulers.Schedulers;
  */
 
 public class RxJavaRequest {
-    public static <T>Observable rxJavaOkHttpGetBean(final String url, final Class clazz, final Gson gson) {
+    public static <T>Observable rxJavaOkHttpGetBean(final String url, final Class clazz) {
         return Observable
                 .just(url)
                 .map(new Func1<String, String>() {
@@ -51,6 +51,7 @@ public class RxJavaRequest {
                 .map(new Func1<String, T>() {
                     @Override
                     public T call(String string) {
+                        Gson gson = new Gson();
                         T t = (T) gson.fromJson(string, clazz);
                         return t;
                     }

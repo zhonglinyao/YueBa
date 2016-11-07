@@ -1,4 +1,4 @@
-package com.lanou.yueba.customview;
+package com.lanou.yueba.widget;
 
 import android.app.Activity;
 import android.content.Context;

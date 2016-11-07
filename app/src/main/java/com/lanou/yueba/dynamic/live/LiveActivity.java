@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
-import com.lanou.yueba.customview.LiveMediaController;
+import com.lanou.yueba.widget.LiveMediaController;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.vlaues.StringVlaues;
 

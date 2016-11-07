@@ -102,7 +102,7 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
                         queryDynamic(list);
                     else queryDynamic(new ArrayList<FriendBean>());
                 } else {
-
+                    queryDynamic(new ArrayList<FriendBean>());
                 }
             }
         });
@@ -123,6 +123,9 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
                 Log.d(TAG, "done: 动态");
                 if (e == null && list != null && list.size() > 0) {
                     mDynamicBeanList = list;
+                    updateView();
+                } else {
+                    mDynamicBeanList = new ArrayList<>();
                     updateView();
                 }
             }
@@ -162,6 +165,9 @@ public class DynamicActivity extends BaseActivity implements View.OnClickListene
         if (101 == requestCode && 102 == resultCode) {
             Log.d(TAG, "onActivityResult: 发表动态成功返回数据");
             DynamicBean dynamicBean = (DynamicBean) data.getSerializableExtra(StringVlaues.PUBLISH);
+            if (mDynamicBeanList == null) {
+                mDynamicBeanList = new ArrayList<>();
+            }
             mDynamicBeanList.add(0, dynamicBean);
             mAdapter.notifyDataSetChanged();
         }
