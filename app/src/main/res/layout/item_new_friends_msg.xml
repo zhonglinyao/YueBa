@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="好友申请"
+            />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/tv_name_friend_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="好友姓名"
+                    />
+                <TextView
+                    android:id="@+id/tv_reason_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="申请理由"
+                    />
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btn_agree_msg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:text="同意"
+
+                />
+
+
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</LinearLayout>

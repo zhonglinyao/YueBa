@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        style="@style/ToolBar"
+        android:paddingLeft="10dp"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_back_msg"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/toolbar_back"/>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="好友申请"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ListView
+        android:id="@+id/lv_msg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+    </ListView>
+
+</LinearLayout>

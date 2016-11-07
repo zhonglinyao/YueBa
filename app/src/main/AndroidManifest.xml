@@ -111,6 +111,9 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
+        <activity android:name=".contact.NewFriendsMsgActivity"
+                  android:screenOrientation="portrait"
+            />
 
         <!-- 设置环信应用的AppKey -->
         <meta-data

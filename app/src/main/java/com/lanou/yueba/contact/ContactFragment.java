@@ -37,21 +37,14 @@ public class ContactFragment extends EaseContactListFragment {
         View headView = LayoutInflater.from(getActivity()).inflate(R.layout.em_contacts_head, null);
         HeaderItemClickListener clickListener = new HeaderItemClickListener();
         mContactItemView = (ContactItemView) headView.findViewById(R.id.application_item);
-
         mContactItemView.setOnClickListener(clickListener);
-
         listView.addHeaderView(headView);
-
         registerForContextMenu(listView);
-
-
 
         EMClient.getInstance().contactManager().setContactListener(new FriendListener());
 
 
     }
-
-
 
 
     @Override
@@ -103,17 +96,17 @@ public class ContactFragment extends EaseContactListFragment {
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.application_item:
-
                     //                    Toast.makeText(getContext(), "233", Toast.LENGTH_SHORT).show();
-//                    startActivity(new Intent(getActivity(), NewFriendsMsgActivity.class));
+                    Intent intent = new Intent(getActivity(), NewFriendsMsgActivity.class);
+                    intent.putExtra("username",EMClient.getInstance().getCurrentUser());
+                    startActivity(intent);
                     break;
             }
         }
     }
 
 
-
-    public class FriendListener implements EMContactListener{
+    public class FriendListener implements EMContactListener {
 
         @Override
         public void onContactAdded(String s) {
