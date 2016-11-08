@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_dynamic"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fl_dynamic">
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    android:background="#00FFFFFF">
 
     <ImageView
         android:id="@+id/iv_loading_dynamic"
@@ -18,35 +22,43 @@
         android:layout_height="match_parent"
         android:layout="@layout/layout_dynamic"/>
 
-    <RelativeLayout
-        android:id="@+id/rl_dynamic_dynamic"
+    <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp">
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
+        android:minHeight="?attr/actionBarSize">
 
-        <ImageView
-            android:id="@+id/iv_back_dynamic"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:layout_centerVertical="true"
-            android:background="@mipmap/toolbar_back"/>
-
-        <TextView
-            style="@style/CustomTitleTextAppearance"
+        <RelativeLayout
+            android:id="@+id/rl_dynamic_dynamic"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:gravity="center"
-            android:text="@string/dynamic_dynamic"/>
+            android:layout_height="?attr/actionBarSize"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
-        <ImageView
-            android:id="@+id/iv_publish_dynamic"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
+            <ImageView
+                android:id="@+id/iv_back_dynamic"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:background="@mipmap/toolbar_back"/>
 
-    </RelativeLayout>
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="@string/dynamic_dynamic"/>
+
+            <ImageView
+                android:id="@+id/iv_publish_dynamic"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"/>
+
+        </RelativeLayout>
+    </android.support.v7.widget.Toolbar>
 
 </FrameLayout>

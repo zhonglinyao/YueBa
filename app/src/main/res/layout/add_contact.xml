@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    style="@style/StatusBar"
+    android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -22,8 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"
-                >
+                android:orientation="horizontal">
 
                 <ImageView
                     android:layout_width="30dp"
@@ -57,51 +58,48 @@
 
     <include layout="@layout/ease_search_bar"/>
 
-    <LinearLayout
-        android:id="@+id/ll_add_contact"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/white"
-        android:orientation="vertical"
-        android:visibility="invisible"
-        >
+        android:layout_height="match_parent"
+        android:background="@android:color/white">
 
-        <TextView
-            android:id="@+id/tv_person_add"
+        <LinearLayout
+            android:id="@+id/ll_add_contact"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="找人:"
-            android:textSize="15dp"
-            android:gravity="center_vertical"
-            android:clickable="true"
-            android:onClick=""
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:orientation="vertical"
+            android:visibility="invisible">
 
-            />
+            <TextView
+                android:id="@+id/tv_person_add"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:onClick=""
+                android:textSize="15dp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorLine"
-            />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorLine"/>
 
-        <TextView
-            android:id="@+id/tv_group_add"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:text="找群:"
-            android:textSize="15dp"
-            android:gravity="center_vertical"
-            android:clickable="true"
-            />
+            <TextView
+                android:id="@+id/tv_group_add"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:clickable="true"
+                android:gravity="center_vertical"
+                android:textSize="15dp"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@color/colorLine"
-            />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/colorLine"/>
 
 
-    </LinearLayout>
-
+        </LinearLayout>
+    </FrameLayout>
 
 </LinearLayout>

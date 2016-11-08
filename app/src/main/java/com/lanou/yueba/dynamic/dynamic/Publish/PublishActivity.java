@@ -1,4 +1,4 @@
-package com.lanou.yueba.dynamic.dynamic;
+package com.lanou.yueba.dynamic.dynamic.Publish;
 
 import android.content.Intent;
 import android.database.Cursor;
