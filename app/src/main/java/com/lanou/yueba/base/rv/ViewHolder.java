@@ -76,7 +76,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder setImage(int viewId, String url){
         ImageView view = getView(viewId);
-        Glide.with(mContext).load(url).placeholder(R.mipmap.image_error).into(view);
+        Glide.with(mContext).load(url).placeholder(R.mipmap.image_error).
+                error(R.mipmap.image_error).into(view);
         return this;
     }
 
