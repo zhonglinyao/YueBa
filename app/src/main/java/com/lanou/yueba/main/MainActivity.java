@@ -87,7 +87,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void callBack() {
                 Intent intent = new Intent(MainActivity.this, DynamicActivity.class);
-                intent.putExtra(StringVlaues.DYNAMIC, mUserInfoBean);
+                intent.putExtra(DynamicActivity.DYNAMIC, mUserInfoBean);
                 startActivity(intent);
             }
         });
@@ -127,7 +127,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.civ_toolbar:
                 Intent infoIntent = new Intent(this, InfoActivity.class);
-                infoIntent.putExtra(StringVlaues.INFO, mUserInfoBean);
+                infoIntent.putExtra(InfoActivity.INFO, mUserInfoBean);
                 startActivityForResult(infoIntent, 201);
                 break;
             case iv_more_toolbar:

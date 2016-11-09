@@ -19,7 +19,6 @@ import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.tools.ActivityTools;
-import com.lanou.yueba.vlaues.StringVlaues;
 
 import java.io.File;
 
@@ -32,6 +31,7 @@ import cn.bmob.v3.listener.UploadFileListener;
  */
 
 public class EditInfoActivity extends BaseActivity implements View.OnClickListener {
+    public static final String EDIT_INFO = "editInfo";
     private UserInfoBean mUserInfoBean;
     private ImageView mIvBack;
     private EditText mEtPhone;
@@ -61,7 +61,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void initData() {
         mIvUpload.setVisibility(View.GONE);
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.EDIT_INFO);
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(EDIT_INFO);
         update();
         mEtSignature.setSelection(mEtSignature.getText().toString().length());
         mIvBack.setOnClickListener(this);
@@ -154,7 +154,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
 
     public void dismiss(){
         Intent intent = new Intent();
-        intent.putExtra(StringVlaues.EDIT_INFO, mUserInfoBean);
+        intent.putExtra(EDIT_INFO, mUserInfoBean);
         setResult(111, intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }

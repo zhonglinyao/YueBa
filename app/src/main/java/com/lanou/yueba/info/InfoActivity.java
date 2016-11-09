@@ -31,10 +31,10 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
+    public static final String INFO = "info";
     private ImageView mIvBack;
     private TextView mTvEdit;
     private TextView mTvExit;
-
     private TextView mTvUsername;
     private TextView mTvSignature;
     private TextView mTvQQ;
@@ -42,8 +42,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     private UserInfoBean mUserInfoBean;
     private String mCurrentUser;
     private ImageView mIvHead;
-
-//    private TextView mName;
 
     @Override
     protected int setLayout() {
@@ -69,7 +67,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         mCurrentUser = EMClient.getInstance().getCurrentUser().toString();
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.INFO);
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(INFO);
         update();
         initListener();
         if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
@@ -126,7 +124,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_edit_info:
                 Intent intent = new Intent(this, EditInfoActivity.class);
-                intent.putExtra(StringVlaues.EDIT_INFO, mUserInfoBean);
+                intent.putExtra(EditInfoActivity.EDIT_INFO, mUserInfoBean);
                 startActivityForResult(intent, 222);
                 break;
             case R.id.tv_exit_info:
@@ -186,7 +184,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (222 == requestCode && 111 == resultCode) {
-            mUserInfoBean = (UserInfoBean) data.getSerializableExtra(StringVlaues.EDIT_INFO);
+            mUserInfoBean = (UserInfoBean) data.getSerializableExtra(EditInfoActivity.EDIT_INFO);
             update();
             LiteOrmTools.getInstance().deleteTab(UserInfoBean.class);
             LiteOrmTools.getInstance().insertInfo(mUserInfoBean);
@@ -211,7 +209,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(StringVlaues.INFO, mUserInfoBean);
+        intent.putExtra(INFO, mUserInfoBean);
         setResult(101, intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }

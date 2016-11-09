@@ -36,6 +36,7 @@ public class DynamicActivity extends BaseActivity implements
         View.OnClickListener,
         AppBarLayout.OnOffsetChangedListener, DynamicView {
 
+    public static final String DYNAMIC = "dynamic";
     private ImageView mIvBack;
     private RecyclerView mRv;
     private AppBarLayout mAppBarLayout;
@@ -73,7 +74,7 @@ public class DynamicActivity extends BaseActivity implements
         mDynamicBeanList = new ArrayList<>();
         mIvBack.setOnClickListener(this);
         mHeight = getWindowManager().getDefaultDisplay().getHeight();
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.DYNAMIC);
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(DYNAMIC);
         mPresenter = new DynamicPresenter(this);
         mPresenter.queryFriend(mUserInfoBean.getUserName());
     }
