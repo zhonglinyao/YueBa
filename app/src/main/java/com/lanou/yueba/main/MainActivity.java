@@ -161,12 +161,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         if (201 == requestCode && 101 == resultCode) {
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
-            if (mUserInfoBean.getPicUrl() != null) {
-                Glide.with(MainActivity.this)
-                        .load(mUserInfoBean.getPicUrl())
-                        .placeholder(R.mipmap.icon)
-                        .into(mCircleImageView);
-            }
+            updateHead();
         }
 
         if (QR_REQUEST_CODE == requestCode) {
@@ -267,8 +262,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (mUserInfoBean != null && mUserInfoBean.getPicUrl() != null) {
             Glide.with(MainActivity.this)
                     .load(mUserInfoBean.getPicUrl())
-//                    .placeholder(R.mipmap.icon)
-                    .error(R.mipmap.icon)
                     .into(mCircleImageView);
         } else {
             mCircleImageView.setImageResource(R.mipmap.icon);

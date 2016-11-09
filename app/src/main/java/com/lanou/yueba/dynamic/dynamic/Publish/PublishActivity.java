@@ -47,7 +47,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     private UserInfoBean mUserInfoBean;
     private String mContent;
     private ImageView mIvPublishing;
-    private String TAG = "PublishActivity";
+    private static final String TAG = "PublishActivity";
     private FrameLayout mFrameLayout;
 
     @Override

@@ -27,7 +27,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:background="@color/colorLine"/>
+            android:background="@color/bg_color"/>
 
         <RadioGroup
             android:id="@+id/ll_main"

@@ -2,11 +2,14 @@ package com.lanou.yueba.dynamic.live;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lanou.yueba.R;
@@ -32,6 +35,7 @@ public class LiveActivity extends BaseActivity implements Runnable{
     private static final int TIME = 0;
     private static LiveMediaController mLiveMediaController;
     private Handler mHandler;
+    private ImageView mIvPrepare;
 
     @Override
     protected int setLayout() {
@@ -46,10 +50,13 @@ public class LiveActivity extends BaseActivity implements Runnable{
     @Override
     protected void initView() {
         mVideoView = bindView(R.id.vv_live);
+        mIvPrepare = bindView(R.id.iv_prepare_live);
     }
 
     @Override
     protected void initData() {
+        final AnimationDrawable drawable = (AnimationDrawable) mIvPrepare.getBackground();
+        drawable.start();
         mHandler = new LiveHandler(this);
         String url = getIntent().getStringExtra(StringVlaues.LIVEURL);
         Log.d("LiveActivity", url);
@@ -60,13 +67,15 @@ public class LiveActivity extends BaseActivity implements Runnable{
         mVideoView.setMediaController(mLiveMediaController);
         mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);//高画质
         mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_STRETCH, 1.0f);
-//        mMediaController.show(5000);
         mVideoView.requestFocus();
 
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setPlaybackSpeed(1.0f);
+                mp.start();
+                drawable.stop();
+                mIvPrepare.setVisibility(View.GONE);
             }
         });
 

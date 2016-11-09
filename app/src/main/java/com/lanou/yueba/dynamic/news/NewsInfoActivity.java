@@ -49,7 +49,7 @@ public class NewsInfoActivity extends BaseActivity{
         WebSettings webSettings = mWebView .getSettings();
         webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放
         webSettings.setLoadWithOverviewMode(true);
-//        webSettings.setJavaScriptEnabled(true);
+        webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setSupportZoom(true);
         mWebView.requestFocusFromTouch();
