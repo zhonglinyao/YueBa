@@ -23,7 +23,6 @@ import com.lanou.yueba.dynamic.dynamic.Publish.PublishActivity;
 import com.lanou.yueba.dynamic.dynamic.persenter.DynamicPresenter;
 import com.lanou.yueba.dynamic.dynamic.ui.DynamicView;
 import com.lanou.yueba.tools.ActivityTools;
-import com.lanou.yueba.vlaues.StringVlaues;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -84,7 +83,7 @@ public class DynamicActivity extends BaseActivity implements
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (101 == requestCode && 102 == resultCode) {
-            DynamicBean dynamicBean = (DynamicBean) data.getSerializableExtra(StringVlaues.PUBLISH);
+            DynamicBean dynamicBean = (DynamicBean) data.getSerializableExtra(PublishActivity.PUBLISH);
             mDynamicBeanList.add(0, dynamicBean);
             mAdapter.notifyDataSetChanged();
         }
@@ -117,7 +116,7 @@ public class DynamicActivity extends BaseActivity implements
                 break;
             case R.id.iv_publish_dynamic:
                 Intent intent = new Intent(DynamicActivity.this, PublishActivity.class);
-                intent.putExtra(StringVlaues.PUBLISH, mUserInfoBean);
+                intent.putExtra(PublishActivity.PUBLISH, mUserInfoBean);
                 startActivityForResult(intent, 101);
                 break;
         }

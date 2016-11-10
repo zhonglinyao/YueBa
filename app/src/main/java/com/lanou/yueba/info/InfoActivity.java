@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
@@ -18,8 +17,6 @@ import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.tools.ToastTools;
-import com.lanou.yueba.vlaues.StringVlaues;
-
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -72,11 +69,11 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         initListener();
         if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
             USERINFO = 0;
-            mTvExit.setText(StringVlaues.EXIT);
+            mTvExit.setText("退出当前账号");
             mTvEdit.setVisibility(View.VISIBLE);
         } else {
             USERINFO = 1;
-            mTvExit.setText(StringVlaues.ADD_FRIEND);
+            mTvExit.setText("添加好友");
             mTvEdit.setVisibility(View.GONE);
         }
 

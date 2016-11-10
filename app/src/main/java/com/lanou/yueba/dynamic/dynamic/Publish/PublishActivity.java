@@ -20,7 +20,6 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.DynamicBean;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.tools.ActivityTools;
-import com.lanou.yueba.vlaues.StringVlaues;
 
 import java.io.File;
 
@@ -38,6 +37,7 @@ import static com.lanou.yueba.R.id.tv_publish_publish;
 
 public class PublishActivity extends BaseActivity implements View.OnClickListener {
 
+    public static final String PUBLISH = "publish";
     private TextView mTvBack;
     private EditText mEt;
     private TextView mTvPublish;
@@ -69,7 +69,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     protected void initData() {
         mIvPublishing.setVisibility(View.GONE);
         mFrameLayout.setVisibility(View.GONE);
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.PUBLISH);
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(PUBLISH);
         mDynamicBean = new DynamicBean();
         initClickListener();
     }
@@ -149,7 +149,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                                     Log.d(TAG, "done: 成功");
                                     drawable.stop();
                                     Intent intent = new Intent();
-                                    intent.putExtra(StringVlaues.PUBLISH, mDynamicBean);
+                                    intent.putExtra(PUBLISH, mDynamicBean);
                                     setResult(102, intent);
                                     ActivityTools.deleteActivity(PublishActivity.this.getClass().getSimpleName());
                                 } else {
@@ -173,7 +173,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                         drawable.stop();
                         Log.d(TAG, "done: 成功");
                         Intent intent = new Intent();
-                        intent.putExtra(StringVlaues.PUBLISH, mDynamicBean);
+                        intent.putExtra(PUBLISH, mDynamicBean);
                         setResult(102, intent);
                         ActivityTools.deleteActivity(PublishActivity.this.getClass().getSimpleName());
                     } else {

@@ -15,7 +15,6 @@ import android.widget.Toast;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.tools.ActivityTools;
-import com.lanou.yueba.vlaues.StringVlaues;
 import com.lanou.yueba.widget.LiveMediaController;
 
 import java.lang.ref.WeakReference;
@@ -31,6 +30,7 @@ import io.vov.vitamio.widget.VideoView;
 
 public class LiveActivity extends BaseActivity implements Runnable{
 
+    public static final String LIVE_URL = "liveurl";
     private VideoView mVideoView;
     private static final int TIME = 0;
     private static LiveMediaController mLiveMediaController;
@@ -58,7 +58,7 @@ public class LiveActivity extends BaseActivity implements Runnable{
         final AnimationDrawable drawable = (AnimationDrawable) mIvPrepare.getBackground();
         drawable.start();
         mHandler = new LiveHandler(this);
-        String url = getIntent().getStringExtra(StringVlaues.LIVEURL);
+        String url = getIntent().getStringExtra(LIVE_URL);
         Log.d("LiveActivity", url);
         String str = "http://live-play.acgvideo.com/live/716/live_6810019_9448733.flv?wsSecret=7c41e262be5f70706740c98cd1513b19&wsTime=57f89d6f";
         mVideoView.setVideoPath(url);

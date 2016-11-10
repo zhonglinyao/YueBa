@@ -18,8 +18,9 @@ import com.lanou.yueba.tools.ActivityTools;
  * Created by dllo on 16/10/29.
  */
 
-public class NewsInfoActivity extends BaseActivity{
+public class NewsInfoActivity extends BaseActivity {
 
+    public static final String NEW_URL = "newsUrl";
     private ImageView mIvBack;
     private WebView mWebView;
     private Dialog mDialog;
@@ -46,26 +47,26 @@ public class NewsInfoActivity extends BaseActivity{
         });
         mDialog = new ProgressDialog(this);
         mDialog.show();
-        WebSettings webSettings = mWebView .getSettings();
+        WebSettings webSettings = mWebView.getSettings();
         webSettings.setUseWideViewPort(true);//设置此属性，可任意比例缩放
         webSettings.setLoadWithOverviewMode(true);
         webSettings.setJavaScriptEnabled(true);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setSupportZoom(true);
         mWebView.requestFocusFromTouch();
-        mWebView.loadUrl(getIntent().getStringExtra("newsUrl"));
-        mWebView.setWebViewClient(new WebViewClient(){
+        mWebView.loadUrl(getIntent().getStringExtra(NEW_URL));
+        mWebView.setWebViewClient(new WebViewClient() {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-                return  true;
+                return true;
             }
         });
-        mWebView.setWebChromeClient(new WebChromeClient(){
+        mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 Log.d("NewsInfoActivity", "newProgress:" + newProgress);
-                if (100 == newProgress){
+                if (100 == newProgress) {
                     mDialog.dismiss();
                 } else {
                     mDialog.show();
@@ -81,10 +82,6 @@ public class NewsInfoActivity extends BaseActivity{
 
     @Override
     public void onBackPressed() {
-        if (mWebView.canGoBack()){
-            mWebView.goBack();
-        } else{
-            ActivityTools.deleteActivity(this.getClass().getSimpleName());
-        }
+        ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 }

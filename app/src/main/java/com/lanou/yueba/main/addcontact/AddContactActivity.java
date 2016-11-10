@@ -17,7 +17,7 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.FriendBean;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.info.InfoActivity;
-import com.lanou.yueba.vlaues.StringVlaues;
+import com.lanou.yueba.main.MainActivity;
 
 import java.util.List;
 
@@ -144,7 +144,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
         BmobQuery<FriendBean> friendQuery = new BmobQuery<>();
         String user = EMClient.getInstance().getCurrentUser();
 
-        friendQuery.addWhereEqualTo(StringVlaues.username, user);
+        friendQuery.addWhereEqualTo(MainActivity.USERNAME, user);
         friendQuery.findObjects(new FindListener<FriendBean>() {
             @Override
             public void done(List<FriendBean> list, BmobException e) {

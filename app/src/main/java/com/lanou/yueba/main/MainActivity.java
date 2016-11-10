@@ -24,7 +24,6 @@ import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.main.addcontact.AddContactActivity;
 import com.lanou.yueba.message.MessageFragment;
-import com.lanou.yueba.vlaues.StringVlaues;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -39,6 +38,8 @@ import static com.lanou.yueba.R.id.iv_more_toolbar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    private static final int REQUSET = 201;
+    public static final String USERNAME = "username";
     private RadioButton mIvContact;
     private RadioButton mIvDynamic;
     private RadioButton mIvMessage;
@@ -76,7 +77,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void initData() {
-        mUserName = getIntent().getStringExtra(StringVlaues.username);
+        mUserName = getIntent().getStringExtra(USERNAME);
         changeToolBar();
         initClickListener();
         mIvMessage.setChecked(true);
@@ -128,7 +129,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.civ_toolbar:
                 Intent infoIntent = new Intent(this, InfoActivity.class);
                 infoIntent.putExtra(InfoActivity.INFO, mUserInfoBean);
-                startActivityForResult(infoIntent, 201);
+                startActivityForResult(infoIntent, REQUSET);
                 break;
             case iv_more_toolbar:
                 showQR();
@@ -160,7 +161,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (201 == requestCode && 101 == resultCode) {
-            mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
+            mUserInfoBean = (UserInfoBean) data.getSerializableExtra(InfoActivity.INFO);
             updateHead();
         }
 
@@ -189,21 +190,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (index) {
 
             case 1:
-                mTvToolBar.setText("会话");
+                mTvToolBar.setText(getString(R.string.chat));
                 mIvToolBar.setVisibility(View.VISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
                 mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
 
             case 2:
-                mTvToolBar.setText("联系人");
+                mTvToolBar.setText(getString(R.string.contact));
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.VISIBLE);
                 mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
 
             case 3:
-                mTvToolBar.setText("动态");
+                mTvToolBar.setText(getString(R.string.dynamic));
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
                 mTvMoreToolBar.setVisibility(View.VISIBLE);
