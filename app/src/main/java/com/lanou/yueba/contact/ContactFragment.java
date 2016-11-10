@@ -51,12 +51,16 @@ public class ContactFragment extends EaseContactListFragment {
     protected void setUpView() {
         super.setUpView();
 
+
+
+
         EMClient.getInstance().contactManager().aysncGetAllContactsFromServer(new EMValueCallBack<List<String>>() {
             @Override
             public void onSuccess(final List<String> strings) {
                 mMap = new HashMap<String, EaseUser>();
                 for (String s : strings) {
                     EaseUser user = new EaseUser(s);
+
                     mMap.put(s, user);
                 }
                 setContactsMap(mMap);
@@ -68,6 +72,9 @@ public class ContactFragment extends EaseContactListFragment {
 
             }
         });
+
+
+
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

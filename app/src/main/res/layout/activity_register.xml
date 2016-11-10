@@ -56,11 +56,13 @@
             <EditText
                 android:id="@+id/et_password_register"
                 style="@style/Register"
+                android:inputType="textPassword"
                 android:hint="@string/put_password_hint"/>
 
             <EditText
                 android:id="@+id/et_password_sure_register"
                 style="@style/Register"
+                android:inputType="textPassword"
                 android:hint="@string/put_password_sure_hint"/>
 
             <Button

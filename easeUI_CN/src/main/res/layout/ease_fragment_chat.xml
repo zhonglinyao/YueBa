@@ -21,7 +21,9 @@
         <com.hyphenate.easeui.widget.EaseChatMessageList
             android:id="@+id/message_list"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+
+            />
 
         <com.hyphenate.easeui.widget.EaseVoiceRecorderView
             android:id="@+id/voice_recorder"

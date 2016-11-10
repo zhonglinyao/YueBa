@@ -30,6 +30,8 @@ public class MessageFragment extends EaseConversationListFragment  {
     @Override
     protected void setUpView() {
 
+//        EaseUI.getInstance().setUserProfileProvider(new UserProfileProvide());
+
 
         setConversationListItemClickListener(new EaseConversationListItemClickListener() {
             @Override
@@ -55,6 +57,7 @@ public class MessageFragment extends EaseConversationListFragment  {
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
     }
+
 
 
 

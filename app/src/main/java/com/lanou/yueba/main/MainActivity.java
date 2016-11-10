@@ -3,12 +3,17 @@ package com.lanou.yueba.main;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -131,13 +136,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 startActivityForResult(infoIntent, 201);
                 break;
             case iv_more_toolbar:
-                showQR();
+                showPop(v);
                 break;
             case R.id.tv_add_toolbar:
 
                 Intent intent = new Intent(MainActivity.this, AddContactActivity.class);
                 startActivity(intent);
-
                 break;
             case R.id.tv_more_toolbar:
                 break;
@@ -148,9 +152,43 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         transaction.commit();
     }
 
+    private void showPop(View v) {
+        // 一个自定义的布局，作为显示的内容
+        View contentView = LayoutInflater.from(this).inflate(
+                R.layout.pop_window, null);
+        // 设置按钮的点击事件
+        Button addPop,createPop;
+        addPop= (Button) contentView.findViewById(R.id.btn_add_friend_pop);
+        createPop = (Button) contentView.findViewById(R.id.btn_create_qr_pop);
+
+        addPop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showQR();
+            }
+        });
+        createPop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ShowQRActivity.class);
+                startActivity(intent);
+            }
+        });
+        PopupWindow popupWindow = new PopupWindow(contentView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+        // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
+        popupWindow.setFocusable(true);
+        // 实例化一个ColorDrawable颜色为半透明
+        ColorDrawable dw = new ColorDrawable(0xb0000000);
+        popupWindow.setBackgroundDrawable(dw);
+        // 设置popWindow的显示和消失动画
+        popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);
+        // 设置好参数之后再show
+        popupWindow.showAsDropDown(v);
+
+    }
     //二维码
     private int QR_REQUEST_CODE = 102;
-
     private void showQR() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
         startActivityForResult(intent, QR_REQUEST_CODE);
@@ -179,9 +217,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
 
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    Log.d("MainActivity", result);
-
-                    Toast.makeText(this, "解析结果:" + result, Toast.LENGTH_LONG).show();
+                    BmobQuery<UserInfoBean> beanBmobQuery =new BmobQuery<>();
+                    beanBmobQuery.addWhereEqualTo("userName",result);
+                    beanBmobQuery.findObjects(new FindListener<UserInfoBean>() {
+                        @Override
+                        public void done(List<UserInfoBean> list, BmobException e) {
+                            if (e == null){
+                                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                                intent.putExtra("info", list.get(0));
+                                startActivity(intent);
+                            }
+                        }
+                    });
                 } else if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_FAILED) {
                     Toast.makeText(MainActivity.this, "解析二维码失败", Toast.LENGTH_LONG).show();
                 }

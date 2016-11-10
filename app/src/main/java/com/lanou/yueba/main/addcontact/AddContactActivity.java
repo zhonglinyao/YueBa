@@ -32,7 +32,7 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
     private EditText query;
     private ImageButton clearSearch;
-    private TextView personAdd, groupAdd;
+    private TextView personAdd, groupAdd,backAdd;
     private LinearLayout ll;
 
     @Override
@@ -47,6 +47,8 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
         personAdd = bindView(R.id.tv_person_add);
         groupAdd = bindView(R.id.tv_group_add);
         ll = bindView(R.id.ll_add_contact);
+        backAdd = bindView(R.id.tv_back_add_contact);
+
 
     }
 
@@ -90,18 +92,20 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
         personAdd.setOnClickListener(this);
         groupAdd.setOnClickListener(this);
+        backAdd.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_person_add:
-
                 queryByContact();
-
                 break;
             case R.id.tv_group_add:
                 Toast.makeText(this, "群功能目前还没添加", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.tv_back_add_contact:
+                finish();
                 break;
         }
     }

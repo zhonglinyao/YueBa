@@ -118,17 +118,13 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     @Override
     public void onResponse(final String username, final String password) {
 
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
                 mDialog.dismiss();
                 EMClient.getInstance().chatManager().loadAllConversations();
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 intent.putExtra(StringVlaues.username, username);
                 startActivity(intent);
                 ActivityTools.deleteActivity(this.getClass().getSimpleName());
-//            }
-//        });
+
     }
 
     @Override
