@@ -117,5 +117,8 @@
     <string name="chat">会话</string>
     <string name="contact">联系人</string>
     <string name="dynamic">动态</string>
+    <string name="nomal_map">普通地图</string>
+    <string name="satellite_map">卫星地图</string>
+    <string name="save_location">保存位置</string>
 
 </resources>

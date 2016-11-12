@@ -33,6 +33,15 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:text="@string/dynamic_nearby"/>
+
+            <TextView
+                android:id="@+id/tv_save_location_nearby"
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:gravity="center"
+                android:text="@string/save_location"/>
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -68,7 +77,7 @@
                     android:layout_height="25dp"
                     android:button="@drawable/nearby_btn_select"
                     android:text="普通地图"
-                    android:textColor="@android:color/background_dark"/>
+                    android:textColor="@android:color/black"/>
 
                 <RadioButton
                     android:id="@+id/btn_satellite_nearby"
@@ -77,14 +86,27 @@
                     android:layout_marginTop="10dp"
                     android:button="@drawable/nearby_btn_select"
                     android:text="卫星地图"
-                    android:textColor="@android:color/background_dark"/>
+                    android:textColor="@android:color/black"/>
             </RadioGroup>
 
             <Button
                 android:id="@+id/btn_mode_nearby"
-                android:layout_width="70dp"
+                android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@color/colorButtonModeNearby"/>
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_save_nearby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_save_map_nearby"
+                android:layout_width="50dp"
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:background="@drawable/publist"/>
+        </FrameLayout>
     </FrameLayout>
 </LinearLayout>
