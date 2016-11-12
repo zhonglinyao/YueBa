@@ -132,26 +132,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                     ActivityTools.deleteActivity(this.getClass().getSimpleName());
                     break;
                 } else {
-
                     addToBmob();
-//                    EMClient.getInstance().contactManager().aysncAddContact(mUserInfoBean.getUserName(), "添加好友", new EMCallBack() {
-//                        @Override
-//                        public void onSuccess() {
-//                            addToBmob();
-//                        }
-//
-//                        @Override
-//                        public void onError(int i, String s) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onProgress(int i, String s) {
-//
-//                        }
-//                    });
-
-
                 }
 
                 break;

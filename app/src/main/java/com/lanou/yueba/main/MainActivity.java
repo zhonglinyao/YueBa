@@ -32,7 +32,6 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.lanou.yueba.R.id.iv_more_toolbar;
 
@@ -47,7 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ContactFragment mContactFragment;
     private DynamicFragment mDynamicFragment;
 
-    private CircleImageView mCircleImageView;
+    private ImageView mCircleImageView;
     private TextView mTvToolBar;
     private int index = 1;
     private ImageView mIvToolBar;

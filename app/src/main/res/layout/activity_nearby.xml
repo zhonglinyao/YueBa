@@ -1,15 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/StatusBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/map"
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorMain"
+        app:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <ImageView
+                android:id="@+id/iv_back_nearby"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/toolbar_back"/>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/dynamic_nearby"/>
+        </RelativeLayout>
+
+    </android.support.v7.widget.Toolbar>
+
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    </com.baidu.mapapi.map.MapView>
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/mv_nearby"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+        </com.baidu.mapapi.map.MapView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="10dp"
+            android:orientation="vertical">
+
+            <RadioGroup
+                android:id="@+id/rg_nearby"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checkedButton="@+id/btn_normal_nearby"
+                android:orientation="vertical">
+
+                <RadioButton
+                    android:id="@+id/btn_normal_nearby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:button="@drawable/nearby_btn_select"
+                    android:text="普通地图"
+                    android:textColor="@android:color/background_dark"/>
+
+                <RadioButton
+                    android:id="@+id/btn_satellite_nearby"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_marginTop="10dp"
+                    android:button="@drawable/nearby_btn_select"
+                    android:text="卫星地图"
+                    android:textColor="@android:color/background_dark"/>
+            </RadioGroup>
+
+            <Button
+                android:id="@+id/btn_mode_nearby"
+                android:layout_width="70dp"
+                android:layout_height="40dp"
+                android:background="@color/colorButtonModeNearby"/>
+        </LinearLayout>
+    </FrameLayout>
 </LinearLayout>
