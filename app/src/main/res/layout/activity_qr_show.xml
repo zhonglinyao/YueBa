@@ -4,6 +4,20 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorMain"
+        android:contentInsetStart="0dp"
+        android:contentInsetEnd="0dp"
+        >
+
+
+
+
+    </android.support.v7.widget.Toolbar>
+
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -12,9 +26,10 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:background="@mipmap/qq_qr"
+            android:background="@mipmap/qrqqbg"
 
-            />
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"/>
 
 
 

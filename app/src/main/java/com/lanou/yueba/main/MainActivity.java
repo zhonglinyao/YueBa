@@ -19,6 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.hyphenate.EMMessageListener;
+import com.hyphenate.chat.EMClient;
+import com.hyphenate.chat.EMMessage;
+import com.hyphenate.easeui.controller.EaseUI;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
@@ -79,8 +83,53 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         mTvMoreToolBar = bindView(R.id.tv_more_toolbar);
     }
 
+
+    EMMessageListener mListener = new EMMessageListener() {
+        @Override
+        public void onMessageReceived(List<EMMessage> list) {
+            EaseUI.getInstance().getNotifier().onNewMesg(list);
+            refreshUIWithMessage();
+
+        }
+
+        @Override
+        public void onCmdMessageReceived(List<EMMessage> list) {
+
+        }
+
+        @Override
+        public void onMessageReadAckReceived(List<EMMessage> list) {
+
+        }
+
+        @Override
+        public void onMessageDeliveryAckReceived(List<EMMessage> list) {
+
+        }
+
+        @Override
+        public void onMessageChanged(EMMessage emMessage, Object o) {
+
+        }
+    };
+
+    private void refreshUIWithMessage(){
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (index == 1){
+                    if (mMessageFragment != null){
+                        mMessageFragment.refresh();
+                    }
+                }
+            }
+        });
+    }
     @Override
     protected void initData() {
+
+        EMClient.getInstance().chatManager().addMessageListener(mListener);
+
         mUserName = getIntent().getStringExtra(StringVlaues.username);
         changeToolBar();
         initClickListener();
@@ -179,7 +228,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
         popupWindow.setFocusable(true);
         // 实例化一个ColorDrawable颜色为半透明
-        ColorDrawable dw = new ColorDrawable(0xb0000000);
+        ColorDrawable dw = new ColorDrawable(0x00000000);
         popupWindow.setBackgroundDrawable(dw);
         // 设置popWindow的显示和消失动画
         popupWindow.setAnimationStyle(R.style.mypopwindow_anim_style);

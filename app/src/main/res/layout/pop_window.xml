@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:orientation="vertical"
-              android:background="#FFBBFFBB"
               android:layout_width="wrap_content"
-              android:layout_height="wrap_content">
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:background="@drawable/qrbg3"
+    >
 
 
     <Button
         android:id="@+id/btn_add_friend_pop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
         android:text="扫码加好友"/>
+
+    <View
+        android:layout_width="100dp"
+        android:layout_height="1dp"
+        android:background="@color/colorLine"
+        />
 
     <Button
         android:id="@+id/btn_create_qr_pop"
-        android:text="生成二维码"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:background="@android:color/white"
+        android:text="生成二维码"/>
 
 
 </LinearLayout>

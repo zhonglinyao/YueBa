@@ -117,9 +117,9 @@
     </declare-styleable>
 
     <style name="mypopwindow_anim_style">
-        <item name="android:windowEnterAnimation">@anim/fade_in</item>
+        <item name="android:windowEnterAnimation">@anim/f_in</item>
         <!-- 指定显示的动画xml -->
-        <item name="android:windowExitAnimation">@anim/fade_out</item>
+        <item name="android:windowExitAnimation">@anim/f_out</item>
         <!-- 指定消失的动画xml -->
     </style>
 

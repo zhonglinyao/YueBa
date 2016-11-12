@@ -6,6 +6,7 @@
      android:background="#fff"
     android:gravity="center_vertical" >
 
+
     <RelativeLayout
         android:id="@+id/avatar_container"
         android:layout_width="59dp"
@@ -92,5 +93,11 @@
         android:padding="7dp"
         android:textColor="@color/list_itease_secondary_color"
         android:textSize="14sp" />
+    <View
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/btn_gray_normal"/>
+
 
 </RelativeLayout>
