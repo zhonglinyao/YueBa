@@ -9,7 +9,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
@@ -19,6 +18,7 @@ import com.lanou.yueba.login.presenter.LoginPresenter;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.ui.RegisterActivity;
 import com.lanou.yueba.tools.ActivityTools;
+import com.lanou.yueba.tools.ToastTools;
 import com.lanou.yueba.vlaues.StringVlaues;
 
 /**
@@ -52,7 +52,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     protected void initData() {
-
         if (EMClient.getInstance().isLoggedInBefore()) {
             Intent intent = new Intent(this, MainActivity.class);
             intent.putExtra(StringVlaues.username, EMClient.getInstance().getCurrentUser());
@@ -60,7 +59,6 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
             ActivityTools.deleteActivity(this.getClass().getSimpleName());
             return;
         }
-
 
         mButtonSure.setOnClickListener(this);
         mRegister.setOnClickListener(this);
@@ -75,12 +73,13 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         switch (v.getId()) {
             case R.id.btn_sure_login:
                 if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+
+                    ToastTools.showShort(LoginActivity.this, "用户名不能为空");
                     mName.requestFocus();
                     break;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Log.d("RegisterActivity", "密码不能为空");
+                    ToastTools.showShort(LoginActivity.this, "密码不能为空");
                     mPassword.requestFocus();
                     break;
                 }
@@ -89,7 +88,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 }
                 break;
             case R.id.tv_register_login:
-                startActivityForResult(new Intent(this, RegisterActivity.class),101);
+                startActivityForResult(new Intent(this, RegisterActivity.class), 101);
                 break;
         }
     }
@@ -98,7 +97,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (101 == requestCode && 202 == resultCode ){
+        if (101 == requestCode && 202 == resultCode) {
             mName.setText(data.getStringExtra(StringVlaues.username));
             mPassword.setText(data.getStringExtra(StringVlaues.password));
         }
@@ -117,14 +116,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     public void onResponse(final String username, final String password) {
-
-                mDialog.dismiss();
-                EMClient.getInstance().chatManager().loadAllConversations();
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                intent.putExtra(StringVlaues.username, username);
-                startActivity(intent);
-                ActivityTools.deleteActivity(this.getClass().getSimpleName());
-
+        mDialog.dismiss();
+        EMClient.getInstance().chatManager().loadAllConversations();
+        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+        intent.putExtra(StringVlaues.username, username);
+        startActivity(intent);
+        ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 
     @Override
@@ -133,51 +130,47 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
             @Override
             public void run() {
                 mDialog.dismiss();
-                Log.d("lzan13", "登录失败 Error code:" + i + ", message:" + s);
-                /**
-                 * 关于错误码可以参考官方api详细说明
-                 * http://www.easemob.com/apidoc/android/chat3.0/classcom_1_1hyphenate_1_1_e_m_error.html
-                 */
+                Log.d("失败", "登录失败 Error code:" + i + ", message:" + s);
                 switch (i) {
                     // 网络异常 2
                     case EMError.NETWORK_ERROR:
-                        Toast.makeText(LoginActivity.this, "网络错误 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "网络错误");
                         break;
                     // 无效的用户名 101
                     case EMError.INVALID_USER_NAME:
-                        Toast.makeText(LoginActivity.this, "无效的用户名 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "无效的用户名");
                         break;
                     // 无效的密码 102
                     case EMError.INVALID_PASSWORD:
-                        Toast.makeText(LoginActivity.this, "无效的密码 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "无效的密码");
                         break;
                     // 用户认证失败，用户名或密码错误 202
                     case EMError.USER_AUTHENTICATION_FAILED:
-                        Toast.makeText(LoginActivity.this, "用户认证失败，用户名或密码错误 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "用户认证失败，用户名或密码错误");
                         break;
                     // 用户不存在 204
                     case EMError.USER_NOT_FOUND:
-                        Toast.makeText(LoginActivity.this, "用户不存在 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "用户不存在");
                         break;
                     // 无法访问到服务器 300
                     case EMError.SERVER_NOT_REACHABLE:
-                        Toast.makeText(LoginActivity.this, "无法访问到服务器 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "无法访问到服务器");
                         break;
                     // 等待服务器响应超时 301
                     case EMError.SERVER_TIMEOUT:
-                        Toast.makeText(LoginActivity.this, "等待服务器响应超时 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "等待服务器响应超时");
                         break;
                     // 服务器繁忙 302
                     case EMError.SERVER_BUSY:
-                        Toast.makeText(LoginActivity.this, "服务器繁忙 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "服务器繁忙");
                         break;
                     // 未知 Server 异常 303 一般断网会出现这个错误
                     case EMError.SERVER_UNKNOWN_ERROR:
-                        Toast.makeText(LoginActivity.this, "未知的服务器异常 code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
+                        ToastTools.showShort(LoginActivity.this, "未知的服务器异常");
                         break;
                     default:
-                        Toast.makeText(LoginActivity.this, "ml_sign_in_failed code: " + i + ", message:" + s, Toast.LENGTH_LONG).show();
-                        break;
+                        ToastTools.showShort(LoginActivity.this, "其他错误");
+                      break;
                 }
             }
         });

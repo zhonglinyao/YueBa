@@ -20,6 +20,9 @@ public class ToastTools {
 
     public static boolean isShow = true;
 
+    public static Toast sToast;
+
+
 
     /**
      * 显示自定Toast
@@ -27,17 +30,22 @@ public class ToastTools {
      * @param msg
      */
     public static void showToastMsgShort(Context context, String msg) {
-        Toast toast = new Toast(context);
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, msg, Toast.LENGTH_SHORT);
+        }
+
+//        Toast toast = new Toast(context);
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = layoutInflater.inflate(R.layout.toast_view, null);
         TextView tv = (TextView) view.findViewById(R.id.toast_msg);
         tv.setText(msg);
         TextPaint tp = tv.getPaint();
         tp.setFakeBoldText(true);
-        toast.setView(view);
-        toast.setGravity(Gravity.CENTER, 0, 0);
-        toast.setDuration(Toast.LENGTH_SHORT);
-        toast.show();
+        sToast.setView(view);
+        sToast.setGravity(Gravity.CENTER, 0, 0);
+        sToast.setDuration(Toast.LENGTH_SHORT);
+        sToast.show();
     }
     /**
      * 短时间显示Toast
@@ -47,8 +55,15 @@ public class ToastTools {
      */
     public static void showShort(Context context, CharSequence message)
     {
-        if (isShow)
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        } else {
+            sToast.setText(message);
+            sToast.setDuration(Toast.LENGTH_SHORT);
+        }
+            sToast.show();
+
     }
 
     /**
@@ -59,8 +74,15 @@ public class ToastTools {
      */
     public static void showShort(Context context, int message)
     {
-        if (isShow)
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        } else {
+            sToast.setText(message);
+            sToast.setDuration(Toast.LENGTH_SHORT);
+        }
+        sToast.show();
+
     }
 
     /**
@@ -71,8 +93,18 @@ public class ToastTools {
      */
     public static void showLong(Context context, CharSequence message)
     {
-        if (isShow)
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, message, Toast.LENGTH_SHORT);
+        } else {
+            sToast.setText(message);
+            sToast.setDuration(Toast.LENGTH_SHORT);
+        }
+        sToast.show();
+
+
+
     }
 
     /**
@@ -83,8 +115,16 @@ public class ToastTools {
      */
     public static void showLong(Context context, int message)
     {
-        if (isShow)
-            Toast.makeText(context, message, Toast.LENGTH_LONG).show();
+
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, message, Toast.LENGTH_LONG);
+        } else {
+            sToast.setText(message);
+            sToast.setDuration(Toast.LENGTH_LONG);
+        }
+        sToast.show();
+
     }
 
     /**
@@ -96,8 +136,17 @@ public class ToastTools {
      */
     public static void show(Context context, CharSequence message, int duration)
     {
-        if (isShow)
-            Toast.makeText(context, message, duration).show();
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, message,duration);
+        } else {
+            sToast.setText(message);
+            sToast.setDuration(duration);
+        }
+        sToast.show();
+
+
+
     }
 
     /**
@@ -109,8 +158,15 @@ public class ToastTools {
      */
     public static void show(Context context, int message, int duration)
     {
-        if (isShow)
-            Toast.makeText(context, message, duration).show();
+
+        if (sToast == null){
+            sToast =Toast.makeText(context, message, duration);
+        } else {
+            sToast.setText(message);
+            sToast.setDuration(duration);
+        }
+        sToast.show();
+
     }
 
 }

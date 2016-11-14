@@ -27,6 +27,7 @@ import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.contact.ContactFragment;
+import com.lanou.yueba.contact.FriendsListener;
 import com.lanou.yueba.dbtools.LiteOrmTools;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
@@ -129,6 +130,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void initData() {
 
         EMClient.getInstance().chatManager().addMessageListener(mListener);
+        EMClient.getInstance().contactManager().setContactListener(new FriendsListener());
 
         mUserName = getIntent().getStringExtra(StringVlaues.username);
         changeToolBar();
@@ -273,7 +275,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         public void done(List<UserInfoBean> list, BmobException e) {
                             if (e == null){
                                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-                                intent.putExtra("info", list.get(0));
+                                intent.putExtra(StringVlaues.INFO, list.get(0));
                                 startActivity(intent);
                             }
                         }

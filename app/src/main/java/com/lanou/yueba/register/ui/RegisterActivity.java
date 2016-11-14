@@ -8,13 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.hyphenate.EMError;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.register.presenter.RegPresenter;
+import com.lanou.yueba.tools.ToastTools;
 
 /**
  * Created by dllo on 16/10/24.
@@ -95,26 +95,29 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
                 switch (errorCode) {
                     // 网络错误
                     case EMError.NETWORK_ERROR:
-                        Toast.makeText(RegisterActivity.this, "网络错误 code: " + errorCode + ", message:" + message, Toast.LENGTH_LONG).show();
-                        break;
+                        ToastTools.showShort(RegisterActivity.this,"网络错误");
+                       break;
                     // 用户已存在
                     case EMError.USER_ALREADY_EXIST:
-                        Toast.makeText(RegisterActivity.this, "用户已存在 code: " + errorCode + ", message:" + message, Toast.LENGTH_LONG).show();
-                        break;
+                        ToastTools.showShort(RegisterActivity.this,"用户已存在");
+                       break;
                     // 参数不合法，一般情况是username 使用了uuid导致，不能使用uuid注册
                     case EMError.USER_ILLEGAL_ARGUMENT:
-                        Toast.makeText(RegisterActivity.this, "参数不合法，一般情况是username 使用了uuid导致，不能使用uuid注册 code: " + errorCode + ", message:" + message, Toast.LENGTH_LONG).show();
-                        break;
+                        ToastTools.showShort(RegisterActivity.this,"参数不合法");
+                       break;
                     // 服务器未知错误
                     case EMError.SERVER_UNKNOWN_ERROR:
-                        Toast.makeText(RegisterActivity.this, "服务器未知错误 code: " + errorCode + ", message:" + message, Toast.LENGTH_LONG).show();
-                        break;
+                        ToastTools.showShort(RegisterActivity.this,"服务器未知错误");
+                       break;
                     case EMError.USER_REG_FAILED:
-                        Toast.makeText(RegisterActivity.this, "账户注册失败 code: " + errorCode + ", message:" + message, Toast.LENGTH_LONG).show();
-                        break;
+
+                        ToastTools.showShort(RegisterActivity.this,"账户注册失败");
+
+                       break;
                     default:
-                        Toast.makeText(RegisterActivity.this, "ml_sign_up_failed code: " + errorCode + ", message:" + message, Toast.LENGTH_LONG).show();
-                        break;
+                        ToastTools.showShort(RegisterActivity.this,"其他错误");
+
+                     break;
                 }
             }
         });
@@ -134,24 +137,26 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
             case R.id.btn_sure_register:
 
                 if (TextUtils.isEmpty(username)) {
-                    Toast.makeText(this, "用户名不能为空", Toast.LENGTH_SHORT).show();
+
+                    ToastTools.showShort(RegisterActivity.this,"用户名不能为空");
                     mName.requestFocus();
                     break;
                 }
                 if (TextUtils.isEmpty(password)) {
-                    Log.d("RegisterActivity", "密码不能为空");
+                    ToastTools.showShort(RegisterActivity.this,"密码不能为空");
                     mPassword.requestFocus();
                     break;
                 }
 
                 if (TextUtils.isEmpty(rePassword)){
-                    Log.d("RegisterActivity", "确定密码不能为空");
+                    ToastTools.showShort(RegisterActivity.this,"确定密码不能为空");
                     mSure.requestFocus();
                     break;
                 }
 
                 if (!password.equals(rePassword)){
-                    Toast.makeText(this, "两次输入的密码不一致", Toast.LENGTH_SHORT).show();
+                    ToastTools.showShort(RegisterActivity.this,"两次输入的密码不一致");
+
                     mSure.setText("");
                     mSure.requestFocus();
                     break;

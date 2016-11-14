@@ -1,12 +1,10 @@
 package com.lanou.yueba.contact;
 
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 
-import com.hyphenate.EMContactListener;
 import com.hyphenate.EMValueCallBack;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
@@ -41,26 +39,16 @@ public class ContactFragment extends EaseContactListFragment {
         listView.addHeaderView(headView);
         registerForContextMenu(listView);
 
-        EMClient.getInstance().contactManager().setContactListener(new FriendListener());
-
-
     }
-
-
     @Override
     protected void setUpView() {
         super.setUpView();
-
-
-
-
         EMClient.getInstance().contactManager().aysncGetAllContactsFromServer(new EMValueCallBack<List<String>>() {
             @Override
             public void onSuccess(final List<String> strings) {
                 mMap = new HashMap<String, EaseUser>();
                 for (String s : strings) {
                     EaseUser user = new EaseUser(s);
-
                     mMap.put(s, user);
                 }
                 setContactsMap(mMap);
@@ -73,9 +61,6 @@ public class ContactFragment extends EaseContactListFragment {
             }
         });
 
-
-
-
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -84,19 +69,13 @@ public class ContactFragment extends EaseContactListFragment {
                 intent.putExtra(EaseConstant.EXTRA_USER_ID, chatId);
                 intent.putExtra(EaseConstant.EXTRA_CHAT_TYPE, EMMessage.ChatType.Chat);
                 startActivity(intent);
-
             }
         });
-
-
     }
-
     @Override
     public void refresh() {
         super.refresh();
     }
-
-
     protected class HeaderItemClickListener implements View.OnClickListener {
 
         @Override
@@ -112,33 +91,5 @@ public class ContactFragment extends EaseContactListFragment {
         }
     }
 
-
-    public class FriendListener implements EMContactListener {
-
-        @Override
-        public void onContactAdded(String s) {
-            Log.d("FriendListener", "收到好友邀请1");
-        }
-
-        @Override
-        public void onContactDeleted(String s) {
-            Log.d("FriendListener", "收到好友邀请2");
-        }
-
-        @Override
-        public void onContactInvited(String s, String s1) {
-            Log.d("FriendListener", "收到好友邀请3");
-        }
-
-        @Override
-        public void onContactAgreed(String s) {
-            Log.d("FriendListener", "收到好友邀请4");
-        }
-
-        @Override
-        public void onContactRefused(String s) {
-            Log.d("FriendListener", "收到好友邀请5");
-        }
-    }
 
 }
