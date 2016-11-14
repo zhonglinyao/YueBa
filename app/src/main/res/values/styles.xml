@@ -110,6 +110,13 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:gravity">center_vertical</item>
     </style>
+    android:fitsSystemWindows="true"
+    android:clipToPadding="true"
+    <style name="StatusBar">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:background">@color/colorMain</item>
+    </style>
 
     <declare-styleable name="ContactItemView">
         <attr name="contactItemImage" format="reference"/>
@@ -122,5 +129,9 @@
         <item name="android:windowExitAnimation">@anim/f_out</item>
         <!-- 指定消失的动画xml -->
     </style>
+    
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

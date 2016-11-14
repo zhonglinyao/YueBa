@@ -18,8 +18,9 @@ import com.lanou.yueba.login.presenter.LoginPresenter;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.ui.RegisterActivity;
 import com.lanou.yueba.tools.ActivityTools;
+
 import com.lanou.yueba.tools.ToastTools;
-import com.lanou.yueba.vlaues.StringVlaues;
+
 
 /**
  * Created by dllo on 16/10/24.
@@ -27,6 +28,8 @@ import com.lanou.yueba.vlaues.StringVlaues;
 
 public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
 
+    public static final String PASSWORD = "password";
+    private static final int REQUEST = 101;
     private Button mButtonSure;
     private LinearLayout mLl;
     private ProgressDialog mDialog;
@@ -54,7 +57,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     protected void initData() {
         if (EMClient.getInstance().isLoggedInBefore()) {
             Intent intent = new Intent(this, MainActivity.class);
-            intent.putExtra(StringVlaues.username, EMClient.getInstance().getCurrentUser());
+            intent.putExtra(MainActivity.USERNAME, EMClient.getInstance().getCurrentUser());
             startActivity(intent);
             ActivityTools.deleteActivity(this.getClass().getSimpleName());
             return;
@@ -88,7 +91,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 }
                 break;
             case R.id.tv_register_login:
-                startActivityForResult(new Intent(this, RegisterActivity.class), 101);
+
+                startActivityForResult(new Intent(this, RegisterActivity.class), REQUEST);
+
                 break;
         }
     }
@@ -97,11 +102,12 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (101 == requestCode && 202 == resultCode) {
-            mName.setText(data.getStringExtra(StringVlaues.username));
-            mPassword.setText(data.getStringExtra(StringVlaues.password));
-        }
 
+        if (REQUEST == requestCode && RegisterActivity.RESULT == resultCode) {
+            mName.setText(data.getStringExtra(MainActivity.USERNAME));
+            mPassword.setText(data.getStringExtra(PASSWORD));
+
+        }
     }
 
     @Override
@@ -119,16 +125,18 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
         mDialog.dismiss();
         EMClient.getInstance().chatManager().loadAllConversations();
         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        intent.putExtra(StringVlaues.username, username);
+
+        intent.putExtra(MainActivity.USERNAME, username);
+
         startActivity(intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 
     @Override
     public void onError(final int i, final String s) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
                 mDialog.dismiss();
                 Log.d("失败", "登录失败 Error code:" + i + ", message:" + s);
                 switch (i) {
@@ -172,8 +180,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                         ToastTools.showShort(LoginActivity.this, "其他错误");
                       break;
                 }
-            }
-        });
+//            }
+//        });
     }
 
     public ProgressDialog createDialog() {

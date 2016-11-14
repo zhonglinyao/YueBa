@@ -3,13 +3,13 @@
           xmlns:tools="http://schemas.android.com/tools"
           package="com.lanou.yueba">
 
+    <!-- 二维码权限 -->
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
 
+    <uses-feature android:name="android.hardware.camera"/>
+    <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <!--二维码权限-->
-    <uses-permission android:name="android.permission.FLASHLIGHT" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-feature android:name="android.hardware.camera.autofocus" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <!-- Required -->
     <uses-permission android:name="android.permission.VIBRATE"/>
@@ -38,72 +38,73 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--<meta-data-->
-            <!--android:name="com.lanou.yueba.app.GlideModelConfig"-->
-            <!--android:value="GlideModule" />-->
+        <meta-data
+            android:name="com.lanou.yueba.app.GlideModelConfig"
+            android:value="GlideModule"/>
 
         <activity
             android:name=".main.MainActivity"
-            android:screenOrientation="portrait">
-
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
         </activity>
         <activity
             android:name=".register.ui.RegisterActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
         <activity
             android:name=".login.ui.LoginActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
         <activity
             android:name=".dynamic.video.VideoActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".dynamic.news.NewsActivity"
             android:screenOrientation="portrait"/>
-
-        <activity android:name=".dynamic.dynamic.DynamicActivity"
-                  android:screenOrientation="portrait"/>
-        <activity android:name=".dynamic.dynamic.PublishActivity"
-                  android:screenOrientation="portrait"
-                  android:windowSoftInputMode="adjustPan"/>
-
+        <activity
+            android:name=".dynamic.dynamic.DynamicActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".dynamic.dynamic.Publish.PublishActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
         <activity
             android:name=".dynamic.news.NewsInfoActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".info.InfoActivity"
             android:screenOrientation="portrait"/>
-
-        <activity android:name=".info.EditInfoActivity"
-                  android:screenOrientation="portrait"/>
-
+        <activity
+            android:name=".info.EditInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
         <activity
             android:name=".main.addcontact.AddContactActivity"
-            android:screenOrientation="portrait"/>
-
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
         <activity
             android:name=".contact.ChatActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".dynamic.live.LiveListActivity"
             android:screenOrientation="portrait"/>
-
         <activity
             android:name=".dynamic.live.LiveActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="sensorLandscape"/>
+        <activity
+            android:name=".dynamic.nearby.NearbyActivity"
+            android:screenOrientation="portrait"/>
 
+        <activity
+            android:name="com.hyphenate.easeui.ui.EaseBaiduMapActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name="io.vov.vitamio.activity.InitActivity"
             android:configChanges="orientation|screenSize|smallestScreenSize|keyboard|keyboardHidden|navigation"
@@ -111,17 +112,19 @@
             android:theme="@android:style/Theme.NoTitleBar"
             android:windowSoftInputMode="stateAlwaysHidden"/>
 
+
         <activity android:name=".contact.NewFriendsMsgActivity"
                   android:screenOrientation="portrait"
             />
         <activity android:name=".main.ShowQRActivity"
                   android:screenOrientation="portrait"/>
 
+
         <!-- 设置环信应用的AppKey -->
         <meta-data
             android:name="EASEMOB_APPKEY"
             android:value="1103161021115510#yueba"/>
-        <!-- 声明SDK所需的service SDK核心功能-->
+        <!-- 声明SDK所需的service SDK核心功能 -->
         <service
             android:name="com.hyphenate.chat.EMChatService"
             android:exported="true"/>
@@ -129,6 +132,7 @@
         <receiver android:name="com.hyphenate.chat.EMMonitorReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.PACKAGE_REMOVED"/>
+
                 <data android:scheme="package"/>
             </intent-filter>
             <!-- 可选filter -->
@@ -137,6 +141,16 @@
                 <action android:name="android.intent.action.USER_PRESENT"/>
             </intent-filter>
         </receiver>
+
+        <service
+            android:name="com.baidu.location.f"
+            android:enabled="true"
+            android:process=":remote"/>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="QonwOY0cj83EXfikRZ7XN8CZAu48RuX0"/>
+
     </application>
 
 </manifest>

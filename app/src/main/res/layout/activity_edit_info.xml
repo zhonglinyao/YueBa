@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/StatusBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -29,11 +30,20 @@
             <TextView
                 android:id="@+id/tv_title_edit_info"
                 style="@style/CustomTitleTextAppearance"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_centerInParent="true"
                 android:gravity="center"
                 android:text="@string/info_edit"
                 android:visibility="visible"/>
+
+            <ImageView
+                android:id="@+id/iv_uploading_edit_info"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@id/tv_title_edit_info"
+                android:background="@drawable/loading"/>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
 
@@ -81,6 +91,7 @@
             <EditText
                 android:id="@+id/et_phone_edit_info"
                 style="@style/EditInfo"
+                android:inputType="number"
                 android:hint="@string/edit_phone"/>
 
             <Button

@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">约吧</string>
+    <string name="main_toolbar_more">更多</string>
+    <string name="main_toolbar_add">添加</string>
+    <string name="dynamic_dynamic">好友动态</string>
+    <string name="dynamic_nearby">附近</string>
+    <string name="dynamic_live">直播</string>
+    <string name="dynamic_video">视频</string>
+    <string name="dynamic_news">新闻</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="sure">确定</string>
+
+    <string name="put_name_hint">请输入账号</string>
+    <string name="put_password_hint">请输入密码</string>
+    <string name="put_password_sure_hint">请确认密码</string>
+    <string name="back_text">返回</string>
+    <string name="my_info">我的资料</string>
+    <string name="info_edit">编辑</string>
+    <string name="exit_username">退出当前账号</string>
+    <string name="nickname_register">昵称</string>
+    <string name="edit_signature">修改用户个性签名</string>
+    <string name="edit_qq">修改用户QQ号</string>
+    <string name="edit_phone">修改用户手机号</string>
+    <string name="dynamic_publish">发表</string>
+    <string name="write_dynamic">写动态</string>
+
+</resources>

@@ -7,7 +7,6 @@ import android.util.Log;
 import com.lanou.yueba.app.YueBaApp;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.threadtools.ThreadTool;
-import com.lanou.yueba.vlaues.StringVlaues;
 import com.litesuits.orm.LiteOrm;
 
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
  */
 
 public class LiteOrmTools {
+    public static final String DB_NAME = "yueba.db";
     private LiteOrm mLiteOrm;
     private Handler mHandler;
 
@@ -26,7 +26,7 @@ public class LiteOrmTools {
 
 
     private LiteOrmTools() {
-        mLiteOrm = LiteOrm.newCascadeInstance(YueBaApp.getContext(), StringVlaues.DB_NAME);
+        mLiteOrm = LiteOrm.newCascadeInstance(YueBaApp.getContext(), DB_NAME);
         mHandler = new Handler(Looper.getMainLooper());
     }
 

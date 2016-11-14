@@ -7,7 +7,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
@@ -18,8 +17,6 @@ import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.tools.ToastTools;
-import com.lanou.yueba.vlaues.StringVlaues;
-
 
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
@@ -31,10 +28,13 @@ import cn.bmob.v3.listener.UpdateListener;
 
 public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
+    public static final String INFO = "info";
+    public static final int RESULT = 101;
+    public static final int REQUEST = 222;
+
     private ImageView mIvBack;
     private TextView mTvEdit;
     private TextView mTvExit;
-
     private TextView mTvUsername;
     private TextView mTvSignature;
     private TextView mTvQQ;
@@ -42,8 +42,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     private UserInfoBean mUserInfoBean;
     private String mCurrentUser;
     private ImageView mIvHead;
-
-//    private TextView mName;
 
     @Override
     protected int setLayout() {
@@ -69,16 +67,16 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void initData() {
         mCurrentUser = EMClient.getInstance().getCurrentUser().toString();
-        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(StringVlaues.INFO);
+        mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(INFO);
         update();
         initListener();
         if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
             USERINFO = 0;
-            mTvExit.setText(StringVlaues.EXIT);
+            mTvExit.setText(getString(R.string.exit_username));
             mTvEdit.setVisibility(View.VISIBLE);
         } else {
             USERINFO = 1;
-            mTvExit.setText(StringVlaues.ADD_FRIEND);
+            mTvExit.setText(getString(R.string.add_friend));
             mTvEdit.setVisibility(View.GONE);
         }
 
@@ -104,17 +102,17 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         }
 
         if (mUserInfoBean.getPhoneNum() == null) {
-            mTvPhone.setText("还没有电话号码");
+            mTvPhone.setText(getString(R.string.no_phone));
         } else {
             mTvPhone.setText(mUserInfoBean.getPhoneNum());
         }
         if (mUserInfoBean.getQq() == null) {
-            mTvQQ.setText("还没有QQ号");
+            mTvQQ.setText(getString(R.string.no_qq));
         } else {
             mTvQQ.setText(mUserInfoBean.getQq());
         }
         if (mUserInfoBean.getSignature() == null) {
-            mTvSignature.setText("还没有个性签名");
+            mTvSignature.setText(getString(R.string.no_signature));
         } else {
             mTvSignature.setText(mUserInfoBean.getSignature());
         }
@@ -128,8 +126,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.tv_edit_info:
                 Intent intent = new Intent(this, EditInfoActivity.class);
-                intent.putExtra(StringVlaues.EDIT_INFO, mUserInfoBean);
-                startActivityForResult(intent, 222);
+                intent.putExtra(EditInfoActivity.EDIT_INFO, mUserInfoBean);
+                startActivityForResult(intent, REQUEST);
                 break;
             case R.id.tv_exit_info:
                 if (USERINFO == 0) {
@@ -139,26 +137,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                     ActivityTools.deleteActivity(this.getClass().getSimpleName());
                     break;
                 } else {
-
                     addToBmob();
-//                    EMClient.getInstance().contactManager().aysncAddContact(mUserInfoBean.getUserName(), "添加好友", new EMCallBack() {
-//                        @Override
-//                        public void onSuccess() {
-//                            addToBmob();
-//                        }
-//
-//                        @Override
-//                        public void onError(int i, String s) {
-//
-//                        }
-//
-//                        @Override
-//                        public void onProgress(int i, String s) {
-//
-//                        }
-//                    });
-
-
                 }
 
                 break;
@@ -187,8 +166,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (222 == requestCode && 111 == resultCode) {
-            mUserInfoBean = (UserInfoBean) data.getSerializableExtra(StringVlaues.EDIT_INFO);
+        if (REQUEST == requestCode && EditInfoActivity.RESULT == resultCode) {
+            mUserInfoBean = (UserInfoBean) data.getSerializableExtra(EditInfoActivity.EDIT_INFO);
             update();
             LiteOrmTools.getInstance().deleteTab(UserInfoBean.class);
             LiteOrmTools.getInstance().insertInfo(mUserInfoBean);
@@ -213,8 +192,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             return;
         }
         Intent intent = new Intent();
-        intent.putExtra(StringVlaues.INFO, mUserInfoBean);
-        setResult(101, intent);
+        intent.putExtra(INFO, mUserInfoBean);
+        setResult(RESULT, intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 

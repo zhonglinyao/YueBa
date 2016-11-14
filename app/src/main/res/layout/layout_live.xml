@@ -8,8 +8,8 @@
         android:id="@+id/tv_list_live"
         android:layout_width="match_parent"
         android:layout_height="40dp"
-        android:textColor="@android:color/black"
-        android:textSize="15sp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
         android:gravity="center"/>
 
 </LinearLayout>

@@ -4,6 +4,7 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 
+import com.baidu.mapapi.SDKInitializer;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
@@ -32,6 +33,7 @@ public class YueBaApp extends Application{
     public void onCreate() {
         super.onCreate();
         mContext = this;
+        SDKInitializer.initialize(this);
         ZXingLibrary.initDisplayOpinion(this);
         Vitamio.isInitialized(this);
         initEasemob();
