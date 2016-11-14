@@ -1,7 +1,7 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <style name="AppTheme" parent="android:Theme.Light" />
+    <style name="AppTheme" parent="android:Theme.Light"/>
 
 
     <style name="chat_content_date_style">
@@ -18,7 +18,7 @@
         <item name="android:textSize">15sp</item>
         <item name="android:gravity">center</item>
     </style>
-    
+
     <style name="chat_text_date_style">
         <item name="android:padding">2dp</item>
         <item name="android:paddingTop">2dip</item>
@@ -74,7 +74,7 @@
     <style name="horizontal_slide" parent="android:Theme.NoTitleBar">
         <item name="android:windowAnimationStyle">@style/AnimFade2</item>
     </style>
-    
+
     <style name="nornal_style" parent="android:Theme.NoTitleBar"></style>
 
     <!--
@@ -82,7 +82,6 @@
         <item name="android:windowAnimationStyle">@style/AnimFade2</item>
     </style>
     -->
-
 
 
     <style name="MyDialogStyle">
@@ -158,7 +157,7 @@
     </style>
 
 
- <style name="bottom_line_edit_text_style" parent="@android:style/Widget.EditText">
+    <style name="bottom_line_edit_text_style" parent="@android:style/Widget.EditText">
         <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">6.0dip</item>
         <item name="android:paddingTop">6.0dip</item>
@@ -166,5 +165,11 @@
         <item name="android:paddingBottom">6.0dip</item>
         <item name="android:includeFontPadding">false</item>
         <item name="android:background">@drawable/ease_edit_text_bg</item>
+    </style>
+
+    <style name="StatusBar">
+        <item name="android:fitsSystemWindows">true</item>
+        <item name="android:clipToPadding">true</item>
+        <item name="android:background">@color/colorMain</item>
     </style>
 </resources>

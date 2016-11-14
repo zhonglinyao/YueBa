@@ -1,9 +1,8 @@
 package com.lanou.yueba.main;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -33,7 +32,6 @@ import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.main.addcontact.AddContactActivity;
 import com.lanou.yueba.message.MessageFragment;
-import com.lanou.yueba.vlaues.StringVlaues;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -42,12 +40,13 @@ import java.util.List;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
-import de.hdodenhof.circleimageview.CircleImageView;
 
 import static com.lanou.yueba.R.id.iv_more_toolbar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
+    private static final int REQUEST = 201;
+    public static final String USERNAME = "userName";
     private RadioButton mIvContact;
     private RadioButton mIvDynamic;
     private RadioButton mIvMessage;
@@ -55,7 +54,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ContactFragment mContactFragment;
     private DynamicFragment mDynamicFragment;
 
-    private CircleImageView mCircleImageView;
+    private ImageView mCircleImageView;
     private TextView mTvToolBar;
     private int index = 1;
     private ImageView mIvToolBar;
@@ -63,7 +62,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTvMoreToolBar;
     private UserInfoBean mUserInfoBean;
     private String mUserName;
-    private Bitmap mHeadimage;
 
     @Override
     protected int setLayout() {
@@ -127,10 +125,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
     @Override
     protected void initData() {
-
         EMClient.getInstance().chatManager().addMessageListener(mListener);
-
-        mUserName = getIntent().getStringExtra(StringVlaues.username);
+        mUserName = getIntent().getStringExtra(USERNAME);
         changeToolBar();
         initClickListener();
         mIvMessage.setChecked(true);
@@ -141,7 +137,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void callBack() {
                 Intent intent = new Intent(MainActivity.this, DynamicActivity.class);
-                intent.putExtra(StringVlaues.DYNAMIC, mUserInfoBean);
+                intent.putExtra(DynamicActivity.DYNAMIC, mUserInfoBean);
                 startActivity(intent);
             }
         });
@@ -181,8 +177,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
             case R.id.civ_toolbar:
                 Intent infoIntent = new Intent(this, InfoActivity.class);
-                infoIntent.putExtra(StringVlaues.INFO, mUserInfoBean);
-                startActivityForResult(infoIntent, 201);
+                infoIntent.putExtra(InfoActivity.INFO, mUserInfoBean);
+                startActivityForResult(infoIntent, REQUEST);
                 break;
             case iv_more_toolbar:
                 showPop(v);
@@ -246,14 +242,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (201 == requestCode && 101 == resultCode) {
-            mUserInfoBean = (UserInfoBean) data.getSerializableExtra("info");
-            if (mUserInfoBean.getPicUrl() != null) {
-                Glide.with(MainActivity.this)
-                        .load(mUserInfoBean.getPicUrl())
-                        .placeholder(R.mipmap.icon)
-                        .into(mCircleImageView);
-            }
+        if (REQUEST == requestCode && InfoActivity.RESULT == resultCode) {
+            mUserInfoBean = (UserInfoBean) data.getSerializableExtra(InfoActivity.INFO);
+            updateHead();
         }
 
         if (QR_REQUEST_CODE == requestCode) {
@@ -290,21 +281,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         switch (index) {
 
             case 1:
-                mTvToolBar.setText("会话");
+                mTvToolBar.setText(getString(R.string.chat));
                 mIvToolBar.setVisibility(View.VISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
                 mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
 
             case 2:
-                mTvToolBar.setText("联系人");
+                mTvToolBar.setText(getString(R.string.contact));
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.VISIBLE);
                 mTvMoreToolBar.setVisibility(View.INVISIBLE);
                 break;
 
             case 3:
-                mTvToolBar.setText("动态");
+                mTvToolBar.setText(getString(R.string.dynamic));
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
                 mTvMoreToolBar.setVisibility(View.VISIBLE);
@@ -340,7 +331,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         BmobQuery<UserInfoBean> query = new BmobQuery<>();
 
-        query.addWhereEqualTo("userName", mUserName);
+        query.addWhereEqualTo(USERNAME, mUserName);
 
         query.findObjects(new FindListener<UserInfoBean>() {
 
@@ -351,19 +342,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                     mUserInfoBean = list.get(0);
                     updateHead();
                 } else {
+                    mUserInfoBean = new UserInfoBean();
                     updateHead();
-                    mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
                 }
             }
         });
     }
 
     public void updateHead() {
-        if (mUserInfoBean.getPicUrl() != null) {
+        if (mUserInfoBean != null && mUserInfoBean.getPicUrl() != null) {
             Glide.with(MainActivity.this)
                     .load(mUserInfoBean.getPicUrl())
-//                    .placeholder(R.mipmap.icon)
-                    .error(R.mipmap.icon)
                     .into(mCircleImageView);
         } else {
             mCircleImageView.setImageResource(R.mipmap.icon);

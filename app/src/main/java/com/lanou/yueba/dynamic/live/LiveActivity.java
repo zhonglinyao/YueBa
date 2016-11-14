@@ -1,24 +1,27 @@
 package com.lanou.yueba.dynamic.live;
 
+import android.app.Activity;
 import android.content.res.Configuration;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
-import com.lanou.yueba.widget.LiveMediaController;
 import com.lanou.yueba.tools.ActivityTools;
-import com.lanou.yueba.vlaues.StringVlaues;
+import com.lanou.yueba.widget.LiveMediaController;
 
+import java.lang.ref.WeakReference;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import io.vov.vitamio.MediaPlayer;
-import io.vov.vitamio.widget.MediaController;
 import io.vov.vitamio.widget.VideoView;
 
 /**
@@ -27,22 +30,12 @@ import io.vov.vitamio.widget.VideoView;
 
 public class LiveActivity extends BaseActivity implements Runnable{
 
+    public static final String LIVE_URL = "liveurl";
     private VideoView mVideoView;
     private static final int TIME = 0;
-    private LiveMediaController mLiveMediaController;
-    private MediaController mMediaController;
-
-
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            if (TIME == msg.what) {
-                mLiveMediaController.setTime(msg.obj.toString());
-            }
-        }
-
-    };
-
+    private static LiveMediaController mLiveMediaController;
+    private Handler mHandler;
+    private ImageView mIvPrepare;
 
     @Override
     protected int setLayout() {
@@ -57,27 +50,32 @@ public class LiveActivity extends BaseActivity implements Runnable{
     @Override
     protected void initView() {
         mVideoView = bindView(R.id.vv_live);
+        mIvPrepare = bindView(R.id.iv_prepare_live);
     }
 
     @Override
     protected void initData() {
-        String url = getIntent().getStringExtra(StringVlaues.LIVEURL);
+        final AnimationDrawable drawable = (AnimationDrawable) mIvPrepare.getBackground();
+        drawable.start();
+        mHandler = new LiveHandler(this);
+        String url = getIntent().getStringExtra(LIVE_URL);
         Log.d("LiveActivity", url);
-//        String str = "http://flvdl75220c16.live.126.net/live/98cab3a2d96f4fb8ad80a50d19a8f63b.flv?netease=flvdl75220c16.live.126.net";
+        String str = "http://live-play.acgvideo.com/live/716/live_6810019_9448733.flv?wsSecret=7c41e262be5f70706740c98cd1513b19&wsTime=57f89d6f";
         mVideoView.setVideoPath(url);
-        mMediaController = new MediaController(this);
         mLiveMediaController = new LiveMediaController(this, mVideoView, this);
         mLiveMediaController.setFileName("aaaaaa");
         mVideoView.setMediaController(mLiveMediaController);
         mVideoView.setVideoQuality(MediaPlayer.VIDEOQUALITY_HIGH);//高画质
         mVideoView.setVideoLayout(VideoView.VIDEO_LAYOUT_STRETCH, 1.0f);
-//        mMediaController.show(5000);
         mVideoView.requestFocus();
 
         mVideoView.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setPlaybackSpeed(1.0f);
+                mp.start();
+                drawable.stop();
+                mIvPrepare.setVisibility(View.GONE);
             }
         });
 
@@ -121,7 +119,22 @@ public class LiveActivity extends BaseActivity implements Runnable{
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+    }
 
+    private static class LiveHandler extends Handler{
+        private WeakReference<Activity> wk;
+        public LiveHandler(Activity activity) {
+            wk = new WeakReference<Activity>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (wk != null && TIME == msg.what) {
+                mLiveMediaController.setTime(msg.obj.toString());
+            }
         }
     }
 }

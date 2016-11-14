@@ -146,7 +146,7 @@ public class NewsActivity extends BaseActivity {
                 public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                     if (mRecyclerAdapter.getDatas().get(position).getUrl_3w() != null) {
                         Intent intent = new Intent(NewsActivity.this, NewsInfoActivity.class);
-                        intent.putExtra("newsUrl", mRecyclerAdapter.getDatas().get(position).getUrl_3w());
+                        intent.putExtra(NewsInfoActivity.NEW_URL, mRecyclerAdapter.getDatas().get(position).getUrl_3w());
                         startActivity(intent);
                     }
                 }

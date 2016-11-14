@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'yao'
+            keyPassword '123123'
+            storeFile file('/Users/dllo/Desktop/AndroidWorkSpace/YueBa2/app/yaoyao.jks')
+            storePassword '123123'
+        }
+    }
     compileSdkVersion 24
     buildToolsVersion "25.0.0"
     useLibrary 'org.apache.http.legacy'
@@ -16,9 +24,16 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
     }
 }
 

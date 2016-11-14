@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseFragment;
 import com.lanou.yueba.dynamic.live.LiveListActivity;
+import com.lanou.yueba.dynamic.nearby.NearbyActivity;
 import com.lanou.yueba.dynamic.news.NewsActivity;
 import com.lanou.yueba.dynamic.video.VideoActivity;
 
@@ -23,6 +24,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
     private LinearLayout mLlLive;
     private LinearLayout mLlDynamic;
     private DynamicCallBack mDynamicCallBack;
+    private LinearLayout mLlNearby;
 
     public void setDynamicCallBack(DynamicCallBack dynamicCallBack) {
         mDynamicCallBack = dynamicCallBack;
@@ -39,6 +41,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
         mRlNews = bindView(R.id.rl_news_dynamic);
         mLlLive = bindView(R.id.ll_live_dynamic);
         mLlDynamic = bindView(R.id.ll_dynamic_dynamic);
+        mLlNearby = bindView(R.id.ll_nearby_dynamic);
     }
 
     @Override
@@ -51,6 +54,7 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
         mRlNews.setOnClickListener(this);
         mLlLive.setOnClickListener(this);
         mLlDynamic.setOnClickListener(this);
+        mLlNearby.setOnClickListener(this);
     }
 
     @Override
@@ -64,6 +68,9 @@ public class DynamicFragment extends BaseFragment implements OnClickListener {
                 break;
             case R.id.ll_live_dynamic:
                 startActivity(new Intent(mContext, LiveListActivity.class));
+                break;
+            case R.id.ll_nearby_dynamic:
+                startActivity(new Intent(mContext, NearbyActivity.class));
                 break;
             case R.id.ll_dynamic_dynamic:
                 mDynamicCallBack.callBack();

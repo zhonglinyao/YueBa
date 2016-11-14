@@ -14,6 +14,8 @@ import com.hyphenate.EMError;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lanou.yueba.R;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.login.ui.LoginActivity;
+import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.presenter.RegPresenter;
 
 /**
@@ -22,6 +24,7 @@ import com.lanou.yueba.register.presenter.RegPresenter;
 
 public class RegisterActivity extends BaseActivity implements IRegView, View.OnClickListener {
 
+    public static final int RESULT = 202;
     private EditText mName;
     private EditText mPassword;
     private EditText mSure;
@@ -75,9 +78,9 @@ public class RegisterActivity extends BaseActivity implements IRegView, View.OnC
     @Override
     public void onResponse(String username,String password) {
         Intent intent = new Intent();
-        intent .putExtra("username",username)
-                .putExtra("password",password);
-        setResult(202,intent);
+        intent .putExtra(MainActivity.USERNAME,username)
+                .putExtra(LoginActivity.PASSWORD,password);
+        setResult(RESULT,intent);
         finish();
 
     }

@@ -15,10 +15,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }
+
+    /*sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }*/
 }
 
 dependencies {
-    compile files('libs/BaiduLBS_Android.jar')
     compile files('libs/HwPush_SDK_V2705_nomap.jar')
     compile files('libs/MiPush_SDK_Client_2_2_19.jar')
     compile files('libs/google-play-services.jar')
@@ -27,4 +32,5 @@ dependencies {
     compile 'com.android.support:support-v4:24.2.1'
     compile 'de.hdodenhof:circleimageview:2.1.0'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile files('libs/BaiduLBS_Android.jar')
 }

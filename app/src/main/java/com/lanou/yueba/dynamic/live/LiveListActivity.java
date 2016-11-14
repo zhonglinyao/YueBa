@@ -59,7 +59,7 @@ public class LiveListActivity extends BaseActivity{
             @Override
             public void onItemClick(View view, RecyclerView.ViewHolder holder, int position) {
                 Intent intent = new Intent(LiveListActivity.this, LiveActivity.class);
-                intent.putExtra(StringVlaues.LIVEURL, StringVlaues.liveUrlList[position]);
+                intent.putExtra(LiveActivity.LIVE_URL, StringVlaues.liveUrlList[position]);
                 startActivity(intent);
             }
 
