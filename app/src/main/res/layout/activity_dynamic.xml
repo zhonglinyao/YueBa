@@ -6,6 +6,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <!--<FrameLayout-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:background="@android:color/white">-->
     <ImageView
         android:id="@+id/iv_loading_dynamic"
         android:layout_width="50dp"
@@ -21,41 +25,47 @@
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:contentInsetStart="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
         app:contentInsetEnd="0dp"
-        android:minHeight="?attr/actionBarSize">
+        app:contentInsetStart="0dp">
 
         <RelativeLayout
             android:id="@+id/rl_dynamic_dynamic"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
-            <ImageView
-                android:id="@+id/iv_back_dynamic"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_centerVertical="true"
-                android:background="@mipmap/toolbar_back"/>
-
-            <TextView
-                style="@style/CustomTitleTextAppearance"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:gravity="center"
-                android:text="@string/dynamic_dynamic"/>
+                android:layout_height="?attr/actionBarSize">
 
-            <ImageView
-                android:id="@+id/iv_publish_dynamic"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"/>
+                <ImageView
+                    android:id="@+id/iv_back_dynamic"
+                    android:layout_width="25dp"
+                    android:layout_height="25dp"
+                    android:layout_centerVertical="true"
+                    android:background="@mipmap/toolbar_back"/>
 
+                <TextView
+                    style="@style/CustomTitleTextAppearance"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:gravity="center"
+                    android:text="@string/dynamic_dynamic"/>
+
+                <ImageView
+                    android:id="@+id/iv_publish_dynamic"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-
+    <!--</FrameLayout>-->
 </FrameLayout>

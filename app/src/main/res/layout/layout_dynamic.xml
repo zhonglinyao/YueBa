@@ -10,7 +10,9 @@
         android:id="@+id/abl_dynamic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/livelist_bg">
+        android:background="@mipmap/livelist_bg"
+        android:fitsSystemWindows="true"
+        android:clipToPadding="true">
 
         <android.support.design.widget.CollapsingToolbarLayout
             android:layout_width="match_parent"
@@ -31,6 +33,7 @@
         android:id="@+id/rv_dynamic_dynamic"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     </android.support.v7.widget.RecyclerView>

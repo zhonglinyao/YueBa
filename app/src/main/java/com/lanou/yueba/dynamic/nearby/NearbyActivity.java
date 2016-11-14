@@ -50,7 +50,7 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
     private BaiduMap mBaiduMap;
     private ImageView mIvBack;
     private RadioGroup mRadioGroup;
-    LocationClient mLocClient;
+    private LocationClient mLocClient;
     private MyLocationConfiguration.LocationMode mCurrentMode;
     public MyLocationListenner myListener = new MyLocationListenner();
     boolean isFirstLoc = true; // 是否首次定位

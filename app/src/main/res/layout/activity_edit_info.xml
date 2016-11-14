@@ -91,6 +91,7 @@
             <EditText
                 android:id="@+id/et_phone_edit_info"
                 style="@style/EditInfo"
+                android:inputType="number"
                 android:hint="@string/edit_phone"/>
 
             <Button

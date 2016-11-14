@@ -120,5 +120,9 @@
     <string name="nomal_map">普通地图</string>
     <string name="satellite_map">卫星地图</string>
     <string name="save_location">保存位置</string>
+    <string name="add_friend">添加好友</string>
+    <string name="no_phone">还没有电话号码</string>
+    <string name="no_qq">还没有QQ号</string>
+    <string name="no_signature">还没有个性签名</string>
 
 </resources>

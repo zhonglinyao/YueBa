@@ -29,6 +29,9 @@ import cn.bmob.v3.listener.UpdateListener;
 public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
     public static final String INFO = "info";
+    public static final int RESULT = 101;
+    public static final int REQUEST = 222;
+
     private ImageView mIvBack;
     private TextView mTvEdit;
     private TextView mTvExit;
@@ -69,11 +72,11 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         initListener();
         if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
             USERINFO = 0;
-            mTvExit.setText("退出当前账号");
+            mTvExit.setText(getString(R.string.exit_username));
             mTvEdit.setVisibility(View.VISIBLE);
         } else {
             USERINFO = 1;
-            mTvExit.setText("添加好友");
+            mTvExit.setText(getString(R.string.add_friend));
             mTvEdit.setVisibility(View.GONE);
         }
 
@@ -97,17 +100,17 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         }
 
         if (mUserInfoBean.getPhoneNum() == null) {
-            mTvPhone.setText("还没有电话号码");
+            mTvPhone.setText(getString(R.string.no_phone));
         } else {
             mTvPhone.setText(mUserInfoBean.getPhoneNum());
         }
         if (mUserInfoBean.getQq() == null) {
-            mTvQQ.setText("还没有QQ号");
+            mTvQQ.setText(getString(R.string.no_qq));
         } else {
             mTvQQ.setText(mUserInfoBean.getQq());
         }
         if (mUserInfoBean.getSignature() == null) {
-            mTvSignature.setText("还没有个性签名");
+            mTvSignature.setText(getString(R.string.no_signature));
         } else {
             mTvSignature.setText(mUserInfoBean.getSignature());
         }
@@ -122,7 +125,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             case R.id.tv_edit_info:
                 Intent intent = new Intent(this, EditInfoActivity.class);
                 intent.putExtra(EditInfoActivity.EDIT_INFO, mUserInfoBean);
-                startActivityForResult(intent, 222);
+                startActivityForResult(intent, REQUEST);
                 break;
             case R.id.tv_exit_info:
                 if (USERINFO == 0) {
@@ -161,7 +164,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (222 == requestCode && 111 == resultCode) {
+        if (REQUEST == requestCode && EditInfoActivity.RESULT == resultCode) {
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra(EditInfoActivity.EDIT_INFO);
             update();
             LiteOrmTools.getInstance().deleteTab(UserInfoBean.class);
@@ -188,7 +191,7 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         }
         Intent intent = new Intent();
         intent.putExtra(INFO, mUserInfoBean);
-        setResult(101, intent);
+        setResult(RESULT, intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 

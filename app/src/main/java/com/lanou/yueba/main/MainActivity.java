@@ -1,8 +1,6 @@
 package com.lanou.yueba.main;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -37,8 +35,8 @@ import static com.lanou.yueba.R.id.iv_more_toolbar;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
-    private static final int REQUSET = 201;
-    public static final String USERNAME = "username";
+    private static final int REQUEST = 201;
+    public static final String USERNAME = "userName";
     private RadioButton mIvContact;
     private RadioButton mIvDynamic;
     private RadioButton mIvMessage;
@@ -54,7 +52,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private TextView mTvMoreToolBar;
     private UserInfoBean mUserInfoBean;
     private String mUserName;
-    private Bitmap mHeadimage;
 
     @Override
     protected int setLayout() {
@@ -128,7 +125,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             case R.id.civ_toolbar:
                 Intent infoIntent = new Intent(this, InfoActivity.class);
                 infoIntent.putExtra(InfoActivity.INFO, mUserInfoBean);
-                startActivityForResult(infoIntent, REQUSET);
+                startActivityForResult(infoIntent, REQUEST);
                 break;
             case iv_more_toolbar:
                 showQR();
@@ -159,7 +156,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (201 == requestCode && 101 == resultCode) {
+        if (REQUEST == requestCode && InfoActivity.RESULT == resultCode) {
             mUserInfoBean = (UserInfoBean) data.getSerializableExtra(InfoActivity.INFO);
             updateHead();
         }
@@ -239,7 +236,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         BmobQuery<UserInfoBean> query = new BmobQuery<>();
 
-        query.addWhereEqualTo("userName", mUserName);
+        query.addWhereEqualTo(USERNAME, mUserName);
 
         query.findObjects(new FindListener<UserInfoBean>() {
 
@@ -252,7 +249,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 } else {
                     mUserInfoBean = new UserInfoBean();
                     updateHead();
-                    mHeadimage = BitmapFactory.decodeResource(getResources(), R.mipmap.icon);
                 }
             }
         });

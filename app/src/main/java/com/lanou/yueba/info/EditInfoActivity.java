@@ -32,6 +32,8 @@ import cn.bmob.v3.listener.UploadFileListener;
 
 public class EditInfoActivity extends BaseActivity implements View.OnClickListener {
     public static final String EDIT_INFO = "editInfo";
+    public static final int RESULT= 111;
+    public static final int REQUEST= 105;
     private UserInfoBean mUserInfoBean;
     private ImageView mIvBack;
     private EditText mEtPhone;
@@ -64,6 +66,8 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
         mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(EDIT_INFO);
         update();
         mEtSignature.setSelection(mEtSignature.getText().toString().length());
+        mEtQQ.setSelection(mEtQQ.getText().toString().length());
+        mEtPhone.setSelection(mEtPhone.getText().toString().length());
         mIvBack.setOnClickListener(this);
         mBtnSure.setOnClickListener(this);
         mIvHead.setOnClickListener(this);
@@ -85,7 +89,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
                 Intent intent = new Intent(
                         Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 );
-                startActivityForResult(intent, 105);
+                startActivityForResult(intent, REQUEST);
                 break;
         }
     }
@@ -93,7 +97,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (105 == requestCode && resultCode == RESULT_OK){
+        if (REQUEST == requestCode && resultCode == RESULT_OK){
             mIvUpload.setVisibility(View.VISIBLE);
             final AnimationDrawable drawable = (AnimationDrawable) mIvUpload.getBackground();
             drawable.start();
@@ -155,7 +159,7 @@ public class EditInfoActivity extends BaseActivity implements View.OnClickListen
     public void dismiss(){
         Intent intent = new Intent();
         intent.putExtra(EDIT_INFO, mUserInfoBean);
-        setResult(111, intent);
+        setResult(RESULT, intent);
         ActivityTools.deleteActivity(this.getClass().getSimpleName());
     }
 }

@@ -27,7 +27,7 @@ import com.lanou.yueba.tools.ActivityTools;
 public class LoginActivity extends BaseActivity implements ILoginView, View.OnClickListener {
 
     public static final String PASSWORD = "password";
-    private static final int REQUSET = 101;
+    private static final int REQUEST = 101;
     private Button mButtonSure;
     private LinearLayout mLl;
     private ProgressDialog mDialog;
@@ -90,7 +90,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                 }
                 break;
             case R.id.tv_register_login:
-                startActivityForResult(new Intent(this, RegisterActivity.class), REQUSET);
+                startActivityForResult(new Intent(this, RegisterActivity.class), REQUEST);
                 break;
         }
     }
@@ -99,7 +99,7 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
-        if (REQUSET == requestCode && RegisterActivity.RESULT == resultCode) {
+        if (REQUEST == requestCode && RegisterActivity.RESULT == resultCode) {
             mName.setText(data.getStringExtra(MainActivity.USERNAME));
             mPassword.setText(data.getStringExtra(PASSWORD));
         }

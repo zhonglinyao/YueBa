@@ -2,132 +2,134 @@
 <FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/fl_info"
-    style="@style/StatusBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <FrameLayout
+
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/white"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
-            <FrameLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
-                <LinearLayout
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@mipmap/info_bg"
+                    android:fitsSystemWindows="true"
+                    android:src="@mipmap/info_src">
+
+                </ImageView>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:background="@android:color/white"/>
+
+                <TextView
+                    android:id="@+id/tv_username_info"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:gravity="center"
+                    android:textColor="@android:color/black"
+                    android:textSize="30sp"/>
+            </LinearLayout>
 
-                    <FrameLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="180dp"
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/civ_info"
+                android:layout_width="140dp"
+                android:layout_height="140dp"
+                android:layout_gravity="center"/>
+        </FrameLayout>
 
-                        android:background="@mipmap/info_bg">
+        <include layout="@layout/layout_line"/>
 
-                    </FrameLayout>
+        <TextView
+            android:id="@+id/tv_signature"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textSize="18sp"/>
 
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:background="@android:color/white"/>
+        <include layout="@layout/layout_line"/>
 
-                    <TextView
-                        android:id="@+id/tv_username_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:textColor="@android:color/black"
-                        android:textSize="30sp"/>
-                </LinearLayout>
+        <RelativeLayout
+            style="@style/ItemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/civ_info"
-                    android:layout_width="140dp"
-                    android:layout_height="140dp"
-                    android:layout_gravity="center"/>
-            </FrameLayout>
-
-            <include layout="@layout/layout_line"/>
+            <ImageView
+                android:id="@+id/iv_name_info"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/username_info"/>
 
             <TextView
-                android:id="@+id/tv_signature"
+                android:id="@+id/tv_qq_info"
+                style="@style/TextInfo"
+                android:layout_toRightOf="@id/iv_name_info"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/layout_line"/>
+
+        <RelativeLayout
+            style="@style/ItemInfo"
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/iv_name_phone_num"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/phone_info"/>
+
+            <TextView
+                android:id="@+id/tv_phone_info"
+                style="@style/TextInfo"
+                android:layout_toRightOf="@id/iv_name_phone_num"/>
+
+        </RelativeLayout>
+
+        <include layout="@layout/layout_line"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginTop="40dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
+
+            <TextView
+                android:id="@+id/tv_exit_info"
                 android:layout_width="match_parent"
-                android:layout_height="25dp"
-                android:gravity="center_vertical"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp"
-                android:textSize="18sp"/>
+                android:layout_height="match_parent"
+                android:background="@drawable/shape_sure"
+                android:gravity="center"
+                android:text="@string/exit_username"
+                android:textColor="@android:color/white"
+                android:textSize="25sp"/>
 
-            <include layout="@layout/layout_line"/>
+        </FrameLayout>
+    </LinearLayout>
 
-            <RelativeLayout
-                style="@style/ItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <ImageView
-                    android:id="@+id/iv_name_info"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/username_info"/>
-
-                <TextView
-                    android:id="@+id/tv_qq_info"
-                    style="@style/TextInfo"
-                    android:layout_toRightOf="@id/iv_name_info"/>
-
-            </RelativeLayout>
-
-            <include layout="@layout/layout_line"/>
-
-            <RelativeLayout
-                style="@style/ItemInfo"
-                android:layout_width="match_parent"
-                android:layout_height="50dp">
-
-                <ImageView
-                    android:id="@+id/iv_name_phone_num"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_centerVertical="true"
-                    android:src="@mipmap/phone_info"/>
-
-                <TextView
-                    android:id="@+id/tv_phone_info"
-                    style="@style/TextInfo"
-                    android:layout_toRightOf="@id/iv_name_phone_num"/>
-
-            </RelativeLayout>
-
-            <include layout="@layout/layout_line"/>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
-
-                <TextView
-                    android:id="@+id/tv_exit_info"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/shape_sure"
-                    android:gravity="center"
-                    android:text="@string/exit_username"
-                    android:textColor="@android:color/white"
-                    android:textSize="25sp"/>
-
-            </FrameLayout>
-        </LinearLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
