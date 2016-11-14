@@ -4,10 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/fl_dynamic"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:clipToPadding="true"
-    android:background="#00FFFFFF">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_loading_dynamic"

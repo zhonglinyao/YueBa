@@ -30,6 +30,7 @@ import com.baidu.mapapi.model.LatLng;
 import com.lanou.yueba.R;
 import com.lanou.yueba.app.YueBaApp;
 import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.threadtools.ThreadTool;
 import com.lanou.yueba.tools.ActivityTools;
 
 import java.io.File;
@@ -59,6 +60,7 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
     private TextView mTvSaveLocation;
     private FrameLayout mFlSave;
     private ImageView mIvSave;
+    private SimpleDateFormat sdf;
 
     @Override
     protected int setLayout() {
@@ -101,6 +103,7 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
         mLocClient.start();
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(
                 mCurrentMode, true, null));
+        sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US);
     }
 
     private void initListener() {
@@ -173,53 +176,74 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
         mFlSave.setBackgroundColor(getResources().getColor(R.color.colorBackgroundLoading));
         AnimationDrawable drawable = (AnimationDrawable) mIvSave.getBackground();
         drawable.start();
+
+        final long start = System.currentTimeMillis();
         /**
          * null 全屏
          */
         mBaiduMap.snapshotScope(null, new BaiduMap.SnapshotReadyCallback() {
-            public void onSnapshotReady(Bitmap snapshot) {
-                
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss", Locale.US);
-                String pathName = Environment.getExternalStorageDirectory().getPath()
-                        + "/yueba/location/";
-                String fileName = sdf.format(new Date()) + ".png";
-                File path = new File(pathName);
-                File file = new File(pathName + fileName);
-                FileOutputStream out;
+            public void onSnapshotReady(final Bitmap snapshot) {
+                ThreadTool.getInstance().executorRunnable(new Runnable() {
+                    @Override
+                    public void run() {
 
-                try {
-                    if (!path.exists()) {
-                        path.mkdirs();
-                    }
-                    if (!file.exists()){
-                        file.createNewFile();
-                    }
-                    out = new FileOutputStream(file);
+                        String pathName = Environment.getExternalStorageDirectory().getPath()
+                                + "/yueba/location/";
+                        String fileName = sdf.format(new Date()) + ".png";
+                        File path = new File(pathName);
+                        File file = new File(pathName + fileName);
+                        long end = System.currentTimeMillis();
+                        Log.d("NearbyActivity", "end-start:" + (end - start));
+                        System.out.println("end-start:" + (end - start));
+                        try {
+                            if (!path.exists()) {
+                                path.mkdirs();
+                            }
+                            if (!file.exists()) {
+                                file.createNewFile();
+                            }
+                            FileOutputStream out = new FileOutputStream(file);
+                            if (snapshot.compress(Bitmap.CompressFormat.PNG, 10, out)) {
+                                long endd = System.currentTimeMillis();
+                                Log.d("NearbyActivity", "end-start:" + (endd - start));
+                                System.out.println("end-start:" + (endd - start));
+                                out.flush();
+                                out.close();
+                                runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        long end = System.currentTimeMillis();
+                                        Log.d("NearbyActivity", "end-start:" + (end - start));
+                                        System.out.println("end-start:" + (end - start));
 
-                    if (snapshot.compress(Bitmap.CompressFormat.PNG, 100, out)) {
-                        Log.d("Sysout", "ccc");
-                        out.flush();
-                        out.close();
-                        Log.d("Sysout", "bbb");
-                        showNotification(snapshot);
-                        mFlSave.setVisibility(View.GONE);
-                        mIvSave.setVisibility(View.GONE);
-                        mIvBack.setClickable(true);
-                        mTvSaveLocation.setClickable(true);
-                    }else {
-                        Log.d("Sysout", "ddd");
+                                        showNotification(snapshot);
+                                        mFlSave.setVisibility(View.GONE);
+                                        mIvSave.setVisibility(View.GONE);
+                                        mIvBack.setClickable(true);
+                                        mTvSaveLocation.setClickable(true);
+                                    }
+                                });
+                            } else {
+                                mIvBack.setClickable(true);
+                                mTvSaveLocation.setClickable(true);
+                                Toast.makeText(YueBaApp.getContext(), "保存失败", Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (FileNotFoundException e) {
+                            mIvBack.setClickable(true);
+                            mTvSaveLocation.setClickable(true);
+                            Toast.makeText(YueBaApp.getContext(), "保存失败", Toast.LENGTH_SHORT).show();
+                        } catch (IOException e) {
+                            mIvBack.setClickable(true);
+                            mTvSaveLocation.setClickable(true);
+                            Toast.makeText(YueBaApp.getContext(), "保存失败", Toast.LENGTH_SHORT).show();
+                        }
                     }
-                } catch (FileNotFoundException e) {
-                    mIvBack.setClickable(true);
-                    mTvSaveLocation.setClickable(true);
-                    Toast.makeText(YueBaApp.getContext(), "保存失败", Toast.LENGTH_SHORT).show();
-                } catch (IOException e) {
-                    mIvBack.setClickable(true);
-                    mTvSaveLocation.setClickable(true);
-                    Toast.makeText(YueBaApp.getContext(), "保存失败", Toast.LENGTH_SHORT).show();
-                }
+                });
             }
         });
+        long end = System.currentTimeMillis();
+        Log.d("NearbyActivity", "end-start:" + (end - start));
+        System.out.println("end-start:" + (end - start));
     }
 
     private void showNotification(Bitmap bitmap) {
@@ -227,7 +251,6 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
         Log.d("Sysout", "aaaa");
         Notification notification = new Notification.Builder(this)
                 .setSmallIcon(R.mipmap.ic_launcher)
-              //  .setLargeIcon(bitmap)
                 .setTicker("定位图已保存")
                 .setContentTitle("定位图已保存")
                 .build();

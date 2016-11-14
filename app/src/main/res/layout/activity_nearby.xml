@@ -28,10 +28,11 @@
                 android:src="@mipmap/toolbar_back"/>
 
             <TextView
+                android:id="@+id/tv_nearby"
                 style="@style/CustomTitleTextAppearance"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
                 android:text="@string/dynamic_nearby"/>
 
             <TextView
@@ -42,6 +43,15 @@
                 android:layout_alignParentRight="true"
                 android:gravity="center"
                 android:text="@string/save_location"/>
+
+            <ImageView
+                android:id="@+id/iv_save_map_nearby"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="10dp"
+                android:layout_toLeftOf="@+id/tv_nearby"
+                android:background="@drawable/loading"/>
         </RelativeLayout>
 
     </android.support.v7.widget.Toolbar>
@@ -101,12 +111,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <ImageView
-                android:id="@+id/iv_save_map_nearby"
-                android:layout_width="50dp"
-                android:layout_height="20dp"
-                android:layout_gravity="center"
-                android:background="@drawable/publist"/>
+
         </FrameLayout>
     </FrameLayout>
 </LinearLayout>
