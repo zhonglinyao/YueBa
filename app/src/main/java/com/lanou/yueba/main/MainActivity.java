@@ -125,6 +125,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
     @Override
     protected void initData() {
+
+
+
         EMClient.getInstance().chatManager().addMessageListener(mListener);
 
         EMClient.getInstance().contactManager().setContactListener(new FriendsListener());
@@ -268,9 +271,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                         @Override
                         public void done(List<UserInfoBean> list, BmobException e) {
                             if (e == null){
-                                Intent intent = new Intent(MainActivity.this, InfoActivity.class);
-                                intent.putExtra(InfoActivity.INFO, list.get(0));
-                                startActivity(intent);
+
+                                if(list.size() > 0){
+                                    Intent intent = new Intent(MainActivity.this, InfoActivity.class);
+                                    intent.putExtra(InfoActivity.INFO, list.get(0));
+                                    startActivity(intent);
+                                }
                             }
                         }
                     });

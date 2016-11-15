@@ -74,6 +74,7 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
 
                                         updateForBmob(item);
                                         mFriendBeanList.remove(position);
+                                        notifyDataSetChanged();
 
 
                                     } catch (HyphenateException e1) {
@@ -83,7 +84,7 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
                             });
                         }
                     };
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
                     mLv.setAdapter(adapter);
 
                 } else {
