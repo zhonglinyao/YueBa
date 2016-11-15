@@ -12,7 +12,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:background="@android:color/white"
-        android:text="扫码加好友"/>
+        android:text="@string/qr_add_friend"/>
 
     <View
         android:layout_width="100dp"
@@ -25,7 +25,7 @@
         android:layout_width="100dp"
         android:layout_height="40dp"
         android:background="@android:color/white"
-        android:text="生成二维码"/>
+        android:text="@string/create_qr"/>
 
 
 </LinearLayout>

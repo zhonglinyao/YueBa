@@ -18,7 +18,11 @@ import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.tools.ToastTools;
 
+import java.util.List;
+
+import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.FindListener;
 import cn.bmob.v3.listener.SaveListener;
 import cn.bmob.v3.listener.UpdateListener;
 
@@ -78,8 +82,29 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             USERINFO = 1;
             mTvExit.setText(getString(R.string.add_friend));
             mTvEdit.setVisibility(View.GONE);
+            isFriend(mUserInfoBean.getUserName(),mCurrentUser);
+
+
         }
 
+    }
+
+    private void isFriend(String friend,String user) {
+
+        BmobQuery<FriendBean> isFriend = new BmobQuery<>();
+        isFriend.addWhereEqualTo("isFriend",true).addWhereEqualTo("friendname",friend).addWhereEqualTo("username",user);
+        isFriend.findObjects(new FindListener<FriendBean>() {
+            @Override
+            public void done(List<FriendBean> list, BmobException e) {
+                if (e == null){
+                    if (list.size() == 0){
+                        mTvExit.setVisibility(View.GONE);
+                    } else {
+                        mTvExit.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
     }
 
     public void initListener() {
@@ -154,11 +179,11 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void done(String s, BmobException e) {
 
-                if (e == null) {
-                    ToastTools.showShort(InfoActivity.this, "添加成功,等待好友同意");
+                if (e == null){
+                    ToastTools.showShort( InfoActivity.this, getString(R.string.add_success_wait));
 
                 } else {
-                    ToastTools.showShort(InfoActivity.this, "添加失败");
+                    ToastTools.showShort( InfoActivity.this, getString(R.string.add_fail));
                 }
             }
         });

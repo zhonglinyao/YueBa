@@ -8,7 +8,6 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.hyphenate.EMCallBack;
 import com.hyphenate.chat.EMClient;
@@ -18,6 +17,7 @@ import com.lanou.yueba.bean.FriendBean;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.main.MainActivity;
+import com.lanou.yueba.tools.ToastTools;
 
 import java.util.List;
 
@@ -102,7 +102,8 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                 queryByContact();
                 break;
             case R.id.tv_group_add:
-                Toast.makeText(this, "群功能目前还没添加", Toast.LENGTH_SHORT).show();
+
+                ToastTools.showShort(AddContactActivity.this,"群功能目前还没添加");
                 break;
             case R.id.tv_back_add_contact:
                 finish();
@@ -132,15 +133,11 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
                     intent.putExtra("info", userInfoBean);
                     startActivity(intent);
                 } else {
-                    Toast.makeText(AddContactActivity.this, "当前用户不存在", Toast.LENGTH_SHORT).show();
-                }
+                    ToastTools.showShort(AddContactActivity.this,"当前用户不存在");
+                    }
             }
         });
-
-
         return true;
-
-
     }
 
 
@@ -177,24 +174,5 @@ public class AddContactActivity extends BaseActivity implements View.OnClickList
 
             }
         });
-
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    EMClient.getInstance().contactManager().addContact(username, "加好友");
-//
-//                    runOnUiThread(new Runnable() {
-//                        @Override
-//                        public void run() {
-//                            Log.d("AddContactActivity", "233");
-//                        }
-//                    });
-//                } catch (HyphenateException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
-
     }
 }

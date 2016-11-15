@@ -1,7 +1,6 @@
 package com.lanou.yueba.main;
 
 import android.graphics.Bitmap;
-import android.util.Log;
 import android.widget.ImageView;
 
 import com.hyphenate.chat.EMClient;
@@ -24,20 +23,13 @@ public class ShowQRActivity extends BaseActivity {
     @Override
     protected void initView() {
         qr = (ImageView) findViewById(R.id.iv_qr);
-
     }
 
     @Override
     protected void initData() {
         String textContent = EMClient.getInstance().getCurrentUser();
-
         int hight = getWindowManager().getDefaultDisplay().getHeight();
-        int wight = getWindowManager().getDefaultDisplay().getWidth();
-
-        Log.d("ShowQRActivity", "hight:" + hight);
-
         Bitmap mBitmap = CodeUtils.createImage(textContent, hight / 3, hight / 3, null);
-        //        mBitmap.eraseColor(0xff4495e6);
         qr.setImageBitmap(mBitmap);
     }
 }

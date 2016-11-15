@@ -124,5 +124,16 @@
     <string name="no_phone">还没有电话号码</string>
     <string name="no_qq">还没有QQ号</string>
     <string name="no_signature">还没有个性签名</string>
+    <string name="friend_invite">好友申请</string>
+    <string name="message_text">消息</string>
+    <string name="friend_name">好友姓名</string>
+    <string name="invite_reason">申请理由</string>
+    <string name="agree">同意</string>
+    <string name="loading">正在加载...</string>
+    <string name="_104">104万播放数</string>
+    <string name="qr_add_friend">扫码加好友</string>
+    <string name="create_qr">生成二维码</string>
+    <string name="add_success_wait">添加成功,等待好友同意</string>
+    <string name="add_fail">添加失败</string>
 
 </resources>
