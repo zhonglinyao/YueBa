@@ -71,9 +71,19 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
                                     try {
                                         EMClient.getInstance().contactManager().acceptInvitation(item.getUsername());
                                         Log.d("NewFriendsMsgActivity", "同意");
-
                                         updateForBmob(item);
+
+
+                                        EMClient.getInstance().contactManager().acceptInvitation(item.getFriendname());
+
+                                        FriendBean userBean = new FriendBean();
+                                        userBean.setFriendname(item.getUsername());
+                                        userBean.setUsername(item.getFriendname());
+                                        userBean.setFriend(true);
+                                        updateForBmob(userBean);
+
                                         mFriendBeanList.remove(position);
+                                        notifyDataSetChanged();
 
 
                                     } catch (HyphenateException e1) {
@@ -83,7 +93,7 @@ public class NewFriendsMsgActivity extends BaseActivity implements View.OnClickL
                             });
                         }
                     };
-                    adapter.notifyDataSetChanged();
+//                    adapter.notifyDataSetChanged();
                     mLv.setAdapter(adapter);
 
                 } else {

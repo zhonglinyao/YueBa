@@ -7,8 +7,8 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.net.Uri;
 import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -64,6 +64,7 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
     private FrameLayout mFlSave;
     private ImageView mIvSave;
     private SimpleDateFormat sdf;
+    private File mFile;
 
     @Override
     protected int setLayout() {
@@ -194,7 +195,7 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
                                 + "/yueba/location/";
                         String fileName = sdf.format(new Date()) + ".png";
                         File path = new File(pathName);
-                        File file = new File(pathName + fileName);
+                        mFile = new File(pathName + fileName);
                         long end = System.currentTimeMillis();
                         Log.d("NearbyActivity", "end-start:" + (end - start));
                         System.out.println("end-start:" + (end - start));
@@ -202,10 +203,10 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
                             if (!path.exists()) {
                                 path.mkdirs();
                             }
-                            if (!file.exists()) {
-                                file.createNewFile();
+                            if (!mFile.exists()) {
+                                mFile.createNewFile();
                             }
-                            FileOutputStream out = new FileOutputStream(file);
+                            FileOutputStream out = new FileOutputStream(mFile);
                             if (snapshot.compress(Bitmap.CompressFormat.PNG, 10, out)) {
                                 long endd = System.currentTimeMillis();
                                 Log.d("NearbyActivity", "end-start:" + (endd - start));
@@ -254,9 +255,9 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
         Log.d("Sysout", "aaaa");
 
 
-        Intent intent = new Intent(this, null);
-        intent.setDataAndType(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                "image/*");
+        Intent intent = new Intent();
+        intent.setAction(android.content.Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.fromFile(mFile), "image/*");
 
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 200, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         Notification notification = new Notification.Builder(this)

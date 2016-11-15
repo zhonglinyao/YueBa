@@ -84,8 +84,6 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             mTvExit.setText(getString(R.string.add_friend));
             mTvEdit.setVisibility(View.GONE);
             isFriend(mUserInfoBean.getUserName(),mCurrentUser);
-
-
         }
 
     }
@@ -98,10 +96,12 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void done(List<FriendBean> list, BmobException e) {
                 if (e == null){
-                    if (list.size() == 0){
-                        mTvExit.setVisibility(View.GONE);
+                    if (list.size() > 0){
+                        mTvExit.setText("已是好友关系");
+                        mTvExit.setClickable(false);
                     } else {
-                        mTvExit.setVisibility(View.VISIBLE);
+                        mTvExit.setText(getString(R.string.add_friend));
+                        mTvExit.setClickable(true);
                     }
                 }
             }
@@ -180,6 +180,23 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
             @Override
             public void done(String s, BmobException e) {
 
+                if (e == null){
+                    ToastTools.showShort( InfoActivity.this, getString(R.string.add_success_wait));
+
+
+                } else {
+                    ToastTools.showShort( InfoActivity.this, getString(R.string.add_fail));
+                }
+            }
+        });
+
+        FriendBean userBean = new FriendBean();
+        userBean.setUsername(mUserInfoBean.getUserName());
+        userBean.setFriendname(mCurrentUser);
+        userBean.setFriend(false);
+        userBean.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
                 if (e == null){
                     ToastTools.showShort( InfoActivity.this, getString(R.string.add_success_wait));
 
