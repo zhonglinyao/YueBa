@@ -11,7 +11,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="好友申请"
+            android:text="@string/friend_invite"
             />
 
         <RelativeLayout
@@ -26,13 +26,13 @@
                     android:id="@+id/tv_name_friend_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="好友姓名"
+                    android:text="@string/friend_name"
                     />
                 <TextView
                     android:id="@+id/tv_reason_msg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="申请理由"
+                    android:text="@string/invite_reason"
                     />
 
             </LinearLayout>
@@ -42,7 +42,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
-                android:text="同意"
+                android:text="@string/agree"
 
                 />
 

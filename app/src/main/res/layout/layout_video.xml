@@ -22,7 +22,7 @@
             android:layout_centerVertical="true"
             android:layout_toRightOf="@+id/iv_layout_avatar_video"
             android:paddingLeft="10dp"
-            android:text="aaaa"/>
+         />
 
         <TextView
             android:id="@+id/tv_layout_playCount_video"
@@ -31,7 +31,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:paddingRight="8dp"
-            android:text="104万播放数"/>
+            android:text="@string/_104"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -82,7 +82,6 @@
             android:layout_height="match_parent"
             android:gravity="center_vertical"
             android:paddingLeft="5dp"
-            android:text="我只是个标题而已"
             android:textSize="15sp"/>
 
         <TextView
@@ -90,7 +89,6 @@
             android:gravity="center"
             android:textSize="15sp"
             android:layout_width="100dp"
-            android:text="aaaaa"
             android:layout_height="match_parent"/>
 
     </LinearLayout>
