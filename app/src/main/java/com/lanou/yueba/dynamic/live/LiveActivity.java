@@ -73,7 +73,7 @@ public class LiveActivity extends BaseActivity implements Runnable{
             @Override
             public void onPrepared(MediaPlayer mp) {
                 mp.setPlaybackSpeed(1.0f);
-                mp.start();
+//                mp.start();
                 drawable.stop();
                 mIvPrepare.setVisibility(View.GONE);
             }

@@ -26,7 +26,6 @@ import com.lanou.yueba.base.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.contact.FriendsListener;
-import com.lanou.yueba.dbtools.LiteOrmTools;
 import com.lanou.yueba.dynamic.DynamicFragment;
 import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
 import com.lanou.yueba.info.InfoActivity;
@@ -47,6 +46,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private static final int REQUEST = 201;
     public static final String USERNAME = "userName";
+    private String TAG = "MainActivity";
     private RadioButton mIvContact;
     private RadioButton mIvDynamic;
     private RadioButton mIvMessage;
@@ -111,26 +111,25 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         }
     };
 
-    private void refreshUIWithMessage(){
+    private void refreshUIWithMessage() {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                if (index == 1){
-                    if (mMessageFragment != null){
+                if (index == 1) {
+                    if (mMessageFragment != null) {
                         mMessageFragment.refresh();
                     }
                 }
             }
         });
     }
+
     @Override
     protected void initData() {
+        mUserName = getIntent().getStringExtra(USERNAME);
         EMClient.getInstance().chatManager().addMessageListener(mListener);
 
         EMClient.getInstance().contactManager().setContactListener(new FriendsListener());
-
-
-        mUserName = getIntent().getStringExtra(USERNAME);
 
         changeToolBar();
         initClickListener();
@@ -150,7 +149,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.fl_main, mMessageFragment);
         transaction.commit();
-        queryDb();
+        mCircleImageView.setClickable(false);
+        bmobQuery();
+
     }
 
     private void initClickListener() {
@@ -207,8 +208,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         View contentView = LayoutInflater.from(this).inflate(
                 R.layout.pop_window, null);
         // 设置按钮的点击事件
-        Button addPop,createPop;
-        addPop= (Button) contentView.findViewById(R.id.btn_add_friend_pop);
+        Button addPop, createPop;
+        addPop = (Button) contentView.findViewById(R.id.btn_add_friend_pop);
         createPop = (Button) contentView.findViewById(R.id.btn_create_qr_pop);
 
         addPop.setOnClickListener(new View.OnClickListener() {
@@ -220,12 +221,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         createPop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,ShowQRActivity.class);
+                Intent intent = new Intent(MainActivity.this, ShowQRActivity.class);
                 startActivity(intent);
             }
         });
         PopupWindow popupWindow = new PopupWindow(contentView,
-                ViewGroup.LayoutParams.WRAP_CONTENT,ViewGroup.LayoutParams.WRAP_CONTENT,true);
+                ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT, true);
         // 设置popWindow弹出窗体可点击，这句话必须添加，并且是true
         popupWindow.setFocusable(true);
         // 实例化一个ColorDrawable颜色为半透明
@@ -237,8 +238,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         popupWindow.showAsDropDown(v);
 
     }
+
     //二维码
     private int QR_REQUEST_CODE = 102;
+
     private void showQR() {
         Intent intent = new Intent(MainActivity.this, CaptureActivity.class);
         startActivityForResult(intent, QR_REQUEST_CODE);
@@ -262,12 +265,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (bundle.getInt(CodeUtils.RESULT_TYPE) == CodeUtils.RESULT_SUCCESS) {
 
                     String result = bundle.getString(CodeUtils.RESULT_STRING);
-                    BmobQuery<UserInfoBean> beanBmobQuery =new BmobQuery<>();
-                    beanBmobQuery.addWhereEqualTo("userName",result);
+                    BmobQuery<UserInfoBean> beanBmobQuery = new BmobQuery<>();
+                    beanBmobQuery.addWhereEqualTo(USERNAME, result);
                     beanBmobQuery.findObjects(new FindListener<UserInfoBean>() {
                         @Override
                         public void done(List<UserInfoBean> list, BmobException e) {
-                            if (e == null){
+                            if (e == null) {
                                 Intent intent = new Intent(MainActivity.this, InfoActivity.class);
                                 intent.putExtra(InfoActivity.INFO, list.get(0));
                                 startActivity(intent);
@@ -289,14 +292,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTvToolBar.setText(getString(R.string.chat));
                 mIvToolBar.setVisibility(View.VISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
-                mTvMoreToolBar.setVisibility(View.INVISIBLE);
+                mTvMoreToolBar.setVisibility(View.GONE);
                 break;
 
             case 2:
                 mTvToolBar.setText(getString(R.string.contact));
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.VISIBLE);
-                mTvMoreToolBar.setVisibility(View.INVISIBLE);
+                mTvMoreToolBar.setVisibility(View.GONE);
                 break;
 
             case 3:
@@ -308,28 +311,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
             default:
                 break;
         }
-    }
-
-    private void queryDb() {
-        LiteOrmTools.getInstance().queryTab(UserInfoBean.class, new LiteOrmTools.CallBack<UserInfoBean>() {
-            @Override
-            public void callBack(List<UserInfoBean> list) {
-                Log.d("MainActivity", "数据库");
-                if (list == null || 0 == list.size()) {
-                    Log.d("MainActivity", "DB没数据");
-                    bmobQuery();
-                } else {
-                    Log.d("MainActivity", "DB有数据");
-                    for (int i = 0; i < list.size(); i++) {
-                        if (list.get(i).getUserName().equals(mUserName)) {
-                            mUserInfoBean = list.get(i);
-                            break;
-                        }
-                    }
-                    updateHead();
-                }
-            }
-        });
     }
 
     private void bmobQuery() {
@@ -345,9 +326,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 if (e == null) {
                     Log.d("MainActivity", "aaa");
                     mUserInfoBean = list.get(0);
+                    mCircleImageView.setClickable(true);
                     updateHead();
                 } else {
                     mUserInfoBean = new UserInfoBean();
+                    mCircleImageView.setClickable(true);
                     updateHead();
                 }
             }

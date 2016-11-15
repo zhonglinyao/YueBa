@@ -183,17 +183,25 @@ public class DynamicActivity extends BaseActivity implements
                     holder
                             .setText(R.id.tv_name_dynamic_item, dynamicBean.getUserName())
                             .setText(R.id.tv_date_dynamic_item, dynamicBean.getCreatedAt())
-                            .setImage(R.id.civ_dynamic_item, dynamicBean.getPicUrl(), R.mipmap.image_error);
-
+                            .setImage(R.id.civ_dynamic_item, dynamicBean.getPicUrl(), R.mipmap.icon);
 
                     String content = dynamicBean.getContent();
                     String imgUrl = dynamicBean.getImgUrl();
+                    String imgHead = dynamicBean.getPicUrl();
+                    if (imgHead != null && imgHead.length() > 0) {
+                        holder.getView(R.id.civ_dynamic_item).setVisibility(View.VISIBLE);
+                        holder.setImage(R.id.civ_dynamic_item, imgHead, R.mipmap.icon);
+                    } else {
+                        holder.setImageResource(R.id.civ_dynamic_item, R.mipmap.icon);
+                    }
+
                     if (content != null && content.length() > 0) {
                         holder.getView(R.id.tv_content_dynamic_item).setVisibility(View.VISIBLE);
                         holder.setText(R.id.tv_content_dynamic_item, content);
                     } else {
                         holder.getView(R.id.tv_content_dynamic_item).setVisibility(View.GONE);
                     }
+
                     if (imgUrl != null && imgUrl.length() > 0) {
                         holder.getView(R.id.iv_img_dynamic_item).setVisibility(View.VISIBLE);
                         holder.setImage(R.id.iv_img_dynamic_item, imgUrl, R.mipmap.image_error);

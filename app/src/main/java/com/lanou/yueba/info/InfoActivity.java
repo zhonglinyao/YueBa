@@ -74,7 +74,8 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
         mUserInfoBean = (UserInfoBean) getIntent().getSerializableExtra(INFO);
         update();
         initListener();
-        if (mCurrentUser.equals(mUserInfoBean.getUserName())) {
+
+        if (mUserInfoBean.getUserName() != null && mCurrentUser.equals(mUserInfoBean.getUserName())) {
             USERINFO = 0;
             mTvExit.setText(getString(R.string.exit_username));
             mTvEdit.setVisibility(View.VISIBLE);

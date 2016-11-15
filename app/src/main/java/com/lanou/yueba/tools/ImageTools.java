@@ -8,19 +8,13 @@ import android.renderscript.Element;
 import android.renderscript.RenderScript;
 import android.renderscript.ScriptIntrinsicBlur;
 
-import com.lanou.yueba.R;
 import com.lanou.yueba.app.YueBaApp;
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 
 /**
  * Created by dllo on 16/10/22.
  */
 
 public class ImageTools {
-
-    private static DisplayImageOptions options;
-
 
     public static int calculateInSampleSize(BitmapFactory.Options options, int width, int height) {
         int outWidth = options.outWidth;
@@ -45,26 +39,6 @@ public class ImageTools {
             return bitmap;
         }
         return null;
-    }
-    public static DisplayImageOptions getOptions() {
-
-        if (options == null) {
-            synchronized (ImageTools.class) {
-                if (options == null) {
-                    options = new DisplayImageOptions
-                            .Builder()
-                            .showImageForEmptyUri(R.mipmap.icon)
-                            .showImageOnLoading(R.mipmap.icon)
-                            .bitmapConfig(Bitmap.Config.ARGB_8888)
-                            .imageScaleType(ImageScaleType.EXACTLY)
-                            .cacheInMemory(true)
-                            .cacheOnDisk(true)
-                            .considerExifParams(true)
-                            .build();
-                }
-            }
-        }
-        return options;
     }
 
 }

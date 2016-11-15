@@ -76,26 +76,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
 
     public ViewHolder setImage(int viewId, String url){
         ImageView view = getView(viewId);
-        Glide.with(mContext).load(url).placeholder(R.mipmap.image_error).
-                error(R.mipmap.image_error).into(view);
-//        ImageLoader.getInstance().displayImage(url, view, ImageTools.getOptions());
-
+        Glide.with(mContext).load(url).error(R.mipmap.image_error).into(view);
         return this;
     }
 
     public ViewHolder setImage(int viewId, String url, int errorImg){
         ImageView view = getView(viewId);
-        Glide.with(mContext).load(url).
-                placeholder(R.mipmap.image_error).
-                error(errorImg).into(view);
-
-//        ImageLoader.getInstance().displayImage(url, view, ImageTools.getOptions());
-
-//        Picasso.with(mContext).load(url).
-//                        placeholder(R.mipmap.image_error).
-//                        error(errorImg).into(view);
-
-
+        Glide.with(mContext).load(url).error(errorImg).into(view);
         return this;
     }
 

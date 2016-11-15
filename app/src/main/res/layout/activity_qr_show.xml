@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
               android:orientation="vertical"
               style="@style/StatusBar"
               android:layout_width="match_parent"
@@ -15,8 +16,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/colorMain"
-        android:contentInsetStart="0dp"
-        android:contentInsetEnd="0dp"
+        app:contentInsetStart="0dp"
+        app:contentInsetEnd="0dp"
         >
 
         <RelativeLayout
