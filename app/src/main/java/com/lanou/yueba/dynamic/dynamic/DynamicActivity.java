@@ -19,7 +19,7 @@ import com.lanou.yueba.base.rv.ViewHolder;
 import com.lanou.yueba.bean.DynamicBean;
 import com.lanou.yueba.bean.FriendBean;
 import com.lanou.yueba.bean.UserInfoBean;
-import com.lanou.yueba.dynamic.dynamic.Publish.PublishActivity;
+import com.lanou.yueba.dynamic.dynamic.publish.PublishActivity;
 import com.lanou.yueba.dynamic.dynamic.persenter.DynamicPresenter;
 import com.lanou.yueba.dynamic.dynamic.ui.DynamicView;
 import com.lanou.yueba.tools.ActivityTools;
@@ -36,6 +36,9 @@ public class DynamicActivity extends BaseActivity implements
         AppBarLayout.OnOffsetChangedListener, DynamicView {
 
     public static final String DYNAMIC = "dynamic";
+    public static final int REQUSET = 101;
+    public static final int RESULT = 102;
+
     private ImageView mIvBack;
     private RecyclerView mRv;
     private AppBarLayout mAppBarLayout;
@@ -82,7 +85,7 @@ public class DynamicActivity extends BaseActivity implements
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (101 == requestCode && 102 == resultCode) {
+        if (REQUSET == requestCode && PublishActivity.RESULT == resultCode) {
             DynamicBean dynamicBean = (DynamicBean) data.getSerializableExtra(PublishActivity.PUBLISH);
             mDynamicBeanList.add(0, dynamicBean);
             mAdapter.notifyDataSetChanged();

@@ -115,31 +115,32 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
 
     public void update() {
         if (mUserInfoBean != null) {
-            mTvUsername.setText(mUserInfoBean.getUserName());
-        }
+            if (mUserInfoBean.getUserName() != null)
+                mTvUsername.setText(mUserInfoBean.getUserName());
 
-        if (mUserInfoBean.getPicUrl() != null) {
-            Glide.with(this)
-                    .load(mUserInfoBean.getPicUrl())
-                    .into(mIvHead);
-        } else {
-            mIvHead.setImageResource(R.mipmap.icon);
-        }
+            if (mUserInfoBean.getPicUrl() != null) {
+                Glide.with(this)
+                        .load(mUserInfoBean.getPicUrl())
+                        .into(mIvHead);
+            } else {
+                mIvHead.setImageResource(R.mipmap.icon);
+            }
 
-        if (mUserInfoBean.getPhoneNum() == null) {
-            mTvPhone.setText(getString(R.string.no_phone));
-        } else {
-            mTvPhone.setText(mUserInfoBean.getPhoneNum());
-        }
-        if (mUserInfoBean.getQq() == null) {
-            mTvQQ.setText(getString(R.string.no_qq));
-        } else {
-            mTvQQ.setText(mUserInfoBean.getQq());
-        }
-        if (mUserInfoBean.getSignature() == null) {
-            mTvSignature.setText(getString(R.string.no_signature));
-        } else {
-            mTvSignature.setText(mUserInfoBean.getSignature());
+            if (mUserInfoBean.getPhoneNum() == null) {
+                mTvPhone.setText(getString(R.string.no_phone));
+            } else {
+                mTvPhone.setText(mUserInfoBean.getPhoneNum());
+            }
+            if (mUserInfoBean.getQq() == null) {
+                mTvQQ.setText(getString(R.string.no_qq));
+            } else {
+                mTvQQ.setText(mUserInfoBean.getQq());
+            }
+            if (mUserInfoBean.getSignature() == null) {
+                mTvSignature.setText(getString(R.string.no_signature));
+            } else {
+                mTvSignature.setText(mUserInfoBean.getSignature());
+            }
         }
     }
 
