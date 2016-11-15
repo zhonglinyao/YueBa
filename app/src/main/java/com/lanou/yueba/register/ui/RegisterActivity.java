@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import com.hyphenate.EMError;
 import com.hyphenate.exceptions.HyphenateException;
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.login.ui.LoginActivity;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.presenter.RegPresenter;

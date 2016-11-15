@@ -3,7 +3,7 @@ package com.lanou.yueba.contact;
 
 import com.hyphenate.easeui.ui.EaseChatFragment;
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 
 /**
  * Created by dllo on 16/10/26.

@@ -7,7 +7,7 @@ import android.widget.TextView;
 
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.tools.ActivityTools;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 

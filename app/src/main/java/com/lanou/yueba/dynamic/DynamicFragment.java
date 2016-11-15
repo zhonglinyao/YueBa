@@ -7,7 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseFragment;
+import com.lanou.yueba.base.fragment.BaseFragment;
 import com.lanou.yueba.dynamic.live.LiveListActivity;
 import com.lanou.yueba.dynamic.nearby.NearbyActivity;
 import com.lanou.yueba.dynamic.news.NewsActivity;

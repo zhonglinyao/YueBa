@@ -10,12 +10,12 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
-import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
-import com.lanou.yueba.base.rv.DividerItemDecoration;
-import com.lanou.yueba.base.rv.LoadMoreWrapper;
-import com.lanou.yueba.base.rv.MultiItemTypeRecyclerAdapter;
-import com.lanou.yueba.base.rv.ViewHolder;
+import com.lanou.yueba.base.activity.BaseActivity;
+import com.lanou.yueba.base.recyclerview.CommonRecyclerAdapter;
+import com.lanou.yueba.base.recyclerview.DividerItemDecoration;
+import com.lanou.yueba.base.recyclerview.LoadMoreWrapper;
+import com.lanou.yueba.base.recyclerview.MultiItemTypeRecyclerAdapter;
+import com.lanou.yueba.base.recyclerview.ViewHolder;
 import com.lanou.yueba.base.rxjava.RxJavaRequest;
 import com.lanou.yueba.bean.NewsBean;
 import com.lanou.yueba.tools.ActivityTools;

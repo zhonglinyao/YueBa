@@ -13,7 +13,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.widget.LiveMediaController;
 

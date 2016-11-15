@@ -32,7 +32,7 @@ import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.lanou.yueba.R;
 import com.lanou.yueba.app.YueBaApp;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.threadtools.ThreadTool;
 import com.lanou.yueba.tools.ActivityTools;
 
@@ -254,7 +254,6 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
         Log.d("Sysout", "aaaa");
 
-
         Intent intent = new Intent();
         intent.setAction(android.content.Intent.ACTION_VIEW);
         intent.setDataAndType(Uri.fromFile(mFile), "image/*");
@@ -327,6 +326,4 @@ public class NearbyActivity extends BaseActivity implements RadioGroup.OnChecked
         public void onReceivePoi(BDLocation poiLocation) {
         }
     }
-
-
 }

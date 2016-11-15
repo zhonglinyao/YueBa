@@ -11,7 +11,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.tools.ActivityTools;
 
 /**

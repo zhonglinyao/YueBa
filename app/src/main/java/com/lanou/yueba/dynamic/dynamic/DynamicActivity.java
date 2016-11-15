@@ -13,9 +13,9 @@ import android.widget.RelativeLayout;
 
 import com.bumptech.glide.Glide;
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
-import com.lanou.yueba.base.rv.CommonRecyclerAdapter;
-import com.lanou.yueba.base.rv.ViewHolder;
+import com.lanou.yueba.base.activity.BaseActivity;
+import com.lanou.yueba.base.recyclerview.CommonRecyclerAdapter;
+import com.lanou.yueba.base.recyclerview.ViewHolder;
 import com.lanou.yueba.bean.DynamicBean;
 import com.lanou.yueba.bean.FriendBean;
 import com.lanou.yueba.bean.UserInfoBean;

@@ -1,4 +1,4 @@
-package com.lanou.yueba.base;
+package com.lanou.yueba.base.fragment;
 
 import android.content.Context;
 import android.os.Bundle;

@@ -22,7 +22,7 @@ import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.easeui.controller.EaseUI;
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.bean.UserInfoBean;
 import com.lanou.yueba.contact.ContactFragment;
 import com.lanou.yueba.contact.FriendsListener;

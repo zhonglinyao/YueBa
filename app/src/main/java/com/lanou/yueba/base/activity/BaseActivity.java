@@ -1,4 +1,4 @@
-package com.lanou.yueba.base;
+package com.lanou.yueba.base.activity;
 
 import android.os.Build;
 import android.os.Bundle;

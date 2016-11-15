@@ -13,7 +13,7 @@ import android.widget.TextView;
 import com.hyphenate.EMError;
 import com.hyphenate.chat.EMClient;
 import com.lanou.yueba.R;
-import com.lanou.yueba.base.BaseActivity;
+import com.lanou.yueba.base.activity.BaseActivity;
 import com.lanou.yueba.login.presenter.LoginPresenter;
 import com.lanou.yueba.main.MainActivity;
 import com.lanou.yueba.register.ui.RegisterActivity;

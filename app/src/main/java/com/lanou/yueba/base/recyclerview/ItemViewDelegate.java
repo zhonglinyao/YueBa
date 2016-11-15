@@ -1,4 +1,4 @@
-package com.lanou.yueba.base.rv;
+package com.lanou.yueba.base.recyclerview;
 
 
 /**
