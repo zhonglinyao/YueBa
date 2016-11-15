@@ -182,6 +182,23 @@ public class InfoActivity extends BaseActivity implements View.OnClickListener {
                 if (e == null){
                     ToastTools.showShort( InfoActivity.this, getString(R.string.add_success_wait));
 
+
+                } else {
+                    ToastTools.showShort( InfoActivity.this, getString(R.string.add_fail));
+                }
+            }
+        });
+
+        FriendBean userBean = new FriendBean();
+        userBean.setUsername(mUserInfoBean.getUserName());
+        userBean.setFriendname(mCurrentUser);
+        userBean.setFriend(false);
+        userBean.save(new SaveListener<String>() {
+            @Override
+            public void done(String s, BmobException e) {
+                if (e == null){
+                    ToastTools.showShort( InfoActivity.this, getString(R.string.add_success_wait));
+
                 } else {
                     ToastTools.showShort( InfoActivity.this, getString(R.string.add_fail));
                 }

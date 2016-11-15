@@ -134,9 +134,9 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
 
     @Override
     public void onError(final int i, final String s) {
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
                 mDialog.dismiss();
                 Log.d("失败", "登录失败 Error code:" + i + ", message:" + s);
                 switch (i) {
@@ -180,8 +180,8 @@ public class LoginActivity extends BaseActivity implements ILoginView, View.OnCl
                         ToastTools.showShort(LoginActivity.this, "其他错误");
                       break;
                 }
-//            }
-//        });
+            }
+        });
     }
 
     public ProgressDialog createDialog() {
