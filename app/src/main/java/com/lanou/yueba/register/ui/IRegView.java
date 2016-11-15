@@ -5,16 +5,9 @@ package com.lanou.yueba.register.ui;
  */
 
 public interface IRegView {
-
     void showDialog();
-
     void dismissDialog();
-
     void onResponse(String username,String password);
-
     void onError(Throwable error);
-
-
-
 
 }

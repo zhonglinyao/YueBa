@@ -1,8 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:orientation="vertical"
+              style="@style/StatusBar"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:background="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
@@ -12,7 +19,47 @@
         android:contentInsetEnd="0dp"
         >
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/ll_back_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:background="@mipmap/toolbar_back"
+
+                    />
+
+                <TextView
+                    style="@style/CustomTitleTextAppearance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/back_text"
+                    android:id="@+id/tv_back_qr_show"
+                    android:clickable="true"
+                    />
+
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/CustomTitleTextAppearance"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/qr_add_friend"
+                />
+
+
+        </RelativeLayout>
 
 
     </android.support.v7.widget.Toolbar>
@@ -45,7 +92,7 @@
     </RelativeLayout>
 
 
-
+    </LinearLayout>
 
 
 </LinearLayout>

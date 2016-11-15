@@ -32,7 +32,6 @@ import com.lanou.yueba.dynamic.dynamic.DynamicActivity;
 import com.lanou.yueba.info.InfoActivity;
 import com.lanou.yueba.main.addcontact.AddContactActivity;
 import com.lanou.yueba.message.MessageFragment;
-import com.lanou.yueba.vlaues.StringVlaues;
 import com.uuzuche.lib_zxing.activity.CaptureActivity;
 import com.uuzuche.lib_zxing.activity.CodeUtils;
 
@@ -304,7 +303,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 mTvToolBar.setText(getString(R.string.dynamic));
                 mIvToolBar.setVisibility(View.INVISIBLE);
                 mTvAddToolBar.setVisibility(View.INVISIBLE);
-                mTvMoreToolBar.setVisibility(View.VISIBLE);
+                mTvMoreToolBar.setVisibility(View.GONE);
                 break;
             default:
                 break;

@@ -8,8 +8,15 @@ import com.baidu.mapapi.SDKInitializer;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.hyphenate.easeui.controller.EaseUI;
+import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
+import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
+import com.nostra13.universalimageloader.cache.memory.impl.WeakMemoryCache;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
+import com.nostra13.universalimageloader.utils.StorageUtils;
 import com.uuzuche.lib_zxing.activity.ZXingLibrary;
 
+import java.io.File;
 import java.util.Iterator;
 import java.util.List;
 
@@ -38,6 +45,19 @@ public class YueBaApp extends Application{
         Vitamio.isInitialized(this);
         initEasemob();
         Bmob.initialize(this, "0e0c17dfb9f00526d44150879ec8cd8e");
+
+        File cacheDir = StorageUtils.getOwnCacheDirectory(getApplicationContext(), "imageloader/Cache");
+        ImageLoaderConfiguration configuration =
+                new ImageLoaderConfiguration
+                        .Builder(this)
+                        .threadPoolSize(3)
+                        .diskCacheFileCount(100)
+                        .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                        .diskCache(new UnlimitedDiscCache(cacheDir))
+                        .memoryCache(new WeakMemoryCache())
+                        .build();
+        ImageLoader.getInstance().init(configuration);
+
     }
     /**
      *

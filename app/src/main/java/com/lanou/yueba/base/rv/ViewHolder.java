@@ -78,6 +78,8 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView view = getView(viewId);
         Glide.with(mContext).load(url).placeholder(R.mipmap.image_error).
                 error(R.mipmap.image_error).into(view);
+//        ImageLoader.getInstance().displayImage(url, view, ImageTools.getOptions());
+
         return this;
     }
 
@@ -86,6 +88,13 @@ public class ViewHolder extends RecyclerView.ViewHolder {
         Glide.with(mContext).load(url).
                 placeholder(R.mipmap.image_error).
                 error(errorImg).into(view);
+
+//        ImageLoader.getInstance().displayImage(url, view, ImageTools.getOptions());
+
+//        Picasso.with(mContext).load(url).
+//                        placeholder(R.mipmap.image_error).
+//                        error(errorImg).into(view);
+
 
         return this;
     }
