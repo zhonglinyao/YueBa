@@ -1,4 +1,4 @@
-package com.lanou.yueba.dynamic.dynamic.Publish;
+package com.lanou.yueba.dynamic.dynamic.publish;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -38,6 +38,8 @@ import static com.lanou.yueba.R.id.tv_publish_publish;
 public class PublishActivity extends BaseActivity implements View.OnClickListener {
 
     public static final String PUBLISH = "publish";
+    public static final int REQUSET = 401;
+    public static final int RESULT = 102;
     private TextView mTvBack;
     private EditText mEt;
     private TextView mTvPublish;
@@ -95,7 +97,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                 Intent intent = new Intent(
                         Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI
                 );
-                startActivityForResult(intent, 401);
+                startActivityForResult(intent, REQUSET);
                 break;
         }
     }
@@ -103,7 +105,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (401 == requestCode && resultCode == RESULT_OK) {
+        if (REQUSET == requestCode && resultCode == RESULT_OK) {
             Uri selectedImage = data.getData();
             String[] filePathColumn = {MediaStore.Images.Media.DATA};
             Cursor cursor = getContentResolver().query(selectedImage,
@@ -150,7 +152,7 @@ public class PublishActivity extends BaseActivity implements View.OnClickListene
                                     drawable.stop();
                                     Intent intent = new Intent();
                                     intent.putExtra(PUBLISH, mDynamicBean);
-                                    setResult(102, intent);
+                                    setResult(RESULT, intent);
                                     ActivityTools.deleteActivity(PublishActivity.this.getClass().getSimpleName());
                                 } else {
                                     Toast.makeText(PublishActivity.this, "发表失败", Toast.LENGTH_SHORT).show();

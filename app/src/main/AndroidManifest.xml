@@ -71,7 +71,7 @@
             android:name=".dynamic.dynamic.DynamicActivity"
             android:screenOrientation="portrait"/>
         <activity
-            android:name=".dynamic.dynamic.Publish.PublishActivity"
+            android:name=".dynamic.dynamic.publish.PublishActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden"/>
         <activity
