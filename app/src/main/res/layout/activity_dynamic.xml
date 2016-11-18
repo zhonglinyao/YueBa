@@ -6,10 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!--<FrameLayout-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--android:background="@android:color/white">-->
     <ImageView
         android:id="@+id/iv_loading_dynamic"
         android:layout_width="50dp"
@@ -34,7 +30,7 @@
             android:id="@+id/rl_dynamic_dynamic"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
+            android:paddingTop="15dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp">
 
@@ -67,5 +63,4 @@
             </RelativeLayout>
         </RelativeLayout>
     </android.support.v7.widget.Toolbar>
-    <!--</FrameLayout>-->
 </FrameLayout>

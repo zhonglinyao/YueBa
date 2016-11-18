@@ -30,7 +30,7 @@ import com.lanou.yueba.bean.VideoBean;
 import com.lanou.yueba.base.presenter.AppPresenter;
 import com.lanou.yueba.tools.ActivityTools;
 import com.lanou.yueba.base.ui.AppView;
-import com.lanou.yueba.vlaues.UrlValues;
+import com.lanou.yueba.values.UrlValues;
 import com.superplayer.library.SuperPlayer;
 import com.superplayer.library.SuperPlayerManage;
 import com.superplayer.library.mediaplayer.IjkVideoView;

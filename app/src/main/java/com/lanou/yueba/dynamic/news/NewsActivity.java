@@ -19,7 +19,7 @@ import com.lanou.yueba.base.recyclerview.ViewHolder;
 import com.lanou.yueba.base.rxjava.RxJavaRequest;
 import com.lanou.yueba.bean.NewsBean;
 import com.lanou.yueba.tools.ActivityTools;
-import com.lanou.yueba.vlaues.UrlValues;
+import com.lanou.yueba.values.UrlValues;
 
 import java.util.ArrayList;
 

@@ -15,6 +15,7 @@ public class DynamicBean extends BmobObject implements Serializable,Comparable<D
     private String imgUrl;
     private String date;
 
+
     public String getDate() {
         return date;
     }

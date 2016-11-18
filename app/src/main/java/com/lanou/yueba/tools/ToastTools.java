@@ -144,9 +144,6 @@ public class ToastTools {
             sToast.setDuration(duration);
         }
         sToast.show();
-
-
-
     }
 
     /**

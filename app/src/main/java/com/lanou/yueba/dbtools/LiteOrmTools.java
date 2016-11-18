@@ -20,10 +20,9 @@ public class LiteOrmTools {
     private LiteOrm mLiteOrm;
     private Handler mHandler;
 
-    private static final class LiteormToolsHolder {
+    private static final class LiteOrmToolsHolder {
         private static final LiteOrmTools sInstance = new LiteOrmTools();
     }
-
 
     private LiteOrmTools() {
         mLiteOrm = LiteOrm.newCascadeInstance(YueBaApp.getContext(), DB_NAME);
@@ -31,7 +30,7 @@ public class LiteOrmTools {
     }
 
     public static LiteOrmTools getInstance() {
-        return LiteormToolsHolder.sInstance;
+        return LiteOrmToolsHolder.sInstance;
     }
 
     public void insertInfo(final UserInfoBean userInfoBean) {
